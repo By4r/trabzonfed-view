@@ -401,6 +401,7 @@ input, textarea, select { font: inherit; }
   row-gap: .3rem;
 }
 .mega-panel__grid--half { grid-template-rows: repeat(2, auto); }
+.mega-panel__grid--third { grid-template-rows: repeat(3, auto); }
 .mega-panel__grid a {
   display: inline-flex;
   align-items: center;
