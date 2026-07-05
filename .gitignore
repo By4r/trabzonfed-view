@@ -1,0 +1,13 @@
+# Çalışma dosyaları — asla commit'lenmez
+tasks/
+docs/screenshots/
+
+# Claude çalışma alanı — skills hariç takipte kalmaz
+.claude/*
+!.claude/skills/
+
+# Sistem / geçici
+.DS_Store
+scratch/
+scratchpad/
+*.tmp
