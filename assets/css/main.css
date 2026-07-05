@@ -1121,7 +1121,12 @@ body.has-reveal .site-footer { position: fixed; left: 0; right: 0; bottom: 0; z-
   transition: color var(--tf-dur) var(--tf-ease);
 }
 .footer__credit:hover { color: var(--tf-on-dark); }
-.footer__credit svg { flex-shrink: 0; color: var(--tf-accent-on-dark-soft); }
+.footer__credit-code {
+  flex-shrink: 0;
+  font-weight: 700;
+  letter-spacing: -.04em;
+  color: var(--tf-accent-on-dark-soft);
+}
 
 /* ============ Scroll reveal ============ */
 .reveal {
