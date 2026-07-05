@@ -23,6 +23,7 @@
   --tf-border:       #EAEAEA;
   --tf-bg:           #FFFFFF;
   --tf-bg-soft:      #F6F7FA;  /* açık gri bant */
+  --tf-gri-bg:       #3F444C;  /* koyu nötr gri bant zemini (CTA bandı) — --tf-text ailesinin koyusu */
   --tf-on-dark:      #FFFFFF;
   --tf-on-dark-soft: rgba(255,255,255,.72);
   --tf-accent-on-dark:      #F2B9C4;  /* koyu zeminde açık pembe vurgu — hero em, eyebrow, ikon */
@@ -31,6 +32,7 @@
   /* ---- Tipografi ---- */
   --tf-ff-heading: 'Outfit', system-ui, sans-serif;
   --tf-ff-body:    'Inter',  system-ui, sans-serif;
+  --tf-ff-mono:    ui-monospace, 'SF Mono', Menlo, Consolas, monospace; /* mikro kullanım: geliştirici imzası */
   --tf-fs-display: clamp(2.5rem, 5vw, 4rem);      /* hero H1 */
   --tf-fs-h1:      clamp(2.25rem, 4vw, 3rem);     /* sayfa H1 / section başlığı */
   --tf-fs-h2:      clamp(1.75rem, 3vw, 2.25rem);

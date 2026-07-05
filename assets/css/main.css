@@ -76,7 +76,49 @@ input, textarea, select { font: inherit; }
 }
 .section--accent h2, .section--accent h3 { color: var(--tf-on-dark); }
 .section--accent .section-head__eyebrow { color: var(--tf-accent-on-dark); }
+.section--accent .section-head__eyebrow::before { background: var(--tf-accent-on-dark-soft); }
 .section--accent .section-head p { color: var(--tf-on-dark-soft); }
+/* Renkli zemin varyantları (revize: tonal ritim — mavi / koyu nötr gri) */
+.section--mavi {
+  background: var(--tf-mavi);
+  color: var(--tf-on-dark);
+}
+.section--mavi h2, .section--mavi h3 { color: var(--tf-on-dark); }
+/* Mavi zeminde %72 beyaz 4.5:1 altına düşer — metin tam beyaz kalır */
+.section--mavi .section-head__eyebrow { color: var(--tf-on-dark); }
+.section--mavi .section-head__eyebrow::before { background: var(--tf-on-dark); }
+.section--mavi .section-head p { color: var(--tf-on-dark); }
+.section--gray {
+  background: var(--tf-gri-bg);
+  color: var(--tf-on-dark);
+}
+.section--gray h2, .section--gray h3 { color: var(--tf-on-dark); }
+.section--gray .section-head__eyebrow { color: var(--tf-accent-on-dark); }
+.section--gray .section-head__eyebrow::before { background: var(--tf-accent-on-dark-soft); }
+.section--gray .section-head p { color: var(--tf-on-dark-soft); }
+/* Koyu zeminlerde ghost buton + carousel oku okunur kalır */
+.section--accent .btn-ghost,
+.section--gray .btn-ghost { color: var(--tf-accent-on-dark); }
+.section--mavi .btn-ghost { color: var(--tf-on-dark); }
+.section--accent .btn-ghost:hover,
+.section--gray .btn-ghost:hover,
+.section--mavi .btn-ghost:hover { color: var(--tf-on-dark); }
+.section--accent .carousel-btn,
+.section--gray .carousel-btn,
+.section--mavi .carousel-btn { color: var(--tf-on-dark); border-color: rgba(255,255,255,.4); }
+.section--accent .carousel-btn:hover:not(:disabled),
+.section--gray .carousel-btn:hover:not(:disabled),
+.section--mavi .carousel-btn:hover:not(:disabled) {
+  color: var(--tf-on-dark);
+  border-color: var(--tf-on-dark);
+  background: rgba(255,255,255,.12);
+}
+/* Koyu zeminde mavi odak halkası kaybolur — beyaza döner */
+.section--mavi :focus-visible,
+.section--accent :focus-visible,
+.section--gray :focus-visible,
+.section--dark :focus-visible,
+.site-footer :focus-visible { outline-color: var(--tf-on-dark); }
 .section--divider-top { position: relative; }
 
 .section-head {
@@ -527,12 +569,12 @@ input, textarea, select { font: inherit; }
   background: linear-gradient(115deg, rgba(18,27,46,.94) 0%, rgba(70,0,15,.82) 46%, rgba(18,27,46,.55) 100%);
   z-index: 1;
 }
+/* İçerik container hizasında SOLA yaslı (revize); genişlik sınırı h1/p üzerinde */
 .hero__inner {
   position: relative;
   z-index: 2;
   width: 100%;
   padding-block: var(--tf-space-6) calc(var(--tf-space-6) + 56px);
-  max-width: 720px;
 }
 .hero__eyebrow {
   display: inline-flex;
@@ -552,6 +594,7 @@ input, textarea, select { font: inherit; }
   font-size: var(--tf-fs-h1);
   color: var(--tf-on-dark);
   margin-bottom: var(--tf-space-2);
+  max-width: 640px;
 }
 .hero h1 em {
   font-style: normal;
@@ -1017,6 +1060,14 @@ input, textarea, select { font: inherit; }
 .contact-cta__actions .btn { justify-content: center; }
 
 /* ============ Footer (sade — revize brief §11) ============ */
+/* Perde (curtain reveal — DESİL/gaviaworks deseni): footer altta fixed bekler,
+   içerik (main, opak + üst katman) scroll sonunda üstünden kalkınca açığa çıkar.
+   JS yalnız footer viewport'a sığıyorsa body.has-reveal verir ve main'e footer
+   yüksekliği kadar margin-bottom açar; sığmayan kısa ekranlarda footer statik
+   akışta kalır (kırılmaz). Efekt scroll'a bağlı yerleşimdir, animasyon değil —
+   reduced-motion'ı etkilemez. */
+main { position: relative; z-index: 2; background: var(--tf-bg); }
+body.has-reveal .site-footer { position: fixed; left: 0; right: 0; bottom: 0; z-index: 1; }
 .site-footer {
   background: var(--tf-grad-kurumsal);
   color: var(--tf-on-dark-soft);
@@ -1061,15 +1112,27 @@ input, textarea, select { font: inherit; }
   transition: background var(--tf-dur) var(--tf-ease);
 }
 .footer__social a:hover { background: var(--tf-mavi); color: var(--tf-on-dark); }
+/* Alt satır: iki uçlu — solda telif, sağda geliştirici imzası */
 .footer__bottom {
   display: flex;
-  flex-direction: column;
   align-items: center;
-  gap: .35rem;
-  padding-block: var(--tf-space-3);
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0 var(--tf-space-3);
+  padding-block: var(--tf-space-2);
   font-size: .8125rem;
-  text-align: center;
 }
+.footer__credit {
+  display: inline-flex;
+  align-items: center;
+  gap: .4rem;
+  min-height: 44px;
+  font-family: var(--tf-ff-mono);
+  color: var(--tf-on-dark-soft);
+  transition: color var(--tf-dur) var(--tf-ease);
+}
+.footer__credit:hover { color: var(--tf-on-dark); }
+.footer__credit svg { flex-shrink: 0; color: var(--tf-accent-on-dark-soft); }
 
 /* ============ Scroll reveal ============ */
 .reveal {
@@ -1080,6 +1143,11 @@ input, textarea, select { font: inherit; }
 .reveal.is-visible { opacity: 1; transform: translateY(0); }
 
 /* ============ Responsive ============ */
+@media (max-width: 1360px) {
+  /* Dar konteynerde slider okları sola yaslı metnin üstüne binmesin */
+  .hero__inner { padding-inline: calc(var(--tf-gutter) + 56px); }
+}
+
 @media (max-width: 1300px) {
   .topbar__aux { gap: var(--tf-space-2); }
   .topbar__links { gap: var(--tf-space-1); }
@@ -1122,7 +1190,8 @@ input, textarea, select { font: inherit; }
   .navbar__inner { height: 64px; }
   .navbar__brand { width: 138px; height: 32px; }
   .hero__slide { min-height: 480px; }
-  .hero__inner { padding-block: var(--tf-space-6) calc(var(--tf-space-6) + 52px); }
+  /* Oklar gizli — yatay padding container hizasına döner */
+  .hero__inner { padding-block: var(--tf-space-6) calc(var(--tf-space-6) + 52px); padding-inline: var(--tf-gutter); }
   .hero__arrow { display: none; } /* dar ekranda oklar metni ezmesin; noktalar 44px hedefle kalır */
   .hero__dots { bottom: 44px; }
   .stat-row { gap: var(--tf-space-4); }
@@ -1138,7 +1207,8 @@ input, textarea, select { font: inherit; }
   .tabs__list { width: 100%; }
   .tabs__tab { flex: 1; justify-content: center; text-align: center; padding-inline: .5rem; font-size: .8rem; }
   .districts-grid > * { width: 168px; }
-  .footer__bottom { padding-block: var(--tf-space-3); }
+  /* Alt satır dar ekranda alt alta, ortalı */
+  .footer__bottom { flex-direction: column; justify-content: center; text-align: center; gap: 0; padding-block: var(--tf-space-2) var(--tf-space-3); }
   .footer-simple__logo { width: 230px; height: 49px; }
   .event-card { flex-wrap: wrap; }
   .event-card__cta { width: 100%; }

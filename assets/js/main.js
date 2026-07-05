@@ -184,6 +184,28 @@
     });
   });
 
+  /* ---- Footer perde (curtain reveal — DESİL deseni) ----
+     Footer altta fixed bekler; main (opak, üst katman) scroll sonunda üstünden
+     kalkınca açığa çıkar. Yalnız footer viewport'a sığıyorsa etkinleşir —
+     kısa ekranlarda footer statik akışta kalır. Yükseklik font/logo yüklenince
+     oturur; resize/load/fonts.ready'de yeniden ölçülür. */
+  var pageMain = document.getElementById("main");
+  var siteFooter = document.querySelector(".site-footer");
+  function fitFooterReveal() {
+    if (!pageMain || !siteFooter) return;
+    document.body.classList.remove("has-reveal");
+    pageMain.style.marginBottom = "";
+    var h = siteFooter.offsetHeight; /* statik durumda ölçülür */
+    if (h > 0 && h <= window.innerHeight * 0.9) {
+      document.body.classList.add("has-reveal");
+      pageMain.style.marginBottom = h + "px";
+    }
+  }
+  fitFooterReveal();
+  window.addEventListener("resize", fitFooterReveal);
+  window.addEventListener("load", fitFooterReveal);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(fitFooterReveal);
+
   /* ---- Scroll-reveal: opacity + kısa translate, bir kez oynar ---- */
   var revealEls = document.querySelectorAll(".reveal");
   var prefersReducedMotion = reducedMotion;
