@@ -5,11 +5,20 @@
 (function () {
   "use strict";
 
-  /* ---- Mega menü (klavye/dokunma için tıklamayla aç-kapa) ---- */
+  /* ---- Mega menü (hover CSS ile açılır; click klavye/dokunma içindir) ---- */
   var megaItems = document.querySelectorAll(".has-mega");
   megaItems.forEach(function (item) {
     var toggle = item.querySelector(".nav-toggle");
     if (!toggle) return;
+    /* Başka öğeye hover'lanınca click ile açık kalan paneli kapat (çift panel önlenir) */
+    item.addEventListener("mouseenter", function () {
+      megaItems.forEach(function (other) {
+        if (other === item) return;
+        other.classList.remove("is-open");
+        var t = other.querySelector(".nav-toggle");
+        if (t) t.setAttribute("aria-expanded", "false");
+      });
+    });
     toggle.addEventListener("click", function () {
       var isOpen = item.classList.contains("is-open");
       megaItems.forEach(function (other) {

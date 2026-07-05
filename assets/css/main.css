@@ -187,7 +187,13 @@ input, textarea, select { font: inherit; }
 }
 .topbar__contact a:hover { color: var(--tf-on-dark); }
 .topbar__contact svg { flex-shrink: 0; opacity: .8; }
-.topbar__aux { display: flex; align-items: center; gap: var(--tf-space-4); }
+.topbar__aux { display: flex; align-items: center; gap: var(--tf-space-3); align-self: stretch; }
+.topbar__links { display: flex; align-items: center; gap: var(--tf-space-3); }
+.topbar__links a {
+  white-space: nowrap;
+  transition: color var(--tf-dur) var(--tf-ease);
+}
+.topbar__links a:hover { color: var(--tf-on-dark); }
 .topbar__social { display: flex; align-items: center; gap: var(--tf-space-2); }
 .topbar__social a {
   width: 28px; height: 28px;
@@ -197,11 +203,26 @@ input, textarea, select { font: inherit; }
   transition: background var(--tf-dur) var(--tf-ease);
 }
 .topbar__social a:hover { background: var(--tf-mavi); color: var(--tf-on-dark); }
-.topbar__cta {
-  font-weight: 600;
-  color: var(--tf-on-dark);
-  white-space: nowrap;
+.topbar__search {
+  width: 32px; height: 32px;
+  display: inline-flex; align-items: center; justify-content: center;
+  border-radius: 50%;
+  color: var(--tf-on-dark-soft);
+  transition: background var(--tf-dur) var(--tf-ease), color var(--tf-dur) var(--tf-ease);
 }
+.topbar__search:hover { background: rgba(255,255,255,.08); color: var(--tf-on-dark); }
+.topbar__cta {
+  align-self: stretch;
+  display: inline-flex;
+  align-items: center;
+  font-weight: 600;
+  color: var(--tf-accent-on-dark);
+  white-space: nowrap;
+  border-left: 1px solid rgba(255,255,255,.18);
+  padding-left: var(--tf-space-3);
+  transition: color var(--tf-dur) var(--tf-ease);
+}
+.topbar__cta:hover { color: var(--tf-on-dark); }
 .topbar__cta::after { content: "›"; margin-left: .3rem; }
 
 /* ============ Header / nav ============ */
@@ -213,7 +234,6 @@ input, textarea, select { font: inherit; }
   box-shadow: 0 1px 0 var(--tf-border);
 }
 .navbar__inner {
-  max-width: 1420px;
   display: flex;
   align-items: center;
   gap: var(--tf-space-4);
@@ -230,77 +250,127 @@ input, textarea, select { font: inherit; }
   height: 100%;
   object-fit: contain;
 }
-.navbar__nav { flex: 1; min-width: 0; }
+.navbar__nav { flex: 1; min-width: 0; display: flex; justify-content: center; }
 .nav-list {
   display: flex;
   align-items: center;
   height: 100%;
 }
-.nav-list > li { position: relative; height: 100%; display: flex; align-items: stretch; }
+/* Mega panel navbar'a göre tam genişlik konumlanır — li positioned OLMAMALI */
+.nav-list > li { height: 100%; display: flex; align-items: stretch; }
 .nav-list > li > a,
 .nav-toggle {
+  position: relative;
   display: flex;
   align-items: center;
-  gap: .25rem;
-  padding-inline: .55rem;
+  gap: .3rem;
+  padding-inline: .65rem;
   height: 100%;
-  font-size: .85rem;
-  font-weight: 500;
+  font-family: var(--tf-ff-heading);
+  font-size: .9rem;
+  font-weight: 600;
   color: var(--tf-lacivert);
   white-space: nowrap;
-  transition: color var(--tf-dur) var(--tf-ease);
+  transition: color var(--tf-dur) var(--tf-ease), background var(--tf-dur) var(--tf-ease);
+}
+/* MÜSİAD deseni: aktif/hover öğede açık zemin + vurgu rengi alt çizgi */
+.nav-list > li > a::after,
+.nav-toggle::after {
+  content: "";
+  position: absolute;
+  left: .65rem; right: .65rem; bottom: 0;
+  height: 3px;
+  background: var(--tf-bordo);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--tf-dur) var(--tf-ease);
 }
 .nav-list > li > a:hover,
 .nav-toggle:hover,
+.has-mega:hover > .nav-toggle,
 .has-mega.is-open > .nav-toggle,
-.has-mega:focus-within > .nav-toggle { color: var(--tf-bordo); }
+.has-mega:focus-within > .nav-toggle {
+  color: var(--tf-bordo);
+  background: var(--tf-bg-soft);
+}
+.nav-list > li > a:hover::after,
+.nav-toggle:hover::after,
+.has-mega:hover > .nav-toggle::after,
+.has-mega.is-open > .nav-toggle::after,
+.has-mega:focus-within > .nav-toggle::after { transform: scaleX(1); }
 .nav-toggle svg { transition: transform var(--tf-dur) var(--tf-ease); }
+.has-mega:hover .nav-toggle svg,
 .has-mega.is-open .nav-toggle svg,
 .has-mega:focus-within .nav-toggle svg { transform: rotate(180deg); }
 
+/* MÜSİAD deseni: tam genişlik mega panel (navbar'a ankraj, hover + click ile açılır) */
 .mega-panel {
   position: absolute;
   top: 100%;
-  left: 50%;
-  transform: translate(-50%, 8px);
-  min-width: 460px;
+  left: 0;
+  right: 0;
   background: var(--tf-bg);
-  border-radius: var(--tf-radius);
+  border-top: 1px solid var(--tf-border);
   box-shadow: var(--tf-shadow-hover);
-  border: 1px solid var(--tf-border);
-  padding: var(--tf-space-4);
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: var(--tf-space-2) var(--tf-space-4);
+  padding-block: var(--tf-space-6);
   opacity: 0;
   visibility: hidden;
+  transform: translateY(10px);
   transition: opacity var(--tf-dur) var(--tf-ease), transform var(--tf-dur) var(--tf-ease), visibility var(--tf-dur);
 }
+.has-mega:hover .mega-panel,
 .has-mega.is-open .mega-panel,
 .has-mega:focus-within .mega-panel {
   opacity: 1;
   visibility: visible;
-  transform: translate(-50%, 0);
+  transform: translateY(0);
 }
-.mega-panel a {
-  display: block;
-  padding: .5rem .6rem;
-  border-radius: var(--tf-radius-sm);
-  font-size: .9rem;
+.mega-panel__grid {
+  display: grid;
+  grid-auto-flow: column;
+  grid-template-rows: repeat(4, auto);
+  grid-auto-columns: max-content;
+  justify-content: start;
+  column-gap: var(--tf-space-8);
+  row-gap: .3rem;
+}
+.mega-panel__grid--half { grid-template-rows: repeat(2, auto); }
+.mega-panel__grid a {
+  display: inline-flex;
+  align-items: center;
+  gap: .6rem;
+  padding: .55rem 0;
+  font-size: .95rem;
+  font-weight: 500;
   color: var(--tf-text);
-  transition: background var(--tf-dur) var(--tf-ease), color var(--tf-dur) var(--tf-ease);
+  transition: color var(--tf-dur) var(--tf-ease);
 }
-.mega-panel a:hover { background: var(--tf-mavi-tint); color: var(--tf-mavi-dark); }
+.mega-panel__grid a svg {
+  flex-shrink: 0;
+  color: var(--tf-mavi);
+  transition: transform var(--tf-dur) var(--tf-ease);
+}
+.mega-panel__grid a:hover { color: var(--tf-bordo); }
+.mega-panel__grid a:hover svg { transform: translateX(4px); }
 
-.navbar__actions { display: flex; align-items: center; gap: var(--tf-space-2); flex-shrink: 0; }
-.icon-btn {
-  width: 40px; height: 40px;
-  display: inline-flex; align-items: center; justify-content: center;
-  border-radius: 50%;
-  color: var(--tf-lacivert);
-  transition: background var(--tf-dur) var(--tf-ease), color var(--tf-dur) var(--tf-ease);
+.navbar__actions { display: flex; align-items: center; gap: var(--tf-space-3); flex-shrink: 0; }
+/* MÜSİAD "E-İşlemler" deseni: nav sağ ucunda ayraçlı, ikonlu vurgulu öğe */
+.navbar__donate {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  font-family: var(--tf-ff-heading);
+  font-size: .9rem;
+  font-weight: 600;
+  color: var(--tf-bordo);
+  white-space: nowrap;
+  border-left: 1px solid var(--tf-border);
+  padding-left: var(--tf-space-3);
+  height: 40px;
+  transition: color var(--tf-dur) var(--tf-ease);
 }
-.icon-btn:hover { background: var(--tf-bg-soft); color: var(--tf-bordo); }
+.navbar__donate:hover { color: var(--tf-bordo-dark); }
+.navbar__donate svg { flex-shrink: 0; }
 
 .hamburger {
   display: none;
@@ -374,6 +444,17 @@ input, textarea, select { font: inherit; }
   padding: .55rem 0;
   color: var(--tf-text-soft);
   font-size: .925rem;
+}
+.mobile-nav__secondary {
+  padding: var(--tf-space-2) 0;
+  border-bottom: 1px solid var(--tf-border);
+}
+.mobile-nav__secondary a {
+  display: flex;
+  align-items: center;
+  padding: .8rem var(--tf-space-4);
+  font-size: .9rem;
+  color: var(--tf-text-soft);
 }
 .mobile-nav__actions { padding: var(--tf-space-4); display: flex; flex-direction: column; gap: var(--tf-space-2); }
 .mobile-nav__actions .btn { justify-content: center; }
@@ -830,15 +911,18 @@ input, textarea, select { font: inherit; }
 .reveal.is-visible { opacity: 1; transform: translateY(0); }
 
 /* ============ Responsive ============ */
-@media (max-width: 1080px) {
+@media (max-width: 1300px) {
   .topbar__contact a:nth-child(2) { display: none; }
+  .nav-list > li > a, .nav-toggle { padding-inline: .55rem; font-size: .85rem; }
+}
+
+@media (max-width: 1080px) {
+  .navbar__nav, .navbar__donate { display: none; }
+  .hamburger { display: inline-flex; }
+  .topbar__links, .topbar__social, .topbar__search { display: none; }
 }
 
 @media (max-width: 960px) {
-  .navbar__nav, .navbar__actions .btn-primary, .navbar__actions .icon-btn { display: none; }
-  .hamburger { display: inline-flex; }
-  .topbar__social, .topbar__cta { display: none; }
-
   .intro, .president, .contact-cta { grid-template-columns: 1fr; }
   .president__photo { max-width: 260px; }
   .grid--4 { grid-template-columns: repeat(2, 1fr); }
