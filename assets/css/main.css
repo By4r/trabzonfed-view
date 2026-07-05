@@ -138,6 +138,8 @@ input, textarea, select { font: inherit; }
   margin-top: var(--tf-space-6);
   display: flex;
   justify-content: center;
+  flex-wrap: wrap;
+  gap: var(--tf-space-3);
 }
 .section-foot--start { justify-content: flex-start; }
 
@@ -666,8 +668,12 @@ input, textarea, select { font: inherit; }
   box-shadow: var(--tf-shadow);
 }
 .intro__panel-item svg { color: var(--tf-mavi); flex-shrink: 0; margin-top: .1rem; }
-.intro__panel-item strong { display: block; font-family: var(--tf-ff-heading); color: var(--tf-lacivert); font-size: .95rem; }
-.intro__panel-item span { font-size: .875rem; color: var(--tf-text-soft); }
+/* Metin div'i flex item olarak varsayılan min-width:auto alır — dar grid hücrelerinde
+   (ör. grid--4 ≤600px 2 kolon) uzun kelimeler taşabilir (trabzon.html #yoreden-izler'de
+   390'da gerçek taşma tespit edildi, QA). min-width:0 + break-word ile önlenir. */
+.intro__panel-item > div { min-width: 0; }
+.intro__panel-item strong { display: block; font-family: var(--tf-ff-heading); color: var(--tf-lacivert); font-size: .95rem; overflow-wrap: break-word; }
+.intro__panel-item span { font-size: .875rem; color: var(--tf-text-soft); overflow-wrap: break-word; }
 
 /* ============ Hızlı erişim kartları (revize brief §4) ============ */
 .qa-grid {
@@ -1200,4 +1206,512 @@ body.has-reveal .site-footer { position: fixed; left: 0; right: 0; bottom: 0; z-
   .event-card__cta { width: 100%; }
   .event-card__cta .btn { width: 100%; justify-content: center; }
   .media-grid { grid-template-columns: 1fr 1fr; grid-template-rows: repeat(3, 130px); }
+}
+
+/* ============================================================ */
+/* ==== W2 ortak desenler (FE-1) ==== */
+/* İç sayfa girişi, form dili, accordion, doküman/kişi/dernek kartları,
+   harita gömme, breadcrumb — tasks/components.md "Wave 2 desenleri". */
+/* ============================================================ */
+
+/* ---- page-hero (index dışı tüm sayfaların girişi — hero-slider'ın kompakt karşılığı) ---- */
+.page-hero {
+  position: relative;
+  background: var(--tf-grad-kurumsal);
+  color: var(--tf-on-dark);
+  padding-block: clamp(2.5rem, 6vw, 4rem);
+  overflow: hidden;
+}
+.page-hero h1 {
+  font-size: var(--tf-fs-h1);
+  color: var(--tf-on-dark);
+  max-width: 760px;
+  margin-top: var(--tf-space-2);
+}
+.page-hero__lede {
+  margin-top: var(--tf-space-2);
+  font-size: 1.0625rem;
+  color: var(--tf-on-dark-soft);
+  max-width: 60ch;
+}
+/* Koyu zemin — beyaz focus halkası (bkz. tasks/lessons.md koyu zemin kuralı) */
+.page-hero :focus-visible { outline-color: var(--tf-on-dark); }
+/* --image varyantı: görsel inline style ile section'a bg-image verilir (cover/center burada),
+   kurumsal gradyan ::before ile üstüne biner — district-card overlay deseniyle aynı mantık */
+.page-hero--image { background-size: cover; background-position: center; }
+.page-hero--image::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--tf-grad-kurumsal-overlay);
+}
+.page-hero--image .container { position: relative; z-index: 1; }
+
+/* ---- breadcrumb (page-hero içinde yaşar) ---- */
+.breadcrumb { margin-bottom: var(--tf-space-3); }
+.breadcrumb ol {
+  /* Global reset yalnız `ul`'u kapsıyor — `<ol>`'un tarayıcı varsayılanı olan
+     padding-left (numaralı liste girintisi) sıfırlanmazsa breadcrumb h1'in solundan
+     40px içeride başlar (Beyar revizesi, 2026-07-06). */
+  display: flex;
+  align-items: center;
+  gap: .35rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: var(--tf-fs-meta);
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.breadcrumb ol::-webkit-scrollbar { display: none; }
+.breadcrumb li { display: flex; align-items: center; gap: .35rem; white-space: nowrap; }
+.breadcrumb li + li::before { content: "›"; color: var(--tf-on-dark-soft); }
+.breadcrumb a { color: var(--tf-on-dark-soft); transition: color var(--tf-dur) var(--tf-ease); }
+.breadcrumb a:hover { color: var(--tf-on-dark); }
+.breadcrumb [aria-current="page"] { color: var(--tf-on-dark); font-weight: 600; }
+
+/* ---- form alanları (iletişim, proje önerisi, federasyona katıl, bağış/ödeme/aidat ortak) ---- */
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--tf-gutter);
+}
+.form-field { display: flex; flex-direction: column; gap: .4rem; }
+.form-field--full { grid-column: 1 / -1; }
+.form-field label {
+  font-size: var(--tf-fs-meta);
+  font-weight: 600;
+  color: var(--tf-lacivert);
+}
+.form-field__req { color: var(--tf-bordo); margin-left: .2rem; }
+.form-input {
+  width: 100%;
+  min-height: 48px;
+  padding: .8rem 1rem;
+  border: 1.5px solid var(--tf-border);
+  border-radius: var(--tf-radius-sm);
+  background: var(--tf-bg);
+  color: var(--tf-text);
+  transition: border-color var(--tf-dur) var(--tf-ease);
+}
+textarea.form-input { min-height: 140px; resize: vertical; }
+.form-input:focus { outline: none; border-color: var(--tf-mavi); }
+.form-hint { font-size: .8125rem; color: var(--tf-text-soft); }
+.form-check {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: flex-start;
+  gap: .6rem;
+}
+/* form-grid dışında ardışık onay kutuları (federasyona-katil, bağış/ödeme/aidat akışları) */
+.form-grid + .form-check { margin-top: var(--tf-space-4); }
+.form-check + .form-check { margin-top: var(--tf-space-2); }
+.form-check input[type="checkbox"] {
+  width: 18px; height: 18px;
+  flex-shrink: 0;
+  margin-top: .15rem;
+  accent-color: var(--tf-bordo);
+}
+.form-check label { font-size: .9rem; color: var(--tf-text); }
+
+/* ---- accordion (SSS — native details/summary, JS'siz) ---- */
+.accordion { display: flex; flex-direction: column; gap: var(--tf-space-2); }
+.accordion__item {
+  border: 1px solid var(--tf-border);
+  border-radius: var(--tf-radius);
+  padding-inline: var(--tf-space-3);
+}
+.accordion__summary {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--tf-space-3);
+  min-height: 44px;
+  padding-block: var(--tf-space-2);
+  font-family: var(--tf-ff-heading);
+  font-weight: 600;
+  color: var(--tf-lacivert);
+  cursor: pointer;
+}
+.accordion__summary::-webkit-details-marker { display: none; }
+.accordion__summary svg { flex-shrink: 0; color: var(--tf-mavi); transition: transform var(--tf-dur) var(--tf-ease); }
+.accordion__item[open] .accordion__summary { color: var(--tf-bordo); }
+.accordion__item[open] .accordion__summary svg { transform: rotate(180deg); }
+.accordion__body { padding-bottom: var(--tf-space-3); }
+.accordion__body p { color: var(--tf-text); }
+
+/* ---- doc-card (doküman merkezi indirme satırı) ---- */
+.doc-card {
+  display: flex;
+  align-items: center;
+  gap: var(--tf-space-3);
+  min-height: 72px;
+  background: var(--tf-bg);
+  border: 1px solid var(--tf-border);
+  border-radius: var(--tf-radius);
+  padding: var(--tf-space-3);
+  transition: transform var(--tf-dur) var(--tf-ease), box-shadow var(--tf-dur) var(--tf-ease), border-color var(--tf-dur) var(--tf-ease);
+}
+.doc-card:hover { transform: translateY(-3px); box-shadow: var(--tf-shadow); border-color: transparent; }
+.doc-card__icon {
+  flex-shrink: 0;
+  width: 44px; height: 44px;
+  display: inline-flex; align-items: center; justify-content: center;
+  border-radius: var(--tf-radius-sm);
+  background: var(--tf-bordo-tint);
+  color: var(--tf-bordo);
+}
+.doc-card__body { flex: 1; min-width: 0; }
+.doc-card h3 { font-size: 1rem; margin-bottom: .2rem; }
+.doc-card__meta { font-size: .8125rem; color: var(--tf-text-soft); }
+.doc-card__action { flex-shrink: 0; color: var(--tf-mavi); transition: transform var(--tf-dur) var(--tf-ease); }
+.doc-card:hover .doc-card__action { transform: translateY(3px); }
+
+/* ---- person-card (yönetim/denetim/kurucu/eski başkan) ---- */
+.person-card {
+  background: var(--tf-bg);
+  border: 1px solid var(--tf-border);
+  border-radius: var(--tf-radius);
+  overflow: hidden;
+  transition: transform var(--tf-dur) var(--tf-ease), box-shadow var(--tf-dur) var(--tf-ease);
+}
+.person-card:hover { transform: translateY(-4px); box-shadow: var(--tf-shadow); }
+/* Foto fallback (gerçek foto yok): kurumsal gradyan zemin + ortalanmış amblem — pilot başkan
+   yerleşimiyle aynı dil. Gerçek foto gelince media inline background-image ile değişir. */
+.person-card__media {
+  aspect-ratio: 1 / 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--tf-grad-kurumsal);
+  background-size: cover;
+  background-position: center;
+}
+.person-card__media img { width: 64px; height: 64px; object-fit: contain; }
+.person-card__body { padding: var(--tf-space-3); }
+.person-card h3 { font-size: 1rem; margin-bottom: .2rem; }
+.person-card__role { font-size: var(--tf-fs-meta); color: var(--tf-text-soft); }
+
+/* ---- news-mini (haber-detay "İlgili Haberler") ---- */
+.news-mini { display: flex; gap: var(--tf-space-3); align-items: flex-start; }
+.news-mini__media {
+  flex-shrink: 0;
+  width: 88px; height: 88px;
+  border-radius: var(--tf-radius-sm);
+  background-color: var(--tf-lacivert-bg);
+  background-size: cover;
+  background-position: center;
+}
+.news-mini__body { min-width: 0; }
+.news-mini h3 {
+  margin-top: .3rem;
+  font-size: .95rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  transition: color var(--tf-dur) var(--tf-ease);
+}
+.news-mini:hover h3 { color: var(--tf-bordo); }
+
+/* ---- dernek-card (üye dernek — district-card'ın açıklamalı hâli) ---- */
+.dernek-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--tf-space-2);
+  background: var(--tf-bg);
+  border: 1px solid var(--tf-border);
+  border-radius: var(--tf-radius);
+  padding: var(--tf-space-3);
+  transition: transform var(--tf-dur) var(--tf-ease), box-shadow var(--tf-dur) var(--tf-ease), border-color var(--tf-dur) var(--tf-ease);
+}
+.dernek-card:hover { transform: translateY(-4px); box-shadow: var(--tf-shadow); border-color: transparent; }
+.dernek-card__head { display: flex; align-items: center; gap: var(--tf-space-2); }
+.dernek-card__logo {
+  flex-shrink: 0;
+  width: 44px; height: 44px;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: var(--tf-radius-sm);
+  background: var(--tf-bg-soft);
+  overflow: hidden;
+}
+.dernek-card__logo img { width: 100%; height: 100%; object-fit: contain; }
+.dernek-card h3 { font-size: 1rem; }
+.dernek-card__ilce { font-size: var(--tf-fs-meta); color: var(--tf-text-soft); }
+.dernek-card p { font-size: .875rem; color: var(--tf-text-soft); }
+
+/* ---- map-embed (iletişim) ---- */
+.map-embed { height: 380px; border-radius: var(--tf-radius); overflow: hidden; }
+.map-embed iframe { width: 100%; height: 100%; border: 0; display: block; }
+
+/* ---- tabs__list--scroll (3+ sekmeli kullanım — haberler.html kategori filtreleri) ----
+   event-tabs'ın 2'li flex:1 davranışı DEĞİŞMEDEN kalır; bu varyant yalnız ≤600px'te
+   flex:1 yerine yatay kaydırmayı devreye sokar (sekmeler doğal genişlikte). */
+.tabs__list--scroll { overflow-x: auto; scrollbar-width: none; }
+.tabs__list--scroll::-webkit-scrollbar { display: none; }
+
+@media (max-width: 960px) {
+  /* grid--2'nin tek kolon kırılımı (doc-card listeleri için) */
+  .grid--2 { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 600px) {
+  .page-hero { padding-block: var(--tf-space-6); }
+  .form-grid { grid-template-columns: 1fr; }
+  .map-embed { height: 260px; }
+  .person-card__body { padding: var(--tf-space-2); }
+  /* 3+ sekmeli scroll varyantı: eşit paylaşım yerine doğal genişlik + kaydırma */
+  .tabs__list--scroll { width: 100%; flex-wrap: nowrap; justify-content: flex-start; }
+  .tabs__list--scroll .tabs__tab { flex: none; }
+}
+
+/* ==== sayfa: hakkimizda.html (FE-1) ==== */
+.prose p { max-width: 70ch; }
+.prose p + p { margin-top: var(--tf-space-3); }
+.about-media {
+  border-radius: var(--tf-radius);
+  overflow: hidden;
+  aspect-ratio: 4 / 3;
+  background-size: cover;
+  background-position: center;
+}
+.mv-block {
+  padding-left: var(--tf-space-3);
+  border-left: 3px solid var(--tf-bordo);
+}
+.mv-block h3 { font-size: 1.15rem; margin-bottom: .5rem; }
+.mv-block p { color: var(--tf-text-soft); }
+@media (max-width: 960px) {
+  .about-media { aspect-ratio: 16 / 9; }
+}
+
+/* ==== sayfa: haber-detay.html (FE-2) ==== */
+/* Makale gövdesi tek kolon, okunabilir genişlik (.prose FE-1'in hakkimizda bloğundan
+   yeniden kullanılıyor — yeni pattern değil). */
+.article-wrap { max-width: 760px; margin-inline: auto; }
+.article-meta {
+  display: flex;
+  align-items: center;
+  gap: var(--tf-space-2);
+  margin-bottom: var(--tf-space-3);
+}
+.article-meta .news-card__tag {
+  position: static;
+  background: var(--tf-bordo-tint);
+  color: var(--tf-bordo);
+}
+.article-meta__date { font-size: var(--tf-fs-meta); color: var(--tf-text-soft); }
+.article-feature {
+  aspect-ratio: 16 / 9;
+  border-radius: var(--tf-radius);
+  background-size: cover;
+  background-position: center;
+  margin-bottom: var(--tf-space-6);
+}
+.article-wrap h1 { margin-bottom: var(--tf-space-2); }
+.article-wrap .prose ol {
+  margin: var(--tf-space-3) 0;
+  padding-left: 1.25rem;
+  color: var(--tf-text);
+  max-width: 70ch;
+}
+.article-wrap .prose ol li + li { margin-top: .5rem; }
+/* İlgili haberler: aynı beyaz section içinde üstte ayraç ile ayrışır (zemin ritmi kuralı —
+   ardışık aynı zemin yerine tek section + görünür ayraç) */
+.article-related {
+  margin-top: var(--tf-space-8);
+  padding-top: var(--tf-space-6);
+  border-top: 1px solid var(--tf-border);
+}
+.article-related .section-head { margin-bottom: var(--tf-space-4); }
+/* news-mini spec'i dikey/tam-genişlik liste ister (QA düzeltmesi — grid--3 DEĞİL,
+   232px'e sıkışınca başlıklar kırpılıyordu). Satır tipi kart, tam genişlikte üst üste. */
+.news-mini-list { display: flex; flex-direction: column; gap: var(--tf-space-3); }
+.news-mini-list .news-mini + .news-mini { border-top: 1px solid var(--tf-border); padding-top: var(--tf-space-3); }
+@media (max-width: 600px) {
+  .article-feature { aspect-ratio: 4 / 3; }
+}
+
+/* ==== sayfa: genel-baskan.html (FE-1) ==== */
+/* person-card'ın tekil geniş kullanımı: sabit-genişlik kart + geniş mesaj kolonu.
+   .prose FE-1'in hakkimizda bloğundan yeniden kullanılıyor — yeni pattern değil. */
+.president-layout {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: var(--tf-gutter);
+  align-items: start;
+}
+.president-message h2 { margin-bottom: var(--tf-space-4); }
+.president-message__quote {
+  font-family: var(--tf-ff-heading);
+  font-weight: 600;
+  font-size: 1.1rem;
+  color: var(--tf-bordo);
+  border-left: 3px solid var(--tf-bordo);
+  padding-left: var(--tf-space-3);
+}
+.president-message__signature {
+  margin-top: var(--tf-space-4);
+  padding-top: var(--tf-space-3);
+  border-top: 1px solid var(--tf-border);
+}
+.president-message__signature strong { display: block; font-family: var(--tf-ff-heading); color: var(--tf-lacivert); }
+.president-message__signature span { font-size: var(--tf-fs-meta); color: var(--tf-text-soft); }
+@media (max-width: 960px) {
+  .president-layout { grid-template-columns: 1fr; }
+  .president-layout .person-card { width: 100%; max-width: 280px; margin-inline: auto; }
+}
+
+/* ==== sayfa: sss.html (FE-1) ==== */
+.faq-group + .faq-group { margin-top: var(--tf-space-8); }
+.faq-group h3 {
+  font-size: 1.1rem;
+  margin-bottom: var(--tf-space-3);
+  color: var(--tf-bordo);
+}
+
+/* ==== sayfa: medya.html (FE-2) ==== */
+/* media-grid'in satır sayısını galeri boyutuna göre uzatan sayfa-özel varyantlar —
+   ortak .media-grid/.media-tile selector'larına dokunulmadı, sadece grid-template-rows
+   override edildi. */
+.photo-grid { grid-template-rows: repeat(3, 160px); }
+.video-grid { grid-template-rows: repeat(1, 160px); }
+@media (max-width: 960px) {
+  .photo-grid { grid-template-rows: repeat(5, 140px); }
+  .video-grid { grid-template-rows: repeat(2, 140px); }
+}
+@media (max-width: 600px) {
+  .photo-grid { grid-template-rows: repeat(5, 130px); }
+  .video-grid { grid-template-rows: repeat(2, 130px); }
+}
+
+/* ==== sayfa: federasyona-katil.html (FE-1) ==== */
+.form-group-title {
+  font-size: 1.05rem;
+  color: var(--tf-lacivert);
+  margin-bottom: var(--tf-space-3);
+}
+.form-group-title:not(:first-child) { margin-top: var(--tf-space-6); }
+.form-check label a { color: var(--tf-mavi); text-decoration: underline; text-underline-offset: 2px; }
+.form-check label a:hover { color: var(--tf-mavi-dark); }
+
+/* ==== sayfa: dernek-bagis.html + dernek-odeme.html + dernek-aidat.html (FE-3) ==== */
+/* Bağış/aidat/ödeme akışı ortak öğeleri — tek elde üretildiği için tek blokta. */
+.form--narrow { max-width: 640px; margin-inline: auto; }
+/* Tutar seçim butonları (bagis-yap.html'in gerçek TR "tutar belirleyin" bloğu) */
+.amount-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--tf-space-2);
+  margin: var(--tf-space-3) 0 var(--tf-space-4);
+}
+.amount-btn {
+  min-height: 48px;
+  padding: .7rem 1.35rem;
+  border-radius: var(--tf-radius-sm);
+  border: 1.5px solid var(--tf-border);
+  background: var(--tf-bg);
+  color: var(--tf-lacivert);
+  font-family: var(--tf-ff-heading);
+  font-weight: 600;
+  font-size: .95rem;
+  transition: border-color var(--tf-dur) var(--tf-ease), background var(--tf-dur) var(--tf-ease), color var(--tf-dur) var(--tf-ease);
+}
+.amount-btn:hover { border-color: var(--tf-mavi); color: var(--tf-mavi-dark); }
+.amount-btn.is-selected { background: var(--tf-bordo); border-color: var(--tf-bordo); color: var(--tf-on-dark); }
+/* Ödeme sayfası güvenlik notu (eski site: "256 bit ssl" gerçek metni) */
+.security-note {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  margin-top: var(--tf-space-3);
+  font-size: .85rem;
+  color: var(--tf-text-soft);
+}
+.security-note svg { flex-shrink: 0; color: var(--tf-mavi); }
+/* Akış özet kutusu (odeme/aidat sayfalarında seçilen tutarın gösterimi) */
+.summary-box {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--tf-bordo-tint);
+  border-radius: var(--tf-radius-sm);
+  padding: var(--tf-space-3) var(--tf-space-4);
+  margin-bottom: var(--tf-space-4);
+}
+.summary-box strong { font-family: var(--tf-ff-heading); color: var(--tf-bordo); font-size: 1.15rem; }
+.summary-box span { font-size: var(--tf-fs-meta); color: var(--tf-text-soft); }
+/* Kart formu Ay/Yıl/CVV satırı (form-grid'in sabit 2 kolonuna sığmayan tek istisna) */
+.form-row-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--tf-gutter); margin-bottom: var(--tf-space-4); }
+@media (max-width: 480px) {
+  .form-row-3 { grid-template-columns: 1fr 1fr; }
+  .form-row-3 .form-field:last-child { grid-column: 1 / -1; }
+}
+
+/* ==== sayfa: dernek.html (FE-2) ==== */
+/* Token override kanıtı (Wave 3 dernek şablonu için) — YALNIZ --tf-bordo/--tf-mavi
+   aileleri, sayfa içeriğini saran .dernek-sile wrapper'ına scoped. tokens.css'e
+   DOKUNULMADI; shell (topbar/navbar/footer) wrapper DIŞINDA kaldığı için federasyon
+   rengini korur, yalnız main içeriği Şile'nin deniz/orman tonlarına döner. */
+.dernek-sile {
+  --tf-bordo: #0B5D52;
+  --tf-bordo-dark: #073E37;
+  --tf-bordo-tint: #E6F2F0;
+  --tf-mavi: #1C7EA5;
+  --tf-mavi-dark: #145F7D;
+  --tf-mavi-tint: #E7F3F7;
+}
+
+/* ==== W2 ortak desenler (FE-1) — lightbox eklendi (medya.html için) ==== */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 400;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--tf-space-4);
+  background: rgba(18, 27, 46, .88);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity var(--tf-dur) var(--tf-ease), visibility var(--tf-dur);
+}
+.lightbox.is-open { opacity: 1; visibility: visible; }
+.lightbox__img {
+  max-width: min(1100px, 92vw);
+  max-height: 88vh;
+  object-fit: contain;
+  border-radius: var(--tf-radius-sm);
+  box-shadow: var(--tf-shadow-hover);
+}
+.lightbox__close {
+  position: absolute;
+  top: var(--tf-space-3);
+  right: var(--tf-space-3);
+  width: 44px; height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  color: var(--tf-on-dark);
+  background: rgba(255, 255, 255, .12);
+  transition: background var(--tf-dur) var(--tf-ease);
+}
+.lightbox__close:hover { background: rgba(255, 255, 255, .24); }
+.lightbox :focus-visible { outline-color: var(--tf-on-dark); }
+
+/* ==== sayfa: dernek-tesekkur.html (FE-3) ==== */
+/* Onay ikonu — qa-card__icon/contact-cta__item svg ile aynı "tint daire + bordo glif"
+   dili, yalnız daha büyük (sonuç ekranı vurgusu). */
+.result-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: var(--tf-bordo-tint);
+  color: var(--tf-bordo);
+  margin-bottom: var(--tf-space-3);
 }

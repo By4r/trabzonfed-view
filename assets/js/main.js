@@ -184,6 +184,65 @@
     });
   });
 
+  /* ---- Lightbox (medya galerisi — components.md "lightbox") ----
+     Tetik: a[data-lightbox][href=büyük görsel URL] (medya.html'de .media-tile üzerinde).
+     Overlay JS'çe tek sefer üretilir; Esc + scrim click + kapat butonu kapatır;
+     body scroll kilidi off-canvas menüyle AYNI mekanizma (document.body.style.overflow).
+     prefers-reduced-motion geçişsizliği main.css'teki genel kural zaten sağlıyor. */
+  var lightboxTriggers = document.querySelectorAll("a[data-lightbox]");
+  if (lightboxTriggers.length) {
+    var lightbox = document.createElement("div");
+    lightbox.className = "lightbox";
+    lightbox.setAttribute("role", "dialog");
+    lightbox.setAttribute("aria-modal", "true");
+    lightbox.setAttribute("aria-label", "Görsel büyütme");
+    lightbox.innerHTML =
+      '<img class="lightbox__img" alt="">' +
+      '<button type="button" class="lightbox__close" aria-label="Kapat">' +
+      '<svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg>' +
+      '</button>';
+    document.body.appendChild(lightbox);
+
+    var lightboxImg = lightbox.querySelector(".lightbox__img");
+    var lightboxClose = lightbox.querySelector(".lightbox__close");
+    var lightboxLastFocused = null;
+
+    function openLightbox(href, label) {
+      lightboxLastFocused = document.activeElement;
+      lightboxImg.src = href;
+      lightboxImg.alt = label || "";
+      lightbox.classList.add("is-open");
+      document.body.style.overflow = "hidden";
+      /* Tetik <a href> click'i sonrası tarayıcının kendi odak atamasıyla yarışıyoruz —
+         rAF/setTimeout(0) yetmiyor, tıklamanın gecikmeli odak davranışı onları da eziyor.
+         50ms (algılanamaz) güvenli marj: blur+focus bu gecikmeden SONRA çalışır. */
+      window.setTimeout(function () {
+        if (document.activeElement) document.activeElement.blur();
+        lightboxClose.focus();
+      }, 50);
+    }
+    function closeLightbox() {
+      lightbox.classList.remove("is-open");
+      document.body.style.overflow = "";
+      lightboxImg.src = "";
+      if (lightboxLastFocused) lightboxLastFocused.focus();
+    }
+    lightboxTriggers.forEach(function (trigger) {
+      trigger.addEventListener("click", function (e) {
+        e.preventDefault();
+        var label = trigger.querySelector("h3, strong");
+        openLightbox(trigger.getAttribute("href"), label ? label.textContent : "");
+      });
+    });
+    lightboxClose.addEventListener("click", closeLightbox);
+    lightbox.addEventListener("click", function (e) {
+      if (e.target === lightbox) closeLightbox();
+    });
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape" && lightbox.classList.contains("is-open")) closeLightbox();
+    });
+  }
+
   /* ---- Footer perde (curtain reveal — DESİL deseni) ----
      Footer altta fixed bekler; main (opak, üst katman) scroll sonunda üstünden
      kalkınca açığa çıkar. Yalnız footer viewport'a sığıyorsa etkinleşir —
