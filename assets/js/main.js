@@ -92,9 +92,101 @@
     });
   });
 
+  /* ---- Hero slider: kompakt kurumsal slider (revize brief §2) ----
+     Crossfade + ok/nokta navigasyonu; otomatik akış hover/odakta durur,
+     reduced-motion tercihinde hiç başlamaz. */
+  var heroEl = document.querySelector("[data-hero-slider]");
+  var reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (heroEl) {
+    var slides = heroEl.querySelectorAll(".hero__slide");
+    var dots = heroEl.querySelectorAll("[data-hero-dot]");
+    var current = 0;
+    var timer = null;
+    var AUTOPLAY_MS = 7000;
+
+    function goTo(index) {
+      current = (index + slides.length) % slides.length;
+      slides.forEach(function (slide, i) {
+        slide.classList.toggle("is-active", i === current);
+      });
+      dots.forEach(function (dot, i) {
+        dot.classList.toggle("is-active", i === current);
+      });
+    }
+    function stopAutoplay() {
+      if (timer) { clearInterval(timer); timer = null; }
+    }
+    function startAutoplay() {
+      if (reducedMotion || slides.length < 2 || timer) return;
+      timer = setInterval(function () { goTo(current + 1); }, AUTOPLAY_MS);
+    }
+
+    var prevBtn = heroEl.querySelector("[data-hero-prev]");
+    var nextBtn = heroEl.querySelector("[data-hero-next]");
+    if (prevBtn) prevBtn.addEventListener("click", function () { goTo(current - 1); });
+    if (nextBtn) nextBtn.addEventListener("click", function () { goTo(current + 1); });
+    dots.forEach(function (dot) {
+      dot.addEventListener("click", function () {
+        goTo(parseInt(dot.getAttribute("data-hero-dot"), 10));
+      });
+    });
+    heroEl.addEventListener("mouseenter", stopAutoplay);
+    heroEl.addEventListener("mouseleave", startAutoplay);
+    heroEl.addEventListener("focusin", stopAutoplay);
+    heroEl.addEventListener("focusout", startAutoplay);
+    startAutoplay();
+  }
+
+  /* ---- Carousel: scroll-snap track + ok butonları (revize brief §5-6) ----
+     Butonlar data-carousel-prev/next="#track-id" ile track'e bağlanır;
+     uçlara gelince ilgili buton pasifleşir. */
+  function initCarouselButtons(attr, direction) {
+    document.querySelectorAll("[" + attr + "]").forEach(function (btn) {
+      var track = document.querySelector(btn.getAttribute(attr));
+      if (!track) return;
+      btn.addEventListener("click", function () {
+        track.scrollBy({ left: direction * track.clientWidth * 0.85, behavior: "smooth" });
+      });
+      function updateState() {
+        var maxScroll = track.scrollWidth - track.clientWidth - 1;
+        if (direction < 0) btn.disabled = track.scrollLeft <= 1;
+        else btn.disabled = track.scrollLeft >= maxScroll;
+      }
+      track.addEventListener("scroll", function () {
+        window.requestAnimationFrame(updateState);
+      }, { passive: true });
+      window.addEventListener("resize", updateState);
+      updateState();
+    });
+  }
+  initCarouselButtons("data-carousel-prev", -1);
+  initCarouselButtons("data-carousel-next", 1);
+
+  /* ---- Etkinlik tab'ları (revize brief §7) — klavye ok desteğiyle ---- */
+  document.querySelectorAll("[role=tablist]").forEach(function (tablist) {
+    var tabs = Array.prototype.slice.call(tablist.querySelectorAll("[role=tab]"));
+    function activate(tab) {
+      tabs.forEach(function (other) {
+        var selected = other === tab;
+        other.setAttribute("aria-selected", selected ? "true" : "false");
+        other.setAttribute("tabindex", selected ? "0" : "-1");
+        var panel = document.getElementById(other.getAttribute("aria-controls"));
+        if (panel) panel.hidden = !selected;
+      });
+      tab.focus();
+    }
+    tabs.forEach(function (tab, i) {
+      tab.addEventListener("click", function () { activate(tab); });
+      tab.addEventListener("keydown", function (e) {
+        if (e.key === "ArrowRight") activate(tabs[(i + 1) % tabs.length]);
+        else if (e.key === "ArrowLeft") activate(tabs[(i - 1 + tabs.length) % tabs.length]);
+      });
+    });
+  });
+
   /* ---- Scroll-reveal: opacity + kısa translate, bir kez oynar ---- */
   var revealEls = document.querySelectorAll(".reveal");
-  var prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var prefersReducedMotion = reducedMotion;
 
   if (prefersReducedMotion || !("IntersectionObserver" in window)) {
     revealEls.forEach(function (el) { el.classList.add("is-visible"); });

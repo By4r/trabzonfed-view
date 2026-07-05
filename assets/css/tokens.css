@@ -47,6 +47,7 @@
   --tf-space-1: .5rem;  --tf-space-2: 1rem;   --tf-space-3: 1.5rem;
   --tf-space-4: 2rem;   --tf-space-6: 3rem;   --tf-space-8: 4rem;
   --tf-section-y: clamp(4rem, 9vw, 7.5rem);   /* 64→120px */
+  --tf-section-y-sm: clamp(3.25rem, 6vw, 5rem); /* 52→80px — kompakt ana sayfa ritmi (revize brief §1) */
   --tf-container: 1240px;
   --tf-gutter: 2rem;
   --tf-radius: 10px;          /* eski sitenin baskın radius'u */
