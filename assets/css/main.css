@@ -70,53 +70,16 @@ input, textarea, select { font: inherit; }
   color: var(--tf-on-dark);
 }
 .section--dark h2, .section--dark h3 { color: var(--tf-on-dark); }
-.section--accent {
-  background: var(--tf-bordo);
-  color: var(--tf-on-dark);
-}
-.section--accent h2, .section--accent h3 { color: var(--tf-on-dark); }
-.section--accent .section-head__eyebrow { color: var(--tf-accent-on-dark); }
-.section--accent .section-head__eyebrow::before { background: var(--tf-accent-on-dark-soft); }
-.section--accent .section-head p { color: var(--tf-on-dark-soft); }
-/* Renkli zemin varyantları (revize: tonal ritim — mavi / koyu nötr gri) */
-.section--mavi {
-  background: var(--tf-mavi);
-  color: var(--tf-on-dark);
-}
-.section--mavi h2, .section--mavi h3 { color: var(--tf-on-dark); }
-/* Mavi zeminde %72 beyaz 4.5:1 altına düşer — metin tam beyaz kalır */
-.section--mavi .section-head__eyebrow { color: var(--tf-on-dark); }
-.section--mavi .section-head__eyebrow::before { background: var(--tf-on-dark); }
-.section--mavi .section-head p { color: var(--tf-on-dark); }
-.section--gray {
-  background: var(--tf-gri-bg);
-  color: var(--tf-on-dark);
-}
-.section--gray h2, .section--gray h3 { color: var(--tf-on-dark); }
-.section--gray .section-head__eyebrow { color: var(--tf-accent-on-dark); }
-.section--gray .section-head__eyebrow::before { background: var(--tf-accent-on-dark-soft); }
-.section--gray .section-head p { color: var(--tf-on-dark-soft); }
-/* Koyu zeminlerde ghost buton + carousel oku okunur kalır */
-.section--accent .btn-ghost,
-.section--gray .btn-ghost { color: var(--tf-accent-on-dark); }
-.section--mavi .btn-ghost { color: var(--tf-on-dark); }
-.section--accent .btn-ghost:hover,
-.section--gray .btn-ghost:hover,
-.section--mavi .btn-ghost:hover { color: var(--tf-on-dark); }
-.section--accent .carousel-btn,
-.section--gray .carousel-btn,
-.section--mavi .carousel-btn { color: var(--tf-on-dark); border-color: rgba(255,255,255,.4); }
-.section--accent .carousel-btn:hover:not(:disabled),
-.section--gray .carousel-btn:hover:not(:disabled),
-.section--mavi .carousel-btn:hover:not(:disabled) {
-  color: var(--tf-on-dark);
-  border-color: var(--tf-on-dark);
-  background: rgba(255,255,255,.12);
-}
+/* Renkli zemin varyantı (zemin yumuşatma revizesi, 2026-07-05):
+   çok açık mavi --tf-mavi-tint (intro panelle AYNI zemin — Beyar tercihi).
+   Metin normal koyu token'larında kalır; yalnız ikincil metin (section-head p)
+   --tf-text'e yükselir. Eski doygun mavi/bordo/koyu gri zeminler KALKTI;
+   bordo ve gri bantlar --tf-bg-soft'a döndü (section--soft), accent varyantı SİLİNDİ. */
+.section--mavi { background: var(--tf-mavi-tint); }
+.section--mavi .section-head p { color: var(--tf-text); }
+/* Tint zeminde carousel oku: default açık border kaybolur — koyu kenar */
+.section--mavi .carousel-btn { border-color: rgba(18,27,46,.3); }
 /* Koyu zeminde mavi odak halkası kaybolur — beyaza döner */
-.section--mavi :focus-visible,
-.section--accent :focus-visible,
-.section--gray :focus-visible,
 .section--dark :focus-visible,
 .site-footer :focus-visible { outline-color: var(--tf-on-dark); }
 .section--divider-top { position: relative; }
@@ -237,21 +200,23 @@ input, textarea, select { font: inherit; }
   gap: var(--tf-space-4);
 }
 /* Sol grup: sosyal + tel + mail — hepsi ikon, 44px touch target.
-   Negatif margin: ilk ikonun glifini container/logo hizasına optik olarak oturtur. */
-.topbar__connect { display: flex; align-items: center; align-self: stretch; margin-left: -14px; }
+   İlk ikonun kutusu VE glifi container sol kenarında başlar (logo.png sıkı kırpık —
+   görünür logo sol kenarı = container kenarı; navbar ile piksel hizası buradan). */
+.topbar__connect { display: flex; align-items: center; align-self: stretch; }
 .topbar__connect a {
   width: 44px;
   align-self: stretch;
   display: inline-flex; align-items: center; justify-content: center;
   transition: color var(--tf-dur) var(--tf-ease), background var(--tf-dur) var(--tf-ease);
 }
+.topbar__connect a:first-child { justify-content: flex-start; }
 .topbar__connect a:hover { color: var(--tf-on-dark); background: rgba(255,255,255,.08); }
 .topbar__divider {
   width: 1px; height: 16px;
   background: rgba(255,255,255,.18);
   margin-inline: var(--tf-space-1);
 }
-/* Sağ grup: sekonder linkler + arama + Üye Ol — sağa yaslı, geniş nefes */
+/* Sağ grup: sekonder linkler + arama + Federasyona Katıl — sağa yaslı, geniş nefes */
 .topbar__aux {
   display: flex; align-items: center; justify-content: flex-end;
   gap: var(--tf-space-3);
@@ -266,7 +231,7 @@ input, textarea, select { font: inherit; }
   transition: color var(--tf-dur) var(--tf-ease);
 }
 .topbar__links a:hover { color: var(--tf-on-dark); }
-/* TF Kart vurgusu — Üye Ol'un accent'inin yumuşak tonu, ezmez ama ayrışır */
+/* TF Kart vurgusu — Federasyona Katıl'ın accent'inin yumuşak tonu, ezmez ama ayrışır */
 .topbar__links .is-accent { color: var(--tf-accent-on-dark-soft); font-weight: 600; }
 .topbar__links .is-accent:hover { color: var(--tf-accent-on-dark); }
 .topbar__search {
@@ -316,7 +281,9 @@ input, textarea, select { font: inherit; }
   height: 100%;
   object-fit: contain;
 }
-.navbar__nav { flex: 1; min-width: 0; display: flex; justify-content: center; }
+/* Menü sağa yaslı: son öğenin metni container sağ kenarında biter —
+   utility bar'daki CTA ile piksel hizası buradan */
+.navbar__nav { flex: 1; min-width: 0; display: flex; justify-content: flex-end; }
 .nav-list {
   display: flex;
   align-items: center;
@@ -324,6 +291,9 @@ input, textarea, select { font: inherit; }
 }
 /* Mega panel navbar'a göre tam genişlik konumlanır — li positioned OLMAMALI */
 .nav-list > li { height: 100%; display: flex; align-items: stretch; }
+/* Son öğe sağ kenara flush — hover zemini/alt çizgi de kenarda biter */
+.nav-list > li:last-child > .nav-toggle { padding-right: 0; }
+.nav-list > li:last-child > .nav-toggle::after { right: 0; }
 .nav-list > li > a,
 .nav-toggle {
   position: relative;
@@ -391,17 +361,17 @@ input, textarea, select { font: inherit; }
   visibility: visible;
   transform: translateY(0);
 }
+/* Maks 2 satır (revize 2026-07-05): öğeler kolonlara yayılır — 9 öğe 5+4,
+   8 öğe 4+4, 7 öğe 4+3... Eski --third (3 satır) / --half varyantları KALKTI. */
 .mega-panel__grid {
   display: grid;
   grid-auto-flow: column;
-  grid-template-rows: repeat(4, auto);
+  grid-template-rows: repeat(2, auto);
   grid-auto-columns: max-content;
   justify-content: start;
   column-gap: var(--tf-space-8);
   row-gap: .3rem;
 }
-.mega-panel__grid--half { grid-template-rows: repeat(2, auto); }
-.mega-panel__grid--third { grid-template-rows: repeat(3, auto); }
 .mega-panel__grid a {
   display: inline-flex;
   align-items: center;
@@ -420,7 +390,8 @@ input, textarea, select { font: inherit; }
 .mega-panel__grid a:hover { color: var(--tf-bordo); }
 .mega-panel__grid a:hover svg { transform: translateX(4px); }
 
-.navbar__actions { display: flex; align-items: center; gap: var(--tf-space-3); flex-shrink: 0; }
+/* Desktop'ta gizli: içi boş kalınca navbar__inner gap'i menüyü sağ kenardan iterdi */
+.navbar__actions { display: none; align-items: center; gap: var(--tf-space-3); flex-shrink: 0; }
 
 .hamburger {
   display: none;
@@ -875,16 +846,16 @@ input, textarea, select { font: inherit; }
   background: var(--tf-bg-soft);
   border: 1px solid var(--tf-border);
   padding: .3rem;
-  border-radius: var(--tf-radius-pill);
+  border-radius: var(--tf-radius); /* pill KALKTI — kart radius'uyla tutarlı (revize 2026-07-05) */
 }
 .tabs__tab {
   min-height: 44px;
   padding: .55rem 1.35rem;
-  border-radius: var(--tf-radius-pill);
+  border-radius: var(--tf-radius-sm);
   font-family: var(--tf-ff-heading);
   font-weight: 600;
   font-size: .9rem;
-  color: var(--tf-text-soft);
+  color: var(--tf-text); /* text-soft soft zeminde 4.5:1 altıydı — AA düzeltmesi */
   white-space: nowrap;
   transition: background var(--tf-dur) var(--tf-ease), color var(--tf-dur) var(--tf-ease);
 }
@@ -1037,27 +1008,32 @@ input, textarea, select { font: inherit; }
   align-items: flex-start;
   gap: var(--tf-space-3);
 }
+/* Soft zemin revizesi (2026-07-05): koyu gri bant KALKTI — bant .section--soft,
+   metinler koyu token'larda, sağ kutu beyaz kart olarak ayrışır */
 .contact-cta__item svg {
   flex-shrink: 0;
   width: 40px; height: 40px;
   border-radius: 50%;
-  background: rgba(255,255,255,.1);
+  background: var(--tf-bordo-tint);
   padding: 10px;
-  color: var(--tf-accent-on-dark);
+  color: var(--tf-bordo);
 }
-.contact-cta__item strong { display: block; font-family: var(--tf-ff-heading); font-size: .9rem; }
-.contact-cta__item span { font-size: .95rem; color: var(--tf-on-dark-soft); }
+.contact-cta__item strong { display: block; font-family: var(--tf-ff-heading); font-size: .9rem; color: var(--tf-lacivert); }
+.contact-cta__item span { font-size: .95rem; color: var(--tf-text); }
+/* text-soft soft zeminde 4.5:1 altı — ikincil metin --tf-text'e yükselir */
+.contact-cta .section-head p { color: var(--tf-text); }
 .contact-cta__actions {
-  background: rgba(255,255,255,.06);
-  border: 1px solid rgba(255,255,255,.14);
+  background: var(--tf-bg);
+  border: 1px solid var(--tf-border);
   border-radius: var(--tf-radius);
+  box-shadow: var(--tf-shadow);
   padding: var(--tf-space-6);
   display: flex;
   flex-direction: column;
   gap: var(--tf-space-3);
 }
-.contact-cta__actions h3 { color: var(--tf-on-dark); font-size: 1.25rem; margin-bottom: .25rem; }
-.contact-cta__actions p { color: var(--tf-on-dark-soft); font-size: .9rem; margin-bottom: var(--tf-space-2); }
+.contact-cta__actions h3 { font-size: 1.25rem; margin-bottom: .25rem; }
+.contact-cta__actions p { color: var(--tf-text); font-size: .9rem; margin-bottom: var(--tf-space-2); }
 .contact-cta__actions .btn { justify-content: center; }
 
 /* ============ Footer (sade — revize brief §11) ============ */
@@ -1070,7 +1046,12 @@ input, textarea, select { font: inherit; }
 main { position: relative; z-index: 2; background: var(--tf-bg); }
 body.has-reveal .site-footer { position: fixed; left: 0; right: 0; bottom: 0; z-index: 1; }
 .site-footer {
-  background: var(--tf-grad-kurumsal);
+  /* Karadeniz ormanı görseli (sisli ladin — Trabzon doğası) + yarı saydam kurumsal
+     gradyan overlay (renkler değişmedi); en alttaki opak gradyan görsel yüklenemezse fallback */
+  background:
+    var(--tf-grad-kurumsal-overlay),
+    url('https://images.unsplash.com/photo-1448375240586-882707db888b?q=80&w=1800&auto=format&fit=crop') center / cover no-repeat,
+    var(--tf-grad-kurumsal);
   color: var(--tf-on-dark-soft);
   padding-top: var(--tf-space-8);
   box-shadow: 0 1px 0 rgba(255,255,255,.14) inset;
@@ -1157,6 +1138,7 @@ body.has-reveal .site-footer { position: fixed; left: 0; right: 0; bottom: 0; z-
 
 @media (max-width: 1080px) {
   .navbar__nav { display: none; }
+  .navbar__actions { display: flex; }
   .hamburger { display: inline-flex; }
   .topbar__links, .topbar__search { display: none; }
 }
@@ -1188,6 +1170,8 @@ body.has-reveal .site-footer { position: fixed; left: 0; right: 0; bottom: 0; z-
 @media (max-width: 600px) {
   /* Dar ekranda sosyal ikonlar off-canvas'a devrolur; tel+mail 44px hedefle kalır */
   .topbar__connect > a:nth-of-type(-n+3), .topbar__divider { display: none; }
+  /* İlk GÖRÜNÜR ikon artık tel — glifi container/logo kenarına oturt */
+  .topbar__connect a[href^="tel:"] { justify-content: flex-start; }
   .navbar__inner { height: 64px; }
   .navbar__brand { width: 138px; height: 32px; }
   .hero__slide { min-height: 480px; }

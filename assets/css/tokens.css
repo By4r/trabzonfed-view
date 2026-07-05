@@ -11,11 +11,13 @@
   --tf-bordo-tint:   #F8EDEF;  /* açık bordo zemin (rozet arka planı) */
   --tf-mavi:         #00779B;  /* secondary — link, ikon, yardımcı vurgu */
   --tf-mavi-dark:    #005F7C;  /* link hover */
-  --tf-mavi-tint:    #EBF4F8;  /* açık mavi zemin (brief: "çok hafif mavi") */
+  --tf-mavi-tint:    #EBF4F8;  /* açık mavi zemin (brief: "çok hafif mavi") — section--mavi de bunu kullanır */
   --tf-lacivert:     #191F29;  /* başlık metni + koyu bant zemini */
   --tf-lacivert-bg:  #121B2E;  /* footer / güçlü kurumsal bantlar */
   /* lacivert→bordo footer geçişi (brief §19) */
   --tf-grad-kurumsal: linear-gradient(135deg, #121B2E 0%, #46000F 100%);
+  /* Aynı geçişin yarı saydam overlay hâli — footer görselinin üstünde (renkler AYNI, sadece alfa) */
+  --tf-grad-kurumsal-overlay: linear-gradient(135deg, rgba(18,27,46,.86) 0%, rgba(70,0,15,.84) 100%);
 
   /* ---- Renk: nötr ---- */
   --tf-text:         #4A4F57;  /* gövde (eski #74787C'den kontrastı yükseltilmiş) */
@@ -23,7 +25,6 @@
   --tf-border:       #EAEAEA;
   --tf-bg:           #FFFFFF;
   --tf-bg-soft:      #F6F7FA;  /* açık gri bant */
-  --tf-gri-bg:       #3F444C;  /* koyu nötr gri bant zemini (CTA bandı) — --tf-text ailesinin koyusu */
   --tf-on-dark:      #FFFFFF;
   --tf-on-dark-soft: rgba(255,255,255,.72);
   --tf-accent-on-dark:      #F2B9C4;  /* koyu zeminde açık pembe vurgu — hero em, eyebrow, ikon */
