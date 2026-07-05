@@ -1,0 +1,59 @@
+/*
+  Trabzonlular Federasyonu — Token Sistemi
+  Kaynak: tasks/plan.md §2. Tüm renk/tipografi/spacing değerleri buradan gelir;
+  sayfa CSS'inde hardcode değer YASAK.
+*/
+
+:root {
+  /* ---- Renk: marka (resmî logodan) ---- */
+  --tf-bordo:        #600014;  /* primary — CTA, vurgu, kategori rozetleri */
+  --tf-bordo-dark:   #46000F;  /* hover / koyu geçiş */
+  --tf-bordo-tint:   #F8EDEF;  /* açık bordo zemin (rozet arka planı) */
+  --tf-mavi:         #00779B;  /* secondary — link, ikon, yardımcı vurgu */
+  --tf-mavi-dark:    #005F7C;  /* link hover */
+  --tf-mavi-tint:    #EBF4F8;  /* açık mavi zemin (brief: "çok hafif mavi") */
+  --tf-lacivert:     #191F29;  /* başlık metni + koyu bant zemini */
+  --tf-lacivert-bg:  #121B2E;  /* footer / güçlü kurumsal bantlar */
+  /* lacivert→bordo footer geçişi (brief §19) */
+  --tf-grad-kurumsal: linear-gradient(135deg, #121B2E 0%, #46000F 100%);
+
+  /* ---- Renk: nötr ---- */
+  --tf-text:         #4A4F57;  /* gövde (eski #74787C'den kontrastı yükseltilmiş) */
+  --tf-text-soft:    #74787C;  /* meta / ikincil metin */
+  --tf-border:       #EAEAEA;
+  --tf-bg:           #FFFFFF;
+  --tf-bg-soft:      #F6F7FA;  /* açık gri bant */
+  --tf-on-dark:      #FFFFFF;
+  --tf-on-dark-soft: rgba(255,255,255,.72);
+  --tf-accent-on-dark:      #F2B9C4;  /* koyu zeminde açık pembe vurgu — hero em, eyebrow, ikon */
+  --tf-accent-on-dark-soft: #E7A9B4;  /* koyu zeminde yumuşak pembe vurgu — eyebrow, alıntı tırnağı */
+
+  /* ---- Tipografi ---- */
+  --tf-ff-heading: 'Outfit', system-ui, sans-serif;
+  --tf-ff-body:    'Inter',  system-ui, sans-serif;
+  --tf-fs-display: clamp(2.5rem, 5vw, 4rem);      /* hero H1 */
+  --tf-fs-h1:      clamp(2.25rem, 4vw, 3rem);     /* sayfa H1 / section başlığı */
+  --tf-fs-h2:      clamp(1.75rem, 3vw, 2.25rem);
+  --tf-fs-h3:      1.375rem;
+  --tf-fs-body:    1rem;       /* 16px */
+  --tf-fs-meta:    .875rem;
+  --tf-fs-eyebrow: .8125rem;   /* uppercase, letter-spacing .08em */
+  --tf-lh-heading: 1.15;
+  --tf-lh-body:    1.65;
+  --tf-fw-heading: 600;        /* eski sitenin sbold geleneği */
+  --tf-fw-body:    400;
+
+  /* ---- Spacing / şekil (8pt ızgara) ---- */
+  --tf-space-1: .5rem;  --tf-space-2: 1rem;   --tf-space-3: 1.5rem;
+  --tf-space-4: 2rem;   --tf-space-6: 3rem;   --tf-space-8: 4rem;
+  --tf-section-y: clamp(4rem, 9vw, 7.5rem);   /* 64→120px */
+  --tf-container: 1240px;
+  --tf-gutter: 2rem;
+  --tf-radius: 10px;          /* eski sitenin baskın radius'u */
+  --tf-radius-sm: 6px;        /* buton/input */
+  --tf-radius-pill: 100px;
+  --tf-shadow: 0 12px 32px rgba(13, 22, 39, .08);
+  --tf-shadow-hover: 0 18px 44px rgba(13, 22, 39, .12);
+  --tf-ease: cubic-bezier(.4, 0, .2, 1);
+  --tf-dur: 220ms;
+}
