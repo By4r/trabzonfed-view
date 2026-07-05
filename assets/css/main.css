@@ -175,38 +175,45 @@ input, textarea, select { font: inherit; }
   align-items: center;
   justify-content: space-between;
   height: 44px;
+  gap: var(--tf-space-4);
+}
+/* Sol grup: sosyal + tel + mail — hepsi ikon, 44px touch target.
+   Negatif margin: ilk ikonun glifini container/logo hizasına optik olarak oturtur. */
+.topbar__connect { display: flex; align-items: center; align-self: stretch; margin-left: -14px; }
+.topbar__connect a {
+  width: 44px;
+  align-self: stretch;
+  display: inline-flex; align-items: center; justify-content: center;
+  transition: color var(--tf-dur) var(--tf-ease), background var(--tf-dur) var(--tf-ease);
+}
+.topbar__connect a:hover { color: var(--tf-on-dark); background: rgba(255,255,255,.08); }
+.topbar__divider {
+  width: 1px; height: 16px;
+  background: rgba(255,255,255,.18);
+  margin-inline: var(--tf-space-1);
+}
+/* Sağ grup: sekonder linkler + arama + Üye Ol — sağa yaslı, geniş nefes */
+.topbar__aux {
+  display: flex; align-items: center; justify-content: flex-end;
   gap: var(--tf-space-3);
+  align-self: stretch;
+  flex: 1; min-width: 0;
 }
-.topbar__contact { display: flex; align-items: center; gap: var(--tf-space-4); overflow: hidden; }
-.topbar__contact a {
-  display: inline-flex;
-  align-items: center;
-  gap: .4rem;
-  white-space: nowrap;
-  transition: color var(--tf-dur) var(--tf-ease);
-}
-.topbar__contact a:hover { color: var(--tf-on-dark); }
-.topbar__contact svg { flex-shrink: 0; opacity: .8; }
-.topbar__aux { display: flex; align-items: center; gap: var(--tf-space-3); align-self: stretch; }
-.topbar__links { display: flex; align-items: center; gap: var(--tf-space-3); }
+.topbar__links { display: flex; align-items: stretch; align-self: stretch; gap: var(--tf-space-2); }
 .topbar__links a {
+  display: inline-flex; align-items: center;
+  padding-inline: .5rem;
   white-space: nowrap;
   transition: color var(--tf-dur) var(--tf-ease);
 }
 .topbar__links a:hover { color: var(--tf-on-dark); }
-.topbar__social { display: flex; align-items: center; gap: var(--tf-space-2); }
-.topbar__social a {
-  width: 28px; height: 28px;
-  display: inline-flex; align-items: center; justify-content: center;
-  border-radius: 50%;
-  background: rgba(255,255,255,.08);
-  transition: background var(--tf-dur) var(--tf-ease);
-}
-.topbar__social a:hover { background: var(--tf-mavi); color: var(--tf-on-dark); }
+/* TF Kart vurgusu — Üye Ol'un accent'inin yumuşak tonu, ezmez ama ayrışır */
+.topbar__links .is-accent { color: var(--tf-accent-on-dark-soft); font-weight: 600; }
+.topbar__links .is-accent:hover { color: var(--tf-accent-on-dark); }
 .topbar__search {
-  width: 32px; height: 32px;
+  width: 44px;
+  align-self: stretch;
   display: inline-flex; align-items: center; justify-content: center;
-  border-radius: 50%;
   color: var(--tf-on-dark-soft);
   transition: background var(--tf-dur) var(--tf-ease), color var(--tf-dur) var(--tf-ease);
 }
@@ -264,7 +271,7 @@ input, textarea, select { font: inherit; }
   display: flex;
   align-items: center;
   gap: .3rem;
-  padding-inline: .65rem;
+  padding-inline: .8rem;
   height: 100%;
   font-family: var(--tf-ff-heading);
   font-size: .9rem;
@@ -278,7 +285,7 @@ input, textarea, select { font: inherit; }
 .nav-toggle::after {
   content: "";
   position: absolute;
-  left: .65rem; right: .65rem; bottom: 0;
+  left: .8rem; right: .8rem; bottom: 0;
   height: 3px;
   background: var(--tf-bordo);
   transform: scaleX(0);
@@ -354,23 +361,6 @@ input, textarea, select { font: inherit; }
 .mega-panel__grid a:hover svg { transform: translateX(4px); }
 
 .navbar__actions { display: flex; align-items: center; gap: var(--tf-space-3); flex-shrink: 0; }
-/* MÜSİAD "E-İşlemler" deseni: nav sağ ucunda ayraçlı, ikonlu vurgulu öğe */
-.navbar__donate {
-  display: inline-flex;
-  align-items: center;
-  gap: .5rem;
-  font-family: var(--tf-ff-heading);
-  font-size: .9rem;
-  font-weight: 600;
-  color: var(--tf-bordo);
-  white-space: nowrap;
-  border-left: 1px solid var(--tf-border);
-  padding-left: var(--tf-space-3);
-  height: 40px;
-  transition: color var(--tf-dur) var(--tf-ease);
-}
-.navbar__donate:hover { color: var(--tf-bordo-dark); }
-.navbar__donate svg { flex-shrink: 0; }
 
 .hamburger {
   display: none;
@@ -456,6 +446,24 @@ input, textarea, select { font: inherit; }
   font-size: .9rem;
   color: var(--tf-text-soft);
 }
+/* TF Kart vurgusu — açık zeminde mavi vurgu tonu */
+.mobile-nav__secondary .is-accent { color: var(--tf-mavi); font-weight: 600; }
+/* Topbar sol ikon grubunun mobil karşılığı: sosyal + tel + mail */
+.mobile-nav__connect {
+  display: flex;
+  align-items: center;
+  gap: var(--tf-space-1);
+  padding: var(--tf-space-2) var(--tf-space-4) 0;
+}
+.mobile-nav__connect a {
+  width: 44px; height: 44px;
+  display: inline-flex; align-items: center; justify-content: center;
+  border-radius: 50%;
+  background: var(--tf-bg-soft);
+  color: var(--tf-text-soft);
+  transition: background var(--tf-dur) var(--tf-ease), color var(--tf-dur) var(--tf-ease);
+}
+.mobile-nav__connect a:hover { background: var(--tf-mavi); color: var(--tf-on-dark); }
 .mobile-nav__actions { padding: var(--tf-space-4); display: flex; flex-direction: column; gap: var(--tf-space-2); }
 .mobile-nav__actions .btn { justify-content: center; }
 
@@ -912,14 +920,15 @@ input, textarea, select { font: inherit; }
 
 /* ============ Responsive ============ */
 @media (max-width: 1300px) {
-  .topbar__contact a:nth-child(2) { display: none; }
-  .nav-list > li > a, .nav-toggle { padding-inline: .55rem; font-size: .85rem; }
+  .topbar__aux { gap: var(--tf-space-2); }
+  .topbar__links { gap: var(--tf-space-1); }
+  .nav-list > li > a, .nav-toggle { padding-inline: .6rem; font-size: .85rem; }
 }
 
 @media (max-width: 1080px) {
-  .navbar__nav, .navbar__donate { display: none; }
+  .navbar__nav { display: none; }
   .hamburger { display: inline-flex; }
-  .topbar__links, .topbar__social, .topbar__search { display: none; }
+  .topbar__links, .topbar__search { display: none; }
 }
 
 @media (max-width: 960px) {
@@ -933,6 +942,8 @@ input, textarea, select { font: inherit; }
 }
 
 @media (max-width: 600px) {
+  /* Dar ekranda sosyal ikonlar off-canvas'a devrolur; tel+mail 44px hedefle kalır */
+  .topbar__connect > a:nth-of-type(-n+3), .topbar__divider { display: none; }
   .navbar__inner { height: 64px; }
   .navbar__brand { width: 138px; height: 32px; }
   .hero { min-height: 92vh; }
