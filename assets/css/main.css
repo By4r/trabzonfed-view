@@ -82,7 +82,6 @@ input, textarea, select { font: inherit; }
 /* Koyu zeminde mavi odak halkası kaybolur — beyaza döner */
 .section--dark :focus-visible,
 .site-footer :focus-visible { outline-color: var(--tf-on-dark); }
-.section--divider-top { position: relative; }
 
 .section-head {
   max-width: 680px;
@@ -140,6 +139,7 @@ input, textarea, select { font: inherit; }
   display: flex;
   justify-content: center;
 }
+.section-foot--start { justify-content: flex-start; }
 
 /* ============ Buttons ============ */
 .btn {
@@ -626,6 +626,7 @@ input, textarea, select { font: inherit; }
   line-height: 0;
 }
 .wave-divider svg { width: 100%; height: 100%; display: block; }
+.wave-divider path { fill: var(--tf-bg); }
 
 /* ============ Intro / stats ============ */
 .intro {
