@@ -1207,6 +1207,10 @@ body.has-reveal .site-footer { position: fixed; left: 0; right: 0; bottom: 0; z-
 @media (max-width: 600px) {
   /* Dar ekranda sosyal ikonlar off-canvas'a devrolur; tel+mail 44px hedefle kalır */
   .topbar__connect > a:nth-of-type(-n+3), .topbar__divider { display: none; }
+  /* İlk GÖRÜNÜR ikon (tel, nth 4) glifini kutu sol kenarına yasla → logo/container sol
+     kenarıyla hizalı. 44px dokunma kutusu korunur; yalnız glif sola kayar. Masaüstü
+     5-ikon ritmi etkilenmez (o kural bu media query dışında, glif-ortalı kalır). */
+  .topbar__connect > a:nth-of-type(4) { justify-content: flex-start; }
   .navbar__inner { height: 64px; }
   .navbar__brand { width: 138px; height: 32px; }
   .hero__slide { min-height: 480px; }
