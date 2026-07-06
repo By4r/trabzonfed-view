@@ -1175,7 +1175,9 @@ body.has-reveal .site-footer { position: fixed; left: 0; right: 0; bottom: 0; z-
 
 @media (max-width: 1080px) {
   .navbar__nav { display: none; }
-  .navbar__actions { display: flex; }
+  /* nav (flex:1 boşluk-doldurucu) gizlenince actions sola toplaşıyordu; margin-left:auto
+     hamburger'ı container sağ kenarına yaslar (logo solda kalır). */
+  .navbar__actions { display: flex; margin-left: auto; }
   .hamburger { display: inline-flex; }
   .topbar__links, .topbar__search { display: none; }
 }
