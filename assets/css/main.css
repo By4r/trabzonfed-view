@@ -1645,19 +1645,36 @@ textarea.form-input { min-height: 140px; resize: vertical; }
   color: var(--tf-bordo);
 }
 
-/* ==== sayfa: medya.html (FE-2) ==== */
+/* ==== sayfa: medya.html + fotograf-galerisi.html + video-galerisi.html (FE-2) ==== */
 /* media-grid'in satır sayısını galeri boyutuna göre uzatan sayfa-özel varyantlar —
    ortak .media-grid/.media-tile selector'larına dokunulmadı, sadece grid-template-rows
-   override edildi. */
-.photo-grid { grid-template-rows: repeat(3, 160px); }
-.video-grid { grid-template-rows: repeat(1, 160px); }
+   override edildi. W3'te sabit satır sayısı yerine grid-auto-rows'a geçildi: hub
+   önizlemesi (4 foto/2 video) ile tam galeri sayfalarının (13 foto/8 video) farklı
+   öğe sayıları aynı kuralla, satır hesabı yapmadan doğru yükseklikte dizilir. */
+.photo-grid, .video-grid, .photo-grid-full, .video-grid-full {
+  grid-template-rows: unset;
+  grid-auto-rows: 160px;
+}
 @media (max-width: 960px) {
-  .photo-grid { grid-template-rows: repeat(5, 140px); }
-  .video-grid { grid-template-rows: repeat(2, 140px); }
+  .photo-grid, .video-grid, .photo-grid-full, .video-grid-full { grid-auto-rows: 140px; }
 }
 @media (max-width: 600px) {
-  .photo-grid { grid-template-rows: repeat(5, 130px); }
-  .video-grid { grid-template-rows: repeat(2, 130px); }
+  .photo-grid, .video-grid, .photo-grid-full, .video-grid-full { grid-auto-rows: 130px; }
+}
+
+/* ==== sayfa: etkinlik-detay.html (FE-2) ==== */
+/* Makale gövdesindeki mini galeri şeridi (haber-detay.html'in article-related
+   bölümüne, media-tile'ın kompakt 3 kolonlu hâli olarak eklendi). 3 kolon kuralı
+   yalnız masaüstünde geçerli — min-width'siz bırakılırsa ortak .media-grid'in
+   ≤960/≤600 responsive 2-kolon kuralından daha spesifik olduğu için mobilde de
+   3 dar kolona sıkışıyordu; burada masaüstüne scoped edildi. */
+.article-related .media-grid { margin-bottom: var(--tf-space-6); }
+@media (min-width: 961px) {
+  .article-related .media-grid {
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: unset;
+    grid-auto-rows: 160px;
+  }
 }
 
 /* ==== sayfa: tf-kart.html (FAZ 2 mobil — lead) ==== */
@@ -1800,4 +1817,242 @@ textarea.form-input { min-height: 140px; resize: vertical; }
   background: var(--tf-bordo-tint);
   color: var(--tf-bordo);
   margin-bottom: var(--tf-space-3);
+}
+
+/* ==== sayfa: yoresel-degerler.html (FE-3) ==== */
+/* activity-card__media fallback — gerçek foto yerine (news-card'ın zemin fallback'iyle
+   aynı mantık) kurumsal gradyan + ortalı ikon; "Büyüklere Saygı" kartı için tek istisna,
+   activity-card ailesinin dışına çıkmaz (shell/tokens değişmedi). */
+.activity-card__media--fallback {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--tf-grad-kurumsal);
+  color: var(--tf-on-dark-soft);
+}
+
+/* ==== sayfa: tf-kart.html derinleştirme (FE-1, Wave 3) ==== */
+/* Statik kart görsel mockup'ı — eski temanın 3D flip'i ALINMAZ, düz statik kart.
+   Aday sözlük girişi: "tf-card-mockup" (lead'e bildirildi, components.md'ye lead işleyecek). */
+.tfk-card-mockup-wrap { display: flex; align-items: center; justify-content: center; }
+.tfk-card-mockup {
+  width: 100%;
+  max-width: 380px;
+  aspect-ratio: 1.586 / 1;
+  border-radius: 18px;
+  padding: 1.6rem 1.75rem;
+  background: linear-gradient(135deg, var(--tf-lacivert-bg) 0%, var(--tf-bordo-dark) 55%, var(--tf-bordo) 100%);
+  color: var(--tf-on-dark);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: var(--tf-shadow-hover);
+  position: relative;
+  overflow: hidden;
+}
+.tfk-card-mockup::before {
+  content: "";
+  position: absolute;
+  top: -60px;
+  right: -60px;
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 255, 255, .14), transparent 70%);
+}
+.tfk-card-mockup__top { display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem; position: relative; }
+.tfk-card-mockup__brand {
+  font-family: var(--tf-ff-heading);
+  font-size: .68rem;
+  font-weight: 600;
+  letter-spacing: .07em;
+  text-transform: uppercase;
+  color: var(--tf-on-dark-soft);
+  max-width: 62%;
+}
+.tfk-card-mockup__chip {
+  flex-shrink: 0;
+  width: 38px;
+  height: 28px;
+  border-radius: 5px;
+  background: linear-gradient(135deg, var(--tf-accent-on-dark-soft), var(--tf-accent-on-dark));
+}
+.tfk-card-mockup__number {
+  font-family: var(--tf-ff-mono);
+  font-size: 1.1rem;
+  letter-spacing: .14em;
+  color: var(--tf-on-dark);
+  position: relative;
+}
+.tfk-card-mockup__bottom { display: flex; align-items: flex-end; justify-content: space-between; gap: 1rem; position: relative; }
+.tfk-card-mockup__id { display: flex; flex-direction: column; gap: .2rem; min-width: 0; }
+.tfk-card-mockup__label { font-size: .62rem; text-transform: uppercase; letter-spacing: .06em; color: var(--tf-on-dark-soft); }
+.tfk-card-mockup__name { font-family: var(--tf-ff-heading); font-weight: 600; font-size: .95rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.tfk-card-mockup__wordmark { flex-shrink: 0; font-family: var(--tf-ff-heading); font-weight: 700; font-size: 1.05rem; letter-spacing: .01em; color: var(--tf-accent-on-dark); }
+
+/* "Nasıl Alınır" 4 adımı — gerçek sıralı süreç olduğundan numaralandırma kullanıldı
+   (frontend-design ilkesi: numaralı işaret yalnız gerçek sıra taşıyorsa haklı). */
+.tfk-steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--tf-gutter); }
+.tfk-step { display: flex; flex-direction: column; gap: var(--tf-space-2); }
+.tfk-step__num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--tf-bordo-tint);
+  color: var(--tf-bordo);
+  font-family: var(--tf-ff-heading);
+  font-weight: 700;
+  font-size: 1.05rem;
+}
+.tfk-step h3 { font-size: var(--tf-fs-h3-card); font-weight: var(--tf-fw-h3-card); }
+.tfk-step p { color: var(--tf-text-soft); }
+@media (max-width: 960px) {
+  .tfk-steps { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 600px) {
+  .tfk-steps { grid-template-columns: 1fr; }
+  .tfk-card-mockup { max-width: 320px; }
+}
+
+/* ==== W1 ilçe haritası (FE-3) ==== */
+/* İnteraktif SVG harita — eski assets/js/map.js kaynağından uyarlandı (Bizan
+   renkleri token'lara çevrildi). JS ayrı dosyada: assets/js/district-map.js
+   (main.js'e DOKUNULMADI — ortak dosya çakışmasını önlemek için). Yerleşim:
+   Federasyon Ağı bandı içinde, district-card grid'inin ÜSTÜNDE.
+   Beyar revizesi #2 (2026-07-06): bandın kendisi --tf-bordo (koyu) →
+   .section--mavi (--tf-mavi-tint, AÇIK) oldu (index.html'de sınıf değişti).
+   Panel artık --tf-bg (beyaz) — açık section üzerinde qa-card'ın "beyaz kart"
+   mantığıyla aynı ayrışma. İlçe dolgusu da --tf-mavi-tint'e DÖNDÜ: beyaz panel
+   + mavi-tint "kara parçaları" + --tf-mavi sınır çizgisi net kontrast verir
+   (ölçülen: sınır rengi panel'e karşı 4.6:1, dolguya karşı 5.1:1 — WCAG
+   grafik-nesne eşiği 3:1'i rahat geçer; dolgu-panel farkı ise atlas
+   geleneğindeki gibi ince tutulur, ayrımı taşıyan çizgidir). */
+.district-map {
+  margin-bottom: var(--tf-space-6);
+}
+.district-map__panel {
+  position: relative;
+  max-width: 640px;
+  margin-inline: auto;
+  background: var(--tf-bg);
+  border-radius: var(--tf-radius);
+  box-shadow: var(--tf-shadow-hover);
+  padding: var(--tf-space-4);
+}
+.district-map__svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+/* İlçe alanları: <a> SVG içinde native focusable (Tab + Enter çalışır, ekstra
+   JS klavye yönetimi gerekmez). Zemin açık olduğundan on-dark istisnası
+   uygulanmaz — normal focus-visible halkası kullanılır. */
+.district-map__area path {
+  fill: var(--tf-mavi-tint);
+  stroke: var(--tf-mavi);
+  stroke-width: 2;
+  cursor: pointer;
+  transition: fill var(--tf-dur) var(--tf-ease), stroke var(--tf-dur) var(--tf-ease);
+}
+.district-map__area:hover path,
+.district-map__area:focus-visible path,
+.district-map__area.is-selected path {
+  fill: var(--tf-bordo-tint);
+  stroke: var(--tf-bordo);
+}
+.district-map__area:focus-visible {
+  outline: 2px solid var(--tf-mavi);
+  outline-offset: 2px;
+}
+/* Tooltip section temasından bağımsız DAİMA koyu — küçük yüzen bir etiket
+   olarak her zeminde okunur kalması için kasıtlı sabit koyu zemin/on-dark metin. */
+.district-map__tooltip {
+  position: absolute;
+  transform: translate(-50%, -100%);
+  margin-top: -10px;
+  background: var(--tf-lacivert-bg);
+  color: var(--tf-on-dark);
+  padding: .45rem .75rem;
+  border-radius: var(--tf-radius-sm);
+  font-size: var(--tf-fs-meta);
+  white-space: nowrap;
+  box-shadow: var(--tf-shadow);
+  pointer-events: none;
+  z-index: 2;
+}
+.district-map__tooltip[hidden] { display: none; }
+.district-map__tooltip strong { display: block; font-family: var(--tf-ff-heading); font-weight: 600; }
+.district-map__tooltip span { color: var(--tf-on-dark-soft); }
+/* Dokunmatik "seç" durumunda tooltip sabitlenir (is-pinned) — içindeki link
+   artık tıklanabilir olmalı, varsayılan pointer-events:none bunu engeller. */
+.district-map__tooltip.is-pinned { pointer-events: auto; }
+.district-map__tooltip-link {
+  display: none;
+  align-items: center;
+  gap: .3rem;
+  min-height: 44px;
+  margin-top: .15rem;
+  font-weight: 600;
+  color: var(--tf-accent-on-dark);
+  white-space: nowrap;
+}
+.district-map__tooltip.is-pinned .district-map__tooltip-link { display: inline-flex; }
+/* İpucu artık açık section üzerinde yaşıyor — --tf-text-soft (on-dark DEĞİL). */
+.district-map__hint {
+  text-align: center;
+  margin-top: var(--tf-space-2);
+  font-size: var(--tf-fs-meta);
+  color: var(--tf-text-soft);
+}
+/* İki dil, tek gösterim: girdi yeteneğine göre CSS seçer (JS'e bağımlı değil,
+   devtools dokunmatik emülasyonunda ve gerçek cihazlarda tutarlı çalışır). */
+.district-map__hint--touch { display: none; }
+@media (hover: none) and (pointer: coarse) {
+  .district-map__hint--pointer { display: none; }
+  .district-map__hint--touch { display: block; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .district-map__area path { transition: none; }
+}
+/* Beyar revizesi (2026-07-06): ≤600px'te harita ARTIK GİZLENMİYOR. Ölçüm
+   (Playwright, 390/360px): inline boyutta 18 ilçenin ~6-7'si (Çarşıbaşı,
+   Beşikdüzü, Dernekpazarı, Şalpazarı, Düzköy, Vakfıkebir) 44×44px dokunma
+   hedefinin ALTINDA kalıyordu (ör. Çarşıbaşı 21×37px @390) — küçük/bitişik
+   ilçelere isabetli dokunmak pratik değil. "Büyüt/Haritada Gör" modal'ı
+   TERCİH ETMEDİM: dar dikey ekranda modal genişliği de viewport genişliğiyle
+   sınırlı kalır, ekstra adım (aç/kapat) eklemeden gerçek kazanç sağlamaz.
+   Onun yerine SVG'yi sabit piksel genişliğinde büyütüp panel'i YATAY
+   KAYDIRMALI yaptım — district-card carousel'inin ZATEN kullandığı rayla
+   AYNI mekanik (yeni desen yok). ~2.5x büyütme sonrası TÜM ilçeler
+   44px eşiğini geçiyor (yeniden ölçüldü, rapor'da). Sağ kenar fade maskesi
+   "devamı var" ipucu verir (tabs__list--scroll ile AYNI teknik). */
+@media (max-width: 600px) {
+  .district-map__panel {
+    padding: var(--tf-space-3);
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    -webkit-mask-image: linear-gradient(90deg, #000 calc(100% - 44px), transparent 100%);
+            mask-image: linear-gradient(90deg, #000 calc(100% - 44px), transparent 100%);
+  }
+  .district-map__panel::-webkit-scrollbar { display: none; }
+  .district-map__svg {
+    width: 900px;
+    max-width: none;
+    flex-shrink: 0;
+  }
+}
+
+/* ==== W3 TF Kart bandı (FE-1) ==== */
+/* tf-card-mockup (bkz. "sayfa: tf-kart.html derinleştirme" bloğu) burada AYNI bileşen
+   olarak yeniden kullanılıyor — section--bordo zemini mockup'ın kendi gradyanının bittiği
+   --tf-bordo rengiyle aynı olduğundan, ince kenar + güçlendirilmiş gölgeyle zeminden
+   ayrışması sağlandı. Bileşenin markup/CSS'i DEĞİŞMEDİ, yalnız bu bağlama özel bir
+   görsel ayrışma katmanı eklendi. */
+.tfk-card-mockup--on-bordo {
+  border: 1px solid rgba(255, 255, 255, .16);
+  box-shadow: 0 28px 64px rgba(0, 0, 0, .38);
 }

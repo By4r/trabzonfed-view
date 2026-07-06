@@ -285,4 +285,38 @@
     );
     revealEls.forEach(function (el) { observer.observe(el); });
   }
+
+  /* ==== W3 stat-counter (FE-2) ====
+     [data-count-to] öğelerini IntersectionObserver ile 0'dan hedefe sayar, ekrana ilk
+     girişte bir kez oynar (unobserve ile tekrar tetiklenmez). Reduced-motion'da veya
+     IntersectionObserver desteklenmiyorsa hiçbir şey yapılmaz — HTML'deki nihai değer
+     (fallback metin) olduğu gibi kalır; bu fonksiyon değeri üretmez, yalnız animasyonu
+     ekler (components.md → stat-tile "stat-counter" varyantı). */
+  var countEls = document.querySelectorAll("[data-count-to]");
+  if (countEls.length && !prefersReducedMotion && "IntersectionObserver" in window) {
+    var countObserver = new IntersectionObserver(
+      function (entries) {
+        entries.forEach(function (entry) {
+          if (!entry.isIntersecting) return;
+          countObserver.unobserve(entry.target);
+          var el = entry.target;
+          var target = parseInt(el.getAttribute("data-count-to"), 10);
+          var prefix = el.getAttribute("data-count-prefix") || "";
+          var suffix = el.getAttribute("data-count-suffix") || "";
+          var duration = 1200;
+          var start = null;
+          function step(ts) {
+            if (!start) start = ts;
+            var progress = Math.min((ts - start) / duration, 1);
+            var eased = 1 - Math.pow(1 - progress, 3);
+            el.textContent = prefix + Math.round(eased * target) + suffix;
+            if (progress < 1) requestAnimationFrame(step);
+          }
+          requestAnimationFrame(step);
+        });
+      },
+      { threshold: 0.4 }
+    );
+    countEls.forEach(function (el) { countObserver.observe(el); });
+  }
 })();
