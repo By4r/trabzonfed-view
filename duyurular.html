@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<!-- ============================================================================
+  SHELL REFERANS ŞABLONU — Wave 2 (index.html'den birebir türetildi, 2026-07-05)
+  Kullanım: bu dosyayı yeni sayfa olarak kopyala, SADECE şunları değiştir:
+    1. <title> — "[Sayfa Adı] | Trabzonlular Federasyonu"
+    2. <meta name="description"> — sayfaya özgü 1-2 cümle (TDK uyumlu, kurumsal ton)
+    3. <main> içi — sayfa içeriği (ilk bölüm: page-hero, components.md)
+  Topbar / navbar / mega menüler / mobile-nav / footer'a DOKUNMA — bunlar kanonik
+  shell'dir; menü içeriğinin tek resmi kaynağı menü docx'idir (lessons.md).
+  Footer perdesi kendiliğinden çalışır (main.js + <main id="main"> yeterli).
+  Bu dosya gitignored'dır (tasks/) — sayfalara kopyalanır, kendisi yayınlanmaz.
+============================================================================= -->
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Duyurular | Trabzonlular Federasyonu</title>
+<meta name="description" content="Trabzonlular Federasyonu'nun genel kurul, üyelik ve kurumsal süreçlere ilişkin resmî duyurularının tam listesi.">
+<link rel="icon" href="assets/img/logo-mark.png" type="image/png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="assets/css/tokens.css">
+<link rel="stylesheet" href="assets/css/main.css">
+</head>
+<body>
+<a class="skip-link" href="#main">İçeriğe geç</a>
+
+<div class="topbar">
+    <div class="container topbar__inner">
+      <div class="topbar__connect">
+        <a href="#" aria-label="Facebook"><svg aria-hidden="true" width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M14 9h3V6h-3c-1.7 0-3 1.3-3 3v2H8v3h3v7h3v-7h3l1-3h-4V9c0-.6.4-1 1-1Z"/></svg></a>
+        <a href="#" aria-label="Instagram"><svg aria-hidden="true" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="4" y="4" width="16" height="16" rx="4"/><circle cx="12" cy="12" r="3.3"/><circle cx="16.6" cy="7.4" r=".9" fill="currentColor" stroke="none"/></svg></a>
+        <a href="#" aria-label="YouTube"><svg aria-hidden="true" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="3" y="6" width="18" height="12" rx="3"/><path d="m10 9 5 3-5 3Z" fill="currentColor" stroke="none"/></svg></a>
+        <span class="topbar__divider" aria-hidden="true"></span>
+        <a href="tel:+902125550707" aria-label="Telefon: (0212) 555 07 07" title="(0212) 555 07 07"><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L14 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 2 6a2 2 0 0 1 2-2Z"/></svg></a>
+        <a href="mailto:info@trabzonlularfederasyonu.org" aria-label="E-posta: info@trabzonlularfederasyonu.org" title="info@trabzonlularfederasyonu.org"><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M3 5h18v14H3z"/><path d="m3 6 9 7 9-7"/></svg></a>
+      </div>
+      <div class="topbar__aux">
+        <nav class="topbar__links" aria-label="Yardımcı menü">
+          <a href="uye-dernekler.html">Üye Dernekler</a>
+          <a class="is-accent" href="tf-kart.html">TF Kart</a>
+          <a href="dokumanlar.html">Doküman Merkezi</a>
+          <a href="iletisim.html">İletişim</a>
+        </nav>
+        <button class="topbar__search" aria-label="Sitede ara">
+          <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+        </button>
+        <a class="topbar__cta" href="federasyona-katil.html">Federasyona Katıl</a>
+      </div>
+    </div>
+  </div>
+
+<header class="navbar">
+    <div class="container navbar__inner">
+      <a href="index.html" class="navbar__brand" aria-label="Trabzonlular Federasyonu — Ana Sayfa">
+        <img src="assets/img/logo.png" alt="Trabzonlular Federasyonu">
+      </a>
+
+      <nav class="navbar__nav" aria-label="Ana menü">
+        <ul class="nav-list">
+          <li class="has-mega">
+            <button class="nav-toggle" aria-expanded="false">Kurumsal
+              <svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+            </button>
+            <div class="mega-panel">
+              <div class="container mega-panel__grid">
+                <a href="hakkimizda.html"><svg aria-hidden="true" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h15"/><path d="m14 7 5 5-5 5"/></svg><span>Hakkımızda</span></a>
+                <a href="tarihce.html"><svg aria-hidden="true" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h15"/><path d="m14 7 5 5-5 5"/></svg><span>Tarihçemiz</span></a>
+                <a href="misyon-vizyon.html"><svg aria-hidden="true" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h15"/><path d="m14 7 5 5-5 5"/></svg><span>Misyon ve Vizyon</span></a>
+                <a href="degerlerimiz.html"><svg aria-hidden="true" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h15"/><path d="m14 7 5 5-5 5"/></svg><span>Değerlerimiz</span></a>
+                <a href="genel-baskan.html"><svg aria-hidden="true" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h15"/><path d="m14 7 5 5-5 5"/></svg><span>Genel Başkan</span></a>
+                <a href="yonetim.html"><svg aria-hidden="true" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h15"/><path d="m14 7 5 5-5 5"/></svg><span>Yönetim Kurulu</span></a>
+                <a href="denetim-kurulu.html"><svg aria-hidden="true" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h15"/><path d="m14 7 5 5-5 5"/></svg><span>Denetim Kurulu</span></a>
+                <a href="kurucularimiz.html"><svg aria-hidden="true" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h15"/><path d="m14 7 5 5-5 5"/></svg><span>Kurucularımız</span></a>
+                <a href="eski-baskanlarimiz.html"><svg aria-hidden="true" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h15"/><path d="m14 7 5 5-5 5"/></svg><span>Eski Başkanlarımız</span></a>
+              </div>
+            </div>
+          </li>
+
+          <li class="has-mega">
+            <button class="nav-toggle" aria-expanded="false">Trabzon
+              <svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+            </button>
+            <div class="mega-panel">
+              <div class="container mega-panel__grid">
+                <a href="trabzon.html"><svg aria-hidden="true" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h15"/><path d="m14 7 5 5-5 5"/></svg><span>Trabzon Hakkında</span></a>
+                <a href="trabzon-tarihi.html"><svg aria-hidden="true" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h15"/><path d="m14 7 5 5-5 5"/></svg><span>Trabzon Tarihi</span></a>
+                <a href="kulturel-miras.html"><svg aria-hidden="true" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h15"/><path d="m14 7 5 5-5 5"/></svg><span>Kültürel Miras</span></a>
+                <a href="yoresel-degerler.html"><svg aria-hidden="true" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h15"/><path d="m14 7 5 5-5 5"/></svg><span>Yöresel Değerler</span></a>
+                <a href="yaylalar.html"><svg aria-hidden="true" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h15"/><path d="m14 7 5 5-5 5"/></svg><span>Yaylalar ve Doğal Güzellikler</span></a>
+                <a href="buyuklerimiz.html"><svg aria-hidden="true" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h15"/><path d="m14 7 5 5-5 5"/></svg><span>Büyüklerimiz / Kanaat Önderleri</span></a>
+                <a href="yoreden-izler.html"><svg aria-hidden="true" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h15"/><path d="m14 7 5 5-5 5"/></svg><span>Yöreden İzler</span></a>
+              </div>
+            </div>
+          </li>
+
+          <li class="has-mega">
+            <button class="nav-toggle" aria-expanded="false">Federasyon
+              <svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+            </button>
+            <div class="mega-panel">
+              <div class="container mega-panel__grid">
+                <a href="federasyon.html"><svg aria-hidden="true" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h15"/><path d="m14 7 5 5-5 5"/></svg><span>Federasyon Yapısı</span></a>
+                <a href="uye-dernekler.html"><svg aria-hidden="true" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h15"/><path d="m14 7 5 5-5 5"/></svg><span>Üye Dernekler</span></a>
+                <a href="ilce-dernekleri.html"><svg aria-hidden="true" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h15"/><path d="m14 7 5 5-5 5"/></svg><span>İlçe Dernekleri</span></a>
+                <a href="bolge-temsilcilikleri.html"><svg aria-hidden="true" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h15"/><path d="m14 7 5 5-5 5"/></svg><span>Bölge Temsilcilikleri</span></a>
+                <a href="temsilcilikler.html"><svg aria-hidden="true" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h15"/><path d="m14 7 5 5-5 5"/></svg><span>Temsilcilikler</span></a>
+                <a href="komisyonlar.html"><svg aria-hidden="true" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h15"/><path d="m14 7 5 5-5 5"/></svg><span>Komisyonlar</span></a>
+                <a href="genclik-kollari.html"><svg aria-hidden="true" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h15"/><path d="m14 7 5 5-5 5"/></svg><span>Gençlik Kolları</span></a>
+                <a href="kadin-kollari.html"><svg aria-hidden="true" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h15"/><path d="m14 7 5 5-5 5"/></svg><span>Kadın Kolları</span></a>
+                <a href="is-birlikleri.html"><svg aria-hidden="true" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h15"/><path d="m14 7 5 5-5 5"/></svg><span>İş Birlikleri</span></a>
+              </div>
+            </div>
+          </li>
+
+          <li class="has-mega">
+            <button class="nav-toggle" aria-expanded="false">Faaliyetlerimiz
+              <svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+            </button>
+            <div class="mega-panel">
+              <div class="container mega-panel__grid">
+                <a href="faaliyetler.html"><svg aria-hidden="true" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h15"/><path d="m14 7 5 5-5 5"/></svg><span>Faaliyet Alanlarımız</span></a>
+                <a href="etkinlikler.html"><svg aria-hidden="true" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h15"/><path d="m14 7 5 5-5 5"/></svg><span>Etkinlik Takvimi</span></a>
+                <a href="yaklasan-etkinlikler.html"><svg aria-hidden="true" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h15"/><path d="m14 7 5 5-5 5"/></svg><span>Yaklaşan Etkinlikler</span></a>
+                <a href="gecmis-etkinlikler.html"><svg aria-hidden="true" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h15"/><path d="m14 7 5 5-5 5"/></svg><span>Geçmiş Etkinlikler</span></a>
+                <a href="projeler.html"><svg aria-hidden="true" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h15"/><path d="m14 7 5 5-5 5"/></svg><span>Projeler</span></a>
+                <a href="devam-eden-projeler.html"><svg aria-hidden="true" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h15"/><path d="m14 7 5 5-5 5"/></svg><span>Devam Eden Projeler</span></a>
+                <a href="tamamlanan-projeler.html"><svg aria-hidden="true" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h15"/><path d="m14 7 5 5-5 5"/></svg><span>Tamamlanan Projeler</span></a>
+                <a href="proje-oneri-formu.html"><svg aria-hidden="true" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h15"/><path d="m14 7 5 5-5 5"/></svg><span>Proje Öneri Formu</span></a>
+              </div>
+            </div>
+          </li>
+
+          <li class="has-mega">
+            <button class="nav-toggle" aria-expanded="false">Haberler / Duyurular
+              <svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+            </button>
+            <div class="mega-panel">
+              <div class="container mega-panel__grid">
+                <a href="haberler.html"><svg aria-hidden="true" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h15"/><path d="m14 7 5 5-5 5"/></svg><span>Haberler</span></a>
+                <a href="duyurular.html"><svg aria-hidden="true" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h15"/><path d="m14 7 5 5-5 5"/></svg><span>Duyurular</span></a>
+                <a href="basin-bultenleri.html"><svg aria-hidden="true" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h15"/><path d="m14 7 5 5-5 5"/></svg><span>Basın Bültenleri</span></a>
+                <a href="federasyondan-haberler.html"><svg aria-hidden="true" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h15"/><path d="m14 7 5 5-5 5"/></svg><span>Federasyondan Haberler</span></a>
+                <a href="derneklerden-haberler.html"><svg aria-hidden="true" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h15"/><path d="m14 7 5 5-5 5"/></svg><span>Derneklerden Haberler</span></a>
+              </div>
+            </div>
+          </li>
+
+          <li class="has-mega">
+            <button class="nav-toggle" aria-expanded="false">Medya Merkezi
+              <svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+            </button>
+            <div class="mega-panel">
+              <div class="container mega-panel__grid">
+                <a href="fotograf-galerisi.html"><svg aria-hidden="true" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h15"/><path d="m14 7 5 5-5 5"/></svg><span>Fotoğraf Galerisi</span></a>
+                <a href="video-galerisi.html"><svg aria-hidden="true" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h15"/><path d="m14 7 5 5-5 5"/></svg><span>Video Galerisi</span></a>
+                <a href="basinda-biz.html"><svg aria-hidden="true" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h15"/><path d="m14 7 5 5-5 5"/></svg><span>Basında Biz</span></a>
+                <a href="kurumsal-kimlik.html"><svg aria-hidden="true" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h15"/><path d="m14 7 5 5-5 5"/></svg><span>Kurumsal Kimlik</span></a>
+              </div>
+            </div>
+          </li>
+
+          <li class="has-mega">
+            <button class="nav-toggle" aria-expanded="false">Bilgi Merkezi
+              <svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+            </button>
+            <div class="mega-panel">
+              <div class="container mega-panel__grid">
+                <a href="dokumanlar.html"><svg aria-hidden="true" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h15"/><path d="m14 7 5 5-5 5"/></svg><span>Doküman Merkezi</span></a>
+                <a href="tuzuk-belgeler.html"><svg aria-hidden="true" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h15"/><path d="m14 7 5 5-5 5"/></svg><span>Tüzük ve Belgeler</span></a>
+                <a href="faaliyet-raporlari.html"><svg aria-hidden="true" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h15"/><path d="m14 7 5 5-5 5"/></svg><span>Faaliyet Raporları</span></a>
+                <a href="denetim-raporlari.html"><svg aria-hidden="true" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h15"/><path d="m14 7 5 5-5 5"/></svg><span>Denetim Raporları</span></a>
+                <a href="kvkk.html"><svg aria-hidden="true" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h15"/><path d="m14 7 5 5-5 5"/></svg><span>KVKK ve Aydınlatma Metinleri</span></a>
+                <a href="sss.html"><svg aria-hidden="true" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h15"/><path d="m14 7 5 5-5 5"/></svg><span>Sıkça Sorulan Sorular</span></a>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </nav>
+
+      <div class="navbar__actions">
+        <button class="hamburger" aria-label="Menüyü aç" aria-expanded="false"><span></span></button>
+      </div>
+    </div>
+</header>
+
+<div class="scrim"></div>
+
+<nav class="mobile-nav" aria-label="Mobil menü">
+  <div class="mobile-nav__head">
+    <a href="index.html" class="mobile-nav__brand">
+      <img src="assets/img/logo.png" alt="Trabzonlular Federasyonu">
+    </a>
+    <button class="mobile-nav__close" aria-label="Menüyü kapat">
+      <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg>
+    </button>
+  </div>
+  <ul class="mobile-nav__list">
+    <li class="mobile-nav__item">
+      <button class="mobile-toggle">Kurumsal
+        <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+      </button>
+      <div class="mobile-submenu">
+        <a href="hakkimizda.html">Hakkımızda</a>
+        <a href="tarihce.html">Tarihçemiz</a>
+        <a href="misyon-vizyon.html">Misyon ve Vizyon</a>
+        <a href="degerlerimiz.html">Değerlerimiz</a>
+        <a href="genel-baskan.html">Genel Başkan</a>
+        <a href="yonetim.html">Yönetim Kurulu</a>
+        <a href="denetim-kurulu.html">Denetim Kurulu</a>
+        <a href="kurucularimiz.html">Kurucularımız</a>
+        <a href="eski-baskanlarimiz.html">Eski Başkanlarımız</a>
+      </div>
+    </li>
+
+    <li class="mobile-nav__item">
+      <button class="mobile-toggle">Trabzon
+        <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+      </button>
+      <div class="mobile-submenu">
+        <a href="trabzon.html">Trabzon Hakkında</a>
+        <a href="trabzon-tarihi.html">Trabzon Tarihi</a>
+        <a href="kulturel-miras.html">Kültürel Miras</a>
+        <a href="yoresel-degerler.html">Yöresel Değerler</a>
+        <a href="yaylalar.html">Yaylalar ve Doğal Güzellikler</a>
+        <a href="buyuklerimiz.html">Büyüklerimiz / Kanaat Önderleri</a>
+        <a href="yoreden-izler.html">Yöreden İzler</a>
+      </div>
+    </li>
+
+    <li class="mobile-nav__item">
+      <button class="mobile-toggle">Federasyon
+        <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+      </button>
+      <div class="mobile-submenu">
+        <a href="federasyon.html">Federasyon Yapısı</a>
+        <a href="uye-dernekler.html">Üye Dernekler</a>
+        <a href="ilce-dernekleri.html">İlçe Dernekleri</a>
+        <a href="bolge-temsilcilikleri.html">Bölge Temsilcilikleri</a>
+        <a href="temsilcilikler.html">Temsilcilikler</a>
+        <a href="komisyonlar.html">Komisyonlar</a>
+        <a href="genclik-kollari.html">Gençlik Kolları</a>
+        <a href="kadin-kollari.html">Kadın Kolları</a>
+        <a href="is-birlikleri.html">İş Birlikleri</a>
+      </div>
+    </li>
+
+    <li class="mobile-nav__item">
+      <button class="mobile-toggle">Faaliyetlerimiz
+        <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+      </button>
+      <div class="mobile-submenu">
+        <a href="faaliyetler.html">Faaliyet Alanlarımız</a>
+        <a href="etkinlikler.html">Etkinlik Takvimi</a>
+        <a href="yaklasan-etkinlikler.html">Yaklaşan Etkinlikler</a>
+        <a href="gecmis-etkinlikler.html">Geçmiş Etkinlikler</a>
+        <a href="projeler.html">Projeler</a>
+        <a href="devam-eden-projeler.html">Devam Eden Projeler</a>
+        <a href="tamamlanan-projeler.html">Tamamlanan Projeler</a>
+        <a href="proje-oneri-formu.html">Proje Öneri Formu</a>
+      </div>
+    </li>
+
+    <li class="mobile-nav__item">
+      <button class="mobile-toggle">Haberler / Duyurular
+        <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+      </button>
+      <div class="mobile-submenu">
+        <a href="haberler.html">Haberler</a>
+        <a href="duyurular.html">Duyurular</a>
+        <a href="basin-bultenleri.html">Basın Bültenleri</a>
+        <a href="federasyondan-haberler.html">Federasyondan Haberler</a>
+        <a href="derneklerden-haberler.html">Derneklerden Haberler</a>
+      </div>
+    </li>
+
+    <li class="mobile-nav__item">
+      <button class="mobile-toggle">Medya Merkezi
+        <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+      </button>
+      <div class="mobile-submenu">
+        <a href="fotograf-galerisi.html">Fotoğraf Galerisi</a>
+        <a href="video-galerisi.html">Video Galerisi</a>
+        <a href="basinda-biz.html">Basında Biz</a>
+        <a href="kurumsal-kimlik.html">Kurumsal Kimlik</a>
+      </div>
+    </li>
+
+    <li class="mobile-nav__item">
+      <button class="mobile-toggle">Bilgi Merkezi
+        <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+      </button>
+      <div class="mobile-submenu">
+        <a href="dokumanlar.html">Doküman Merkezi</a>
+        <a href="tuzuk-belgeler.html">Tüzük ve Belgeler</a>
+        <a href="faaliyet-raporlari.html">Faaliyet Raporları</a>
+        <a href="denetim-raporlari.html">Denetim Raporları</a>
+        <a href="kvkk.html">KVKK ve Aydınlatma Metinleri</a>
+        <a href="sss.html">Sıkça Sorulan Sorular</a>
+      </div>
+    </li>
+  </ul>
+  <div class="mobile-nav__secondary">
+    <a href="uye-dernekler.html">Üye Dernekler</a>
+    <a class="is-accent" href="tf-kart.html">TF Kart</a>
+    <a href="dokumanlar.html">Doküman Merkezi</a>
+    <a href="iletisim.html">İletişim</a>
+  </div>
+  <div class="mobile-nav__connect">
+    <a href="#" aria-label="Facebook"><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M14 9h3V6h-3c-1.7 0-3 1.3-3 3v2H8v3h3v7h3v-7h3l1-3h-4V9c0-.6.4-1 1-1Z"/></svg></a>
+    <a href="#" aria-label="Instagram"><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="4" y="4" width="16" height="16" rx="4"/><circle cx="12" cy="12" r="3.3"/><circle cx="16.6" cy="7.4" r=".9" fill="currentColor" stroke="none"/></svg></a>
+    <a href="#" aria-label="YouTube"><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="3" y="6" width="18" height="12" rx="3"/><path d="m10 9 5 3-5 3Z" fill="currentColor" stroke="none"/></svg></a>
+    <a href="tel:+902125550707" aria-label="Telefon: (0212) 555 07 07"><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L14 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 2 6a2 2 0 0 1 2-2Z"/></svg></a>
+    <a href="mailto:info@trabzonlularfederasyonu.org" aria-label="E-posta: info@trabzonlularfederasyonu.org"><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M3 5h18v14H3z"/><path d="m3 6 9 7 9-7"/></svg></a>
+  </div>
+  <div class="mobile-nav__actions">
+    <a class="btn btn-primary" href="federasyona-katil.html">Federasyona Katıl</a>
+  </div>
+</nav>
+
+<main id="main">
+
+  <section class="page-hero">
+    <div class="container">
+      <nav class="breadcrumb" aria-label="Sayfa yolu">
+        <ol>
+          <li><a href="index.html">Ana Sayfa</a></li>
+          <li><a href="haberler.html">Haberler / Duyurular</a></li>
+          <li><span aria-current="page">Duyurular</span></li>
+        </ol>
+      </nav>
+      <h1>Duyurular</h1>
+      <p class="page-hero__lede">Genel kurul, üyelik ve kurumsal süreçlerimize ilişkin resmî duyurularımızın tam listesi.</p>
+    </div>
+  </section>
+
+  <section class="section reveal">
+    <div class="container">
+      <div class="section-head">
+        <span class="section-head__eyebrow">Gündem</span>
+        <h2>Tüm Duyurular</h2>
+      </div>
+      <div class="grid grid--3">
+        <a class="news-card" href="haber-detay.html">
+          <div class="news-card__media news-card__media--announce" style="background-image:url('https://images.unsplash.com/photo-1523580494863-6f3031224c94?q=80&amp;w=700&amp;auto=format&amp;fit=crop');">
+            <span class="news-card__tag">Duyuru</span>
+          </div>
+          <div class="news-card__body">
+            <span class="news-card__date">20 Haziran 2026</span>
+            <h3>TF Kart Başvuruları Başladı</h3>
+            <p>Üye derneklerimize bağlı hemşehrilerimiz için hazırladığımız TF Kart avantaj programının başvuruları açıldı.</p>
+            <span class="news-card__link">Devamını Oku
+              <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </span>
+          </div>
+        </a>
+        <a class="news-card" href="haber-detay.html">
+          <div class="news-card__media news-card__media--announce" style="background-image:url('https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&amp;w=700&amp;auto=format&amp;fit=crop');">
+            <span class="news-card__tag">Duyuru</span>
+          </div>
+          <div class="news-card__body">
+            <span class="news-card__date">02 Haziran 2026</span>
+            <h3>43. Olağan Genel Kurul Toplantısı Duyurusu</h3>
+            <p>Federasyonumuzun 43. Olağan Genel Kurul toplantısı, gündem maddeleriyle birlikte üye derneklerimize duyurulmuştur.</p>
+            <span class="news-card__link">Devamını Oku
+              <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </span>
+          </div>
+        </a>
+        <a class="news-card" href="haber-detay.html">
+          <div class="news-card__media news-card__media--announce" style="background-image:url('https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&amp;w=700&amp;auto=format&amp;fit=crop');">
+            <span class="news-card__tag">Duyuru</span>
+          </div>
+          <div class="news-card__body">
+            <span class="news-card__date">18 Mayıs 2026</span>
+            <h3>Yeni Üye Dernek: Beşikdüzülüler Derneği Federasyonumuza Katıldı</h3>
+            <p>Beşikdüzülüler Derneği'nin federasyonumuza katılımıyla üye dernek sayımız artmaya devam ediyor.</p>
+            <span class="news-card__link">Devamını Oku
+              <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </span>
+          </div>
+        </a>
+        <a class="news-card" href="haber-detay.html">
+          <div class="news-card__media news-card__media--announce" style="background-image:url('https://images.unsplash.com/photo-1540575467063-178a50c2df87?q=80&amp;w=700&amp;auto=format&amp;fit=crop');">
+            <span class="news-card__tag">Duyuru</span>
+          </div>
+          <div class="news-card__body">
+            <span class="news-card__date">30 Nisan 2026</span>
+            <h3>Yaz Dönemi Burs Başvuruları İçin Son Tarih Yaklaşıyor</h3>
+            <p>Eğitim bursu programımızdan yararlanmak isteyen öğrencilerimizin başvurularını son tarihten önce tamamlaması gerekmektedir.</p>
+            <span class="news-card__link">Devamını Oku
+              <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </span>
+          </div>
+        </a>
+        <a class="news-card" href="haber-detay.html">
+          <div class="news-card__media news-card__media--announce" style="background-image:url('https://images.unsplash.com/photo-1543269865-cbf427effbad?q=80&amp;w=700&amp;auto=format&amp;fit=crop');">
+            <span class="news-card__tag">Duyuru</span>
+          </div>
+          <div class="news-card__body">
+            <span class="news-card__date">12 Nisan 2026</span>
+            <h3>Genel Kurul Gündem Maddeleri Üye Derneklere İletildi</h3>
+            <p>Yaklaşan genel kurul toplantımızın gündem maddeleri, ilgili yönetmelik hükümlerine uygun biçimde üye derneklerimize iletildi.</p>
+            <span class="news-card__link">Devamını Oku
+              <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </span>
+          </div>
+        </a>
+        <a class="news-card" href="haber-detay.html">
+          <div class="news-card__media news-card__media--announce" style="background-image:url('https://images.unsplash.com/photo-1560439514-4e9645039924?q=80&amp;w=700&amp;auto=format&amp;fit=crop');">
+            <span class="news-card__tag">Duyuru</span>
+          </div>
+          <div class="news-card__body">
+            <span class="news-card__date">25 Mart 2026</span>
+            <h3>Federasyon Yeni İletişim Hattını Devreye Aldı</h3>
+            <p>Hemşehrilerimizin taleplerine daha hızlı yanıt verebilmek için yeni çağrı hattımızı ve dijital başvuru kanalımızı açtık.</p>
+            <span class="news-card__link">Devamını Oku
+              <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--soft reveal">
+    <div class="container">
+      <div class="section-head section-head--center">
+        <span class="section-head__eyebrow">Gündemi Kaçırmayın</span>
+        <h2>Federasyon Ağına Katılın</h2>
+        <p>Üye derneklerimizin ve federasyonumuzun güncel gelişmelerinden ilk siz haberdar olun.</p>
+      </div>
+      <div class="section-foot">
+        <a class="btn btn-primary" href="federasyona-katil.html">Federasyona Katıl</a>
+        <a class="btn btn-secondary" href="haberler.html">Tüm Haberlere Dönün</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-simple">
+    <div class="footer-simple__logo">
+      <img src="assets/img/logo-white.png" alt="Trabzonlular Federasyonu">
+    </div>
+    <p class="footer-simple__about">Türkiye ve yurt dışındaki Trabzonlu dernekleri tek çatı altında buluşturan, kültürel mirasımızı ve dayanışma ruhumuzu geleceğe taşıyan çatı kuruluş.</p>
+    <nav class="footer-simple__legal" aria-label="Yasal bağlantılar">
+      <a href="kvkk.html">KVKK</a>
+      <a href="dokumanlar.html#gizlilik">Gizlilik Politikası</a>
+      <a href="dokumanlar.html#cerez">Çerez Politikası</a>
+      <a href="dokumanlar.html#kullanim">Kullanım Şartları</a>
+    </nav>
+    <div class="footer__social">
+      <a href="#" aria-label="Facebook"><svg aria-hidden="true" width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M14 9h3V6h-3c-1.7 0-3 1.3-3 3v2H8v3h3v7h3v-7h3l1-3h-4V9c0-.6.4-1 1-1Z"/></svg></a>
+      <a href="#" aria-label="Instagram"><svg aria-hidden="true" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="4" y="4" width="16" height="16" rx="4"/><circle cx="12" cy="12" r="3.3"/><circle cx="16.6" cy="7.4" r=".9" fill="currentColor" stroke="none"/></svg></a>
+      <a href="#" aria-label="YouTube"><svg aria-hidden="true" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="3" y="6" width="18" height="12" rx="3"/><path d="m10 9 5 3-5 3Z" fill="currentColor" stroke="none"/></svg></a>
+      <a href="#" aria-label="X"><svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24h-6.657l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231 5.451-6.231Zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77Z"/></svg></a>
+    </div>
+  </div>
+
+  <div class="container footer__bottom">
+    <span>&copy; 2026 Trabzonlular Federasyonu. Tüm hakları saklıdır.</span>
+    <a class="footer__credit" href="https://gaviaworks.com/" target="_blank" rel="noopener">
+      <span class="footer__credit-code" aria-hidden="true">&lt;/&gt;</span>
+      Gavia Works
+    </a>
+  </div>
+</footer>
+
+<script src="assets/js/main.js"></script>
+</body>
+</html>
