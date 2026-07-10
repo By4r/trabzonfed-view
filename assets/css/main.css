@@ -2326,3 +2326,9 @@ button.dernek-card.company-card:focus-visible { outline: 2px solid var(--tf-mavi
 @media (max-width: 768px) { .qa-parallax { background-attachment: scroll; } }
 
 .merchant-head { margin-top: var(--tf-space-8); padding-top: var(--tf-space-6); border-top: 1px solid var(--tf-border); }
+
+/* index TF Kart bölümü — parallax sabit arkaplan (bordo overlay üstte, kart okunur) */
+.tfk-home-parallax { position: relative; background-size: cover; background-position: center; background-attachment: fixed; }
+.tfk-home-parallax::before { content: ""; position: absolute; inset: 0; background: linear-gradient(135deg, rgba(70,0,15,.92), rgba(96,0,20,.86)); }
+.tfk-home-parallax > .container { position: relative; z-index: 1; }
+@media (max-width: 768px) { .tfk-home-parallax { background-attachment: scroll; } }
