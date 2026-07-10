@@ -563,3 +563,72 @@
   renderTimeline();
 })();
 
+/* ---- Çerez onay banner'ı + tercih paneli (site geneli) — #17 ---- */
+(function () {
+  var STORAGE_KEY = "tf-cerez-tercihi";
+  var banner = document.querySelector("[data-cookie-banner]");
+  var panel = document.querySelector("[data-cookie-panel]");
+  if (!banner && !panel) return;
+
+  var stored = null;
+  try { stored = JSON.parse(localStorage.getItem(STORAGE_KEY)); } catch (e) { stored = null; }
+
+  var acceptBtn = banner ? banner.querySelector("[data-cookie-accept]") : null;
+  var rejectBtn = banner ? banner.querySelector("[data-cookie-reject]") : null;
+  var manageBtns = document.querySelectorAll("[data-cookie-manage]");
+  var panelSaveBtn = panel ? panel.querySelector("[data-cookie-save]") : null;
+  var panelCloseBtn = panel ? panel.querySelector("[data-cookie-panel-close]") : null;
+  var funcToggle = panel ? panel.querySelector('[data-cookie-cat="islevsellik"]') : null;
+  var perfToggle = panel ? panel.querySelector('[data-cookie-cat="performans"]') : null;
+  var lastFocused = null;
+
+  function showBanner() { if (banner) banner.hidden = false; }
+  function hideBanner() { if (banner) banner.hidden = true; }
+  function showPanel() {
+    if (!panel) return;
+    lastFocused = document.activeElement;
+    if (stored) {
+      if (funcToggle) funcToggle.checked = !!stored.islevsellik;
+      if (perfToggle) perfToggle.checked = !!stored.performans;
+    }
+    panel.hidden = false;
+    document.body.style.overflow = "hidden";
+    window.setTimeout(function () { if (panelCloseBtn) panelCloseBtn.focus(); }, 10);
+  }
+  function hidePanel() {
+    if (!panel) return;
+    panel.hidden = true;
+    document.body.style.overflow = "";
+    if (lastFocused) lastFocused.focus();
+  }
+
+  function savePrefs(prefs) {
+    prefs.zorunlu = true; /* zorunlu çerezler her zaman açık */
+    prefs.tarih = new Date().toISOString();
+    stored = prefs;
+    try { localStorage.setItem(STORAGE_KEY, JSON.stringify(prefs)); } catch (e) {}
+    hideBanner();
+    hidePanel();
+  }
+
+  if (!stored) showBanner();
+
+  if (acceptBtn) acceptBtn.addEventListener("click", function () {
+    savePrefs({ islevsellik: true, performans: true });
+  });
+  if (rejectBtn) rejectBtn.addEventListener("click", function () {
+    savePrefs({ islevsellik: false, performans: false });
+  });
+  manageBtns.forEach(function (btn) { btn.addEventListener("click", showPanel); });
+  if (panelCloseBtn) panelCloseBtn.addEventListener("click", hidePanel);
+  if (panel) panel.addEventListener("click", function (e) { if (e.target === panel) hidePanel(); });
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape" && panel && !panel.hidden) hidePanel();
+  });
+  if (panelSaveBtn) panelSaveBtn.addEventListener("click", function () {
+    savePrefs({
+      islevsellik: funcToggle ? funcToggle.checked : true,
+      performans: perfToggle ? perfToggle.checked : true
+    });
+  });
+})();

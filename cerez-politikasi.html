@@ -345,12 +345,30 @@
         <p>Bu çerez politikası, <a href="dokumanlar.html#cerez">Doküman Merkezi'ndeki Çerez Politikası</a> özetinin genişletilmiş hâlidir ve trabzonlularfederasyonu.org internet sitesinde ("Site") kullanılan çerezlerin türlerini, kullanım amaçlarını ve tercihlerinizi nasıl yönetebileceğinizi açıklar.</p>
         <h2>Çerez Nedir?</h2>
         <p>Çerezler, ziyaret ettiğiniz internet siteleri tarafından tarayıcınız aracılığıyla cihazınıza yerleştirilen küçük metin dosyalarıdır. Çerezler; site içi gezinme tercihlerinizin hatırlanması, site performansının ölçülmesi ve kullanıcı deneyiminin iyileştirilmesi amacıyla kullanılır.</p>
-        <h2>Kullandığımız Çerez Türleri</h2>
-        <p>Sitemizde; sitenin temel işlevlerinin çalışması için gerekli olan zorunlu çerezler, ziyaretçi tercihlerini (ör. menü durumu) hatırlayan işlevsellik çerezleri ve site kullanımını anonim biçimde ölçen performans çerezleri kullanılmaktadır. Sitemiz, üçüncü taraf reklam ağlarına ait hedefleme veya pazarlama çerezi kullanmamaktadır.</p>
+        <h2>Kullandığımız Çerez Kategorileri</h2>
+        <p>Sitemizde üç kategoride çerez kullanılmaktadır. Sitemiz, üçüncü taraf reklam ağlarına ait hedefleme veya pazarlama çerezi kullanmamaktadır.</p>
+        <div class="cookie-cat-list">
+          <div class="cookie-cat">
+            <div class="cookie-cat__head">
+              <strong>Zorunlu Çerezler</strong>
+              <span class="cookie-cat__badge">Her Zaman Açık</span>
+            </div>
+            <p>Sitenin temel işlevlerinin (oturum, güvenlik, gezinme, çerez tercihinizin hatırlanması) çalışması için gereklidir; devre dışı bırakılamaz.</p>
+          </div>
+          <div class="cookie-cat">
+            <div class="cookie-cat__head"><strong>İşlevsellik Çerezleri</strong></div>
+            <p>Menü durumu ve dil gibi ziyaretçi tercihlerini hatırlayarak site deneyiminizi kişiselleştirir.</p>
+          </div>
+          <div class="cookie-cat">
+            <div class="cookie-cat__head"><strong>Performans Çerezleri</strong></div>
+            <p>Site kullanımını anonim biçimde ölçerek hizmet kalitemizi geliştirmemize yardımcı olur.</p>
+          </div>
+        </div>
         <h2>Çerezlerin Saklama Süreleri</h2>
         <p>Oturum çerezleri, tarayıcınızı kapattığınızda otomatik olarak silinir. Kalıcı çerezler ise, amacına bağlı olarak belirli bir süre boyunca (genellikle birkaç ay ile bir yıl arasında) cihazınızda saklanır ve sürenin sonunda kendiliğinden geçersiz hâle gelir.</p>
         <h2>Çerez Tercihlerinizi Yönetme</h2>
-        <p>Kullandığınız tarayıcının ayarlar bölümünden çerezleri görüntüleyebilir, silebilir veya yeni çerezlerin kaydedilmesini engelleyebilirsiniz. Zorunlu çerezlerin devre dışı bırakılması, sitenin bazı bölümlerinin beklendiği gibi çalışmamasına yol açabilir.</p>
+        <p>Siteye ilk girişinizde karşınıza çıkan çerez bildirimi üzerinden "Kabul Et", "Reddet" veya "Tercihleri Yönet" seçeneğiyle işlevsellik ve performans çerezlerini ayrı ayrı açıp kapatabilirsiniz. Verdiğiniz tercih tarayıcınızda saklanır ve siz değiştirmediğiniz sürece tekrar sorulmaz; tercihinizi dilediğiniz zaman aşağıdaki butondan yeniden düzenleyebilirsiniz. Ayrıca kullandığınız tarayıcının ayarlar bölümünden çerezleri görüntüleyebilir, silebilir veya yeni çerezlerin kaydedilmesini engelleyebilirsiniz. Zorunlu çerezlerin devre dışı bırakılması, sitenin bazı bölümlerinin beklendiği gibi çalışmamasına yol açabilir.</p>
+        <p><button type="button" class="btn btn-secondary" data-cookie-manage>Çerez Tercihlerimi Yönetin</button></p>
         <h2>Üçüncü Taraf Çerezler</h2>
         <p>Sitemizde harita ve benzeri gömülü içerikler nedeniyle, ilgili üçüncü taraf hizmet sağlayıcılarına ait sınırlı sayıda çerez de yer alabilir. Bu çerezlerin yönetimi, ilgili üçüncü tarafın kendi gizlilik ve çerez politikasına tabidir.</p>
         <h2>Politika Güncellemeleri</h2>
@@ -424,6 +442,48 @@
     </a>
   </div>
 </footer>
+
+
+<div class="cookie-banner" data-cookie-banner hidden>
+  <div class="cookie-banner__inner">
+    <p class="cookie-banner__text">Sitemizde deneyiminizi iyileştirmek için çerezler kullanıyoruz. Tercihlerinizi dilediğiniz zaman yönetebilirsiniz. Ayrıntılı bilgi için <a href="cerez-politikasi.html">Çerez Politikası</a>'nı inceleyebilirsiniz.</p>
+    <div class="cookie-banner__actions">
+      <button type="button" class="btn btn-ghost btn-sm" data-cookie-manage>Tercihleri Yönet</button>
+      <button type="button" class="btn btn-secondary btn-sm" data-cookie-reject>Reddet</button>
+      <button type="button" class="btn btn-primary btn-sm" data-cookie-accept>Kabul Et</button>
+    </div>
+  </div>
+</div>
+
+<div class="cookie-panel" data-cookie-panel hidden role="dialog" aria-modal="true" aria-label="Çerez tercihlerini yönet">
+  <div class="cookie-panel__inner">
+    <div class="cookie-panel__head">
+      <h2>Çerez Tercihlerini Yönetin</h2>
+      <button type="button" class="cookie-panel__close" data-cookie-panel-close aria-label="Kapat">
+        <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg>
+      </button>
+    </div>
+    <p class="cookie-panel__lede">Sitemizde kullanılan çerez kategorilerini aşağıdan inceleyebilir, zorunlu olmayan kategorileri açıp kapatabilirsiniz. Ayrıntılı bilgi için <a href="cerez-politikasi.html">Çerez Politikası</a> sayfamızı ziyaret edebilirsiniz.</p>
+    <ul class="cookie-panel__list">
+      <li class="cookie-cat">
+        <div class="cookie-cat__head"><strong>Zorunlu Çerezler</strong><span class="cookie-cat__badge">Her Zaman Açık</span></div>
+        <p>Sitenin temel işlevlerinin (oturum, güvenlik, gezinme) çalışması için gereklidir; devre dışı bırakılamaz.</p>
+      </li>
+      <li class="cookie-cat">
+        <div class="cookie-cat__head"><strong>İşlevsellik Çerezleri</strong><label class="cookie-toggle"><input type="checkbox" data-cookie-cat="islevsellik" checked><span class="cookie-toggle__track" aria-hidden="true"></span></label></div>
+        <p>Menü ve dil gibi tercihlerinizi hatırlayarak site deneyiminizi kişiselleştirir.</p>
+      </li>
+      <li class="cookie-cat">
+        <div class="cookie-cat__head"><strong>Performans Çerezleri</strong><label class="cookie-toggle"><input type="checkbox" data-cookie-cat="performans" checked><span class="cookie-toggle__track" aria-hidden="true"></span></label></div>
+        <p>Site kullanımını anonim biçimde ölçerek hizmet kalitemizi geliştirmemize yardımcı olur.</p>
+      </li>
+    </ul>
+    <div class="cookie-panel__foot">
+      <a class="btn btn-ghost btn-sm" href="cerez-politikasi.html">Çerez Politikasını İnceleyin</a>
+      <button type="button" class="btn btn-primary btn-sm" data-cookie-save>Tercihlerimi Kaydet</button>
+    </div>
+  </div>
+</div>
 
 <script src="assets/js/main.js"></script>
 </body>
