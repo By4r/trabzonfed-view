@@ -2305,3 +2305,7 @@ button.dernek-card.company-card:focus-visible { outline: 2px solid var(--tf-mavi
 .merchant-card__cat { display: block; font-size: var(--tf-fs-eyebrow); text-transform: uppercase; letter-spacing: .08em; color: var(--tf-mavi); font-weight: 600; margin-bottom: .25rem; }
 .merchant-note { margin-top: var(--tf-space-3); font-size: var(--tf-fs-meta); color: var(--tf-text-soft); }
 
+/* footer'da Bağış Yap / Aidat Öde hızlı erişim (koyu footer, pill) */
+.footer-simple__quick { display: flex; flex-wrap: wrap; gap: var(--tf-space-2); justify-content: center; margin-bottom: var(--tf-space-3); }
+.footer-simple__quick a { display: inline-flex; align-items: center; gap: .4rem; font-family: var(--tf-ff-heading); font-weight: 600; font-size: var(--tf-fs-meta); color: var(--tf-on-dark); padding: .5rem var(--tf-space-3); border: 1px solid rgba(255,255,255,.28); border-radius: var(--tf-radius-pill); transition: background var(--tf-dur) var(--tf-ease), border-color var(--tf-dur) var(--tf-ease); }
+.footer-simple__quick a:hover { background: var(--tf-bordo); border-color: var(--tf-bordo); }
