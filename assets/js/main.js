@@ -320,3 +320,83 @@
     countEls.forEach(function (el) { countObserver.observe(el); });
   }
 })();
+
+/* ==================================================================== */
+/* WAVE 2 — [B]/[C] etkileşim eklentileri (Lead entegre etti).          */
+/* ==================================================================== */
+
+/* ---- Generic modal (şirket pop / [data-modal-target]) — #10 ---- */
+(function () {
+  var modalTriggers = document.querySelectorAll("[data-modal-target]");
+  if (!modalTriggers.length) return;
+
+  var activeModal = null;
+  var modalLastFocused = null;
+
+  function getFocusable(panel) {
+    return Array.prototype.slice.call(
+      panel.querySelectorAll('a[href], button:not([disabled]), input, select, textarea, [tabindex]:not([tabindex="-1"])')
+    );
+  }
+
+  function openModal(modal, trigger) {
+    if (!modal) return;
+    modalLastFocused = trigger || document.activeElement;
+    modal.classList.add("is-open");
+    modal.setAttribute("aria-hidden", "false");
+    document.body.style.overflow = "hidden";
+    activeModal = modal;
+    var panel = modal.querySelector(".modal__panel");
+    var focusable = getFocusable(panel);
+    window.setTimeout(function () {
+      (focusable[0] || panel).focus();
+    }, 50);
+  }
+
+  function closeModal(modal) {
+    if (!modal) return;
+    modal.classList.remove("is-open");
+    modal.setAttribute("aria-hidden", "true");
+    document.body.style.overflow = "";
+    activeModal = null;
+    if (modalLastFocused) modalLastFocused.focus();
+  }
+
+  modalTriggers.forEach(function (trigger) {
+    var target = document.querySelector(trigger.getAttribute("data-modal-target"));
+    trigger.addEventListener("click", function () {
+      openModal(target, trigger);
+    });
+  });
+
+  document.querySelectorAll(".modal").forEach(function (modal) {
+    modal.querySelectorAll("[data-modal-close]").forEach(function (closer) {
+      closer.addEventListener("click", function () {
+        closeModal(modal);
+      });
+    });
+  });
+
+  document.addEventListener("keydown", function (e) {
+    if (!activeModal) return;
+    if (e.key === "Escape") {
+      closeModal(activeModal);
+      return;
+    }
+    if (e.key === "Tab") {
+      var panel = activeModal.querySelector(".modal__panel");
+      var focusable = getFocusable(panel);
+      if (!focusable.length) return;
+      var first = focusable[0];
+      var last = focusable[focusable.length - 1];
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
+    }
+  });
+})();
+

@@ -2131,3 +2131,35 @@ textarea.form-input { min-height: 140px; resize: vertical; }
 .map-placeholder__badge svg { color: var(--tf-bordo); }
 @media (max-width: 960px) { .map-placeholder { aspect-ratio: 16 / 9; } }
 
+/* ==== component: company-card (dernek-card button varyantı, #10) ==== */
+button.dernek-card.company-card {
+  appearance: none; width: 100%; text-align: left; font: inherit; color: inherit; cursor: pointer;
+  background: var(--tf-bg); border: 1px solid var(--tf-border);
+}
+button.dernek-card.company-card:hover { border-color: transparent; }
+button.dernek-card.company-card:focus-visible { outline: 2px solid var(--tf-mavi); outline-offset: 2px; }
+.company-card__name { display: block; font-family: var(--tf-ff-heading); font-size: var(--tf-fs-h3-card); font-weight: var(--tf-fw-h3-card); color: var(--tf-lacivert); }
+.company-card__desc { display: block; font-size: .875rem; color: var(--tf-text-soft); margin-top: var(--tf-space-1); }
+
+/* ==== component: generic modal (şirket pop, #10) — lightbox role=dialog dilinde ==== */
+.modal { position: fixed; inset: 0; z-index: 400; display: flex; align-items: center; justify-content: center; padding: var(--tf-space-4); opacity: 0; visibility: hidden; transition: opacity var(--tf-dur) var(--tf-ease), visibility var(--tf-dur); }
+.modal.is-open { opacity: 1; visibility: visible; }
+.modal__backdrop { position: absolute; inset: 0; background: rgba(18, 27, 46, .72); }
+.modal__panel { position: relative; z-index: 1; width: 100%; max-width: 520px; max-height: 88vh; overflow-y: auto; background: var(--tf-bg); border-radius: var(--tf-radius); box-shadow: var(--tf-shadow-hover); padding: var(--tf-space-4); }
+.modal__panel:focus-visible { outline: none; }
+.modal__close { position: absolute; top: var(--tf-space-2); right: var(--tf-space-2); width: 40px; height: 40px; display: inline-flex; align-items: center; justify-content: center; border-radius: 50%; color: var(--tf-text-soft); background: var(--tf-bg-soft); transition: background var(--tf-dur) var(--tf-ease), color var(--tf-dur) var(--tf-ease); }
+.modal__close:hover { background: var(--tf-bordo-tint); color: var(--tf-bordo); }
+.modal__head { display: flex; align-items: center; gap: var(--tf-space-2); margin-bottom: var(--tf-space-3); padding-right: var(--tf-space-6); }
+.modal__logo { flex-shrink: 0; width: 56px; height: 56px; display: flex; align-items: center; justify-content: center; border-radius: var(--tf-radius-sm); background: var(--tf-bg-soft); overflow: hidden; }
+.modal__logo img { width: 100%; height: 100%; object-fit: contain; }
+.modal__head h3 { font-size: var(--tf-fs-h3-card); font-weight: var(--tf-fw-h3-card); color: var(--tf-lacivert); }
+.modal__sector { font-size: var(--tf-fs-meta); color: var(--tf-text-soft); }
+.modal__desc { font-size: .9rem; color: var(--tf-text); line-height: var(--tf-lh-body); margin-bottom: var(--tf-space-3); }
+.modal__contact { display: flex; flex-direction: column; gap: var(--tf-space-2); margin-bottom: var(--tf-space-3); }
+.modal__actions { display: flex; gap: var(--tf-space-2); }
+@media (max-width: 600px) {
+  .modal__panel { padding: var(--tf-space-3); }
+  .modal__actions { flex-direction: column; }
+  .modal__actions .btn { width: 100%; text-align: center; justify-content: center; }
+}
+
