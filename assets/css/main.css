@@ -1556,6 +1556,9 @@ textarea.form-input { min-height: 140px; resize: vertical; }
 /* Okunabilirlik cap'ini kaldırır — metin container genişliğine yayılır
    (revize #3 degerlerimiz "Uygulamada"). */
 .prose--wide p { max-width: none; }
+/* Ortalı section-head altında intro prose'u dengeli okunur sütun yapar — blok
+   ortalanır (simetrik boşluk), metin sola hizalı kalır (revize #9 gençlik/kadın kolları). */
+.prose--center { max-width: 72ch; margin-inline: auto; }
 .about-media {
   border-radius: var(--tf-radius);
   overflow: hidden;
