@@ -2308,8 +2308,8 @@ button.dernek-card.company-card:focus-visible { outline: 2px solid var(--tf-mavi
 .merchant-note { margin-top: var(--tf-space-3); font-size: var(--tf-fs-meta); color: var(--tf-text-soft); }
 
 /* footer'da Bağış Yap / Aidat Öde hızlı erişim (koyu footer, pill) */
-.footer-simple__quick { display: flex; flex-wrap: wrap; gap: var(--tf-space-2); justify-content: center; width: 100%; max-width: 400px; margin: var(--tf-space-1) auto var(--tf-space-2); padding-top: var(--tf-space-4); border-top: 1px solid rgba(255,255,255,.16); }
-.footer-simple__quick a { display: inline-flex; align-items: center; gap: .4rem; font-family: var(--tf-ff-heading); font-weight: 600; font-size: var(--tf-fs-meta); color: var(--tf-on-dark); padding: .5rem var(--tf-space-3); border: 1px solid rgba(255,255,255,.28); border-radius: var(--tf-radius-pill); transition: background var(--tf-dur) var(--tf-ease), border-color var(--tf-dur) var(--tf-ease); }
+.footer-simple__quick { display: flex; flex-wrap: wrap; gap: var(--tf-space-2); justify-content: center; }
+.footer-simple__quick a { display: inline-flex; align-items: center; gap: .4rem; font-family: var(--tf-ff-heading); font-weight: 600; font-size: .8125rem; color: var(--tf-on-dark); padding: .35rem var(--tf-space-2); border: 1px solid rgba(255,255,255,.28); border-radius: var(--tf-radius-pill); transition: background var(--tf-dur) var(--tf-ease), border-color var(--tf-dur) var(--tf-ease); }
 .footer-simple__quick a:hover { background: var(--tf-bordo); border-color: var(--tf-bordo); }
 
 /* ==== index Hızlı Erişim — parallax sabit arkaplan + cam (glass) kartlar ==== */
