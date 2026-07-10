@@ -2295,3 +2295,13 @@ button.dernek-card.company-card:focus-visible { outline: 2px solid var(--tf-mavi
 /* ==== dernek-bagis/dernek-aidat — form-hint çapraz link (#18) ==== */
 .form-hint a { color: var(--tf-mavi); text-decoration: underline; text-underline-offset: 2px; }
 .form-hint a:hover { color: var(--tf-mavi-dark); }
+
+/* ==================================================================== */
+/* WAVE 3 — canlı review düzeltmeleri (Lead). Tokens-only.              */
+/* ==================================================================== */
+/* tf-kart "Anlaşmalı İşletmeler" slider — activity-card + carousel reuse (#19 ek) */
+.merchant-card .activity-card__media { position: relative; }
+.merchant-card__badge { position: absolute; top: var(--tf-space-2); left: var(--tf-space-2); background: var(--tf-bordo); color: var(--tf-on-dark); font-size: var(--tf-fs-meta); font-weight: 700; padding: .3rem .7rem; border-radius: var(--tf-radius-pill); box-shadow: var(--tf-shadow); }
+.merchant-card__cat { display: block; font-size: var(--tf-fs-eyebrow); text-transform: uppercase; letter-spacing: .08em; color: var(--tf-mavi); font-weight: 600; margin-bottom: .25rem; }
+.merchant-note { margin-top: var(--tf-space-3); font-size: var(--tf-fs-meta); color: var(--tf-text-soft); }
+
