@@ -2111,3 +2111,23 @@ textarea.form-input { min-height: 140px; resize: vertical; }
 .timeline__body h3 { font-size: var(--tf-fs-h3-card); font-weight: var(--tf-fw-h3-card); margin-bottom: .35rem; }
 .timeline__body p { font-size: .9rem; color: var(--tf-text-soft); max-width: 60ch; }
 
+/* ==== sayfa: dernek.html — İletişim bilgi bloğu (harita placeholder + sosyal, #6) ==== */
+.contact-cta__social { display: inline-flex; gap: var(--tf-space-2); margin-top: .35rem; }
+.contact-cta__social a { display: inline-flex; color: var(--tf-mavi); transition: color var(--tf-dur) var(--tf-ease); }
+.contact-cta__social a:hover { color: var(--tf-bordo); }
+.map-placeholder {
+  position: relative; border-radius: var(--tf-radius); overflow: hidden;
+  aspect-ratio: 4 / 3; background-size: cover; background-position: center; box-shadow: var(--tf-shadow);
+}
+.map-placeholder::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(18,27,46,0) 55%, rgba(18,27,46,.55) 100%); }
+.map-placeholder__badge {
+  position: absolute; left: var(--tf-space-3); bottom: var(--tf-space-3); z-index: 1;
+  display: inline-flex; align-items: center; gap: .4rem; padding: .55rem var(--tf-space-2);
+  border-radius: var(--tf-radius-pill); background: var(--tf-bg); color: var(--tf-lacivert);
+  font-size: var(--tf-fs-meta); font-weight: 600; box-shadow: var(--tf-shadow);
+  transition: transform var(--tf-dur) var(--tf-ease);
+}
+.map-placeholder__badge:hover { transform: translateY(-2px); }
+.map-placeholder__badge svg { color: var(--tf-bordo); }
+@media (max-width: 960px) { .map-placeholder { aspect-ratio: 16 / 9; } }
+
