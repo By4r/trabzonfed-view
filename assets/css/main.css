@@ -2163,3 +2163,33 @@ button.dernek-card.company-card:focus-visible { outline: 2px solid var(--tf-mavi
   .modal__actions .btn { width: 100%; text-align: center; justify-content: center; }
 }
 
+/* ==== sayfa: tf-kart split-hero (#19) ==== */
+.tfk-split-hero { position: relative; background: var(--tf-bordo-tint); overflow: hidden; padding-block: clamp(3rem, 7vw, 5.5rem); }
+.tfk-split-hero__decor { position: absolute; inset: 0; z-index: 0; pointer-events: none; }
+.tfk-split-hero__decor::before, .tfk-split-hero__decor::after { content: ""; position: absolute; border-radius: 50%; }
+.tfk-split-hero__decor::before { width: 130px; height: 130px; left: -50px; top: 18%; background: var(--tf-mavi-tint); }
+.tfk-split-hero__decor::after { width: 64px; height: 64px; left: 14%; bottom: 10%; background: var(--tf-bordo); opacity: .1; }
+.tfk-split-hero .container { position: relative; z-index: 1; }
+.tfk-split-hero .breadcrumb a { color: var(--tf-text-soft); }
+.tfk-split-hero .breadcrumb a:hover { color: var(--tf-bordo); }
+.tfk-split-hero .breadcrumb [aria-current="page"] { color: var(--tf-lacivert); }
+.tfk-split-hero .breadcrumb li + li::before { color: var(--tf-text-soft); }
+.tfk-split-hero__grid { align-items: center; }
+.tfk-split-hero__content h1 { font-size: var(--tf-fs-display); max-width: 620px; margin-block: var(--tf-space-2) var(--tf-space-3); }
+.tfk-split-hero__lede { font-size: 1.0625rem; color: var(--tf-text-soft); max-width: 52ch; margin-bottom: var(--tf-space-4); }
+.tfk-split-hero__actions { display: flex; gap: var(--tf-space-3); flex-wrap: wrap; }
+.tfk-card-mockup--tilt { transform: rotate(-6deg); }
+@media (max-width: 960px) {
+  .tfk-split-hero__grid { text-align: center; }
+  .tfk-split-hero__content h1 { max-width: none; margin-inline: auto; }
+  .tfk-split-hero__lede { margin-inline: auto; }
+  .tfk-split-hero__actions { justify-content: center; }
+  .tfk-split-hero__grid .tfk-card-mockup-wrap { order: -1; }
+  .tfk-split-hero .breadcrumb ol { justify-content: center; }
+}
+@media (max-width: 600px) {
+  .tfk-card-mockup--tilt { transform: rotate(-4deg); }
+  .tfk-split-hero__actions { flex-direction: column; align-items: stretch; }
+  .tfk-split-hero__actions .btn { justify-content: center; }
+}
+

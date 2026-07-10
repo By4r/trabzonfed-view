@@ -1,10 +1,21 @@
 <!DOCTYPE html>
+<!-- ============================================================================
+  SHELL REFERANS ŞABLONU — Wave 2 (index.html'den birebir türetildi, 2026-07-05)
+  Kullanım: bu dosyayı yeni sayfa olarak kopyala, SADECE şunları değiştir:
+    1. <title> — "[Sayfa Adı] | Trabzonlular Federasyonu"
+    2. <meta name="description"> — sayfaya özgü 1-2 cümle (TDK uyumlu, kurumsal ton)
+    3. <main> içi — sayfa içeriği (ilk bölüm: page-hero, components.md)
+  Topbar / navbar / mega menüler / mobile-nav / footer'a DOKUNMA — bunlar kanonik
+  shell'dir; menü içeriğinin tek resmi kaynağı menü docx'idir (lessons.md).
+  Footer perdesi kendiliğinden çalışır (main.js + <main id="main"> yeterli).
+  Bu dosya gitignored'dır (tasks/) — sayfalara kopyalanır, kendisi yayınlanmaz.
+============================================================================= -->
 <html lang="tr">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TF Kart | Trabzonlular Federasyonu</title>
-<meta name="description" content="TF Kart ile federasyon etkinliklerinde, anlaşmalı noktalarda ve federasyon ağı içinde özel avantajlardan yararlanın.">
+<title>İşyeri Başvuru Formu | Trabzonlular Federasyonu</title>
+<meta name="description" content="TF Kart programına anlaşmalı işletme olarak katılmak için işletme ve iletişim bilgilerinizi doldurarak başvurunuzu tamamlayın.">
 <link rel="icon" href="assets/img/logo-mark.png" type="image/png">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -31,6 +42,8 @@
         <nav class="topbar__links" aria-label="Yardımcı menü">
           <a href="uye-dernekler.html">Üye Dernekler</a>
           <a class="is-accent" href="tf-kart.html">TF Kart</a>
+          <a href="dernek-bagis.html">Bağış Yap</a>
+          <a href="dernek-aidat.html">Aidat Öde</a>
           <a href="dokumanlar.html">Doküman Merkezi</a>
           <a href="iletisim.html">İletişim</a>
         </nav>
@@ -297,6 +310,8 @@
   <div class="mobile-nav__secondary">
     <a href="uye-dernekler.html">Üye Dernekler</a>
     <a class="is-accent" href="tf-kart.html">TF Kart</a>
+    <a href="dernek-bagis.html">Bağış Yap</a>
+    <a href="dernek-aidat.html">Aidat Öde</a>
     <a href="dokumanlar.html">Doküman Merkezi</a>
     <a href="iletisim.html">İletişim</a>
   </div>
@@ -314,97 +329,29 @@
 
 <main id="main">
 
-  <section class="tfk-split-hero">
-    <div class="tfk-split-hero__decor" aria-hidden="true"></div>
+  <section class="page-hero page-hero--image" style="background-image:url('https://images.unsplash.com/photo-1556740758-90de374c12ad?q=80&amp;w=1800&amp;auto=format&amp;fit=crop')">
     <div class="container">
       <nav class="breadcrumb" aria-label="Sayfa yolu">
         <ol>
           <li><a href="index.html">Ana Sayfa</a></li>
-          <li><span aria-current="page">TF Kart</span></li>
+          <li><a href="tf-kart.html">TF Kart</a></li>
+          <li><span aria-current="page">İşyeri Başvuru Formu</span></li>
         </ol>
       </nav>
-      <div class="grid grid--2 tfk-split-hero__grid">
-        <div class="tfk-split-hero__content">
-          <span class="section-head__eyebrow">Trabzonlular Federasyonu</span>
-          <h1>TF Kart Ayrıcalıklarından Yararlanmaya Başlayın</h1>
-          <p class="tfk-split-hero__lede">TF Kart'ın sunduğu ayrıcalıklardan yararlanmak, federasyon ağındaki anlaşmalı noktalarda indirimli hizmetlerden faydalanabilmeniz için başvurunuzu bekliyoruz.</p>
-          <div class="tfk-split-hero__actions">
-            <a class="btn btn-primary" href="tf-kart-basvuru.html">Kart Başvurusu</a>
-            <a class="btn btn-secondary" href="tf-kart-isyeri-basvuru.html">İşyeri Başvurusu</a>
-          </div>
-        </div>
-        <div class="tfk-card-mockup-wrap">
-          <div class="tfk-card-mockup tfk-card-mockup--tilt" aria-hidden="true">
-            <div class="tfk-card-mockup__top">
-              <span class="tfk-card-mockup__brand">Trabzonlular Federasyonu</span>
-              <span class="tfk-card-mockup__chip"></span>
-            </div>
-            <span class="tfk-card-mockup__number">•••• •••• •••• 0424</span>
-            <div class="tfk-card-mockup__bottom">
-              <span class="tfk-card-mockup__id">
-                <span class="tfk-card-mockup__label">Kart Sahibi</span>
-                <span class="tfk-card-mockup__name">Ad Soyad</span>
-              </span>
-              <span class="tfk-card-mockup__wordmark">TF KART</span>
-            </div>
-          </div>
-        </div>
-      </div>
+      <h1>İşyeri Başvuru Formu</h1>
+      <p class="page-hero__lede">TF Kart programına anlaşmalı işletme olarak katılmak ve hemşehrilerimize özel avantajlar sunmak için işletme bilgilerinizi doldurun.</p>
     </div>
   </section>
 
-  <section class="section section--soft">
-    <div class="container">
-      <div class="section-head section-head--center">
-        <span class="section-head__eyebrow">TF Kart Nedir?</span>
-        <h2>Federasyon Ağının Ayrıcalık Kartı</h2>
-        <p>TF Kart, Trabzonlular Federasyonu'nun hemşehrilerimize ve üye dernek mensuplarımıza sunduğu özel avantaj kartıdır. Kart sahipleri; federasyon etkinliklerinde, anlaşmalı işletmelerde ve federasyon ağı içindeki birçok noktada özel avantajlardan yararlanır.</p>
-      </div>
-      <div class="stat-row stat-row--center tfk-stats">
-        <div class="stat-tile">
-          <div class="stat-tile__num">50+</div>
-          <div class="stat-tile__label">Anlaşmalı Nokta</div>
-        </div>
-        <div class="stat-tile">
-          <div class="stat-tile__num">12 Ay</div>
-          <div class="stat-tile__label">Geçerlilik Süresi</div>
-        </div>
-        <div class="stat-tile">
-          <div class="stat-tile__num">Ücretsiz</div>
-          <div class="stat-tile__label">Başvuru</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section">
+  <section class="section" id="basvuru-sartlari">
     <div class="container">
       <div class="section-head">
-        <span class="section-head__eyebrow">Başvuru Süreci</span>
-        <h2>TF Kart Nasıl Alınır?</h2>
-        <p>Başvurunuzdan kartınızı teslim almanıza kadar süreç dört basit adımdan oluşur.</p>
+        <span class="section-head__eyebrow">İş Birliği Şartları</span>
+        <h2>Kimler Başvurabilir?</h2>
+        <p>Trabzon hemşehrilerimize özel avantajlar sunmak isteyen kafe, restoran, sağlık, eğitim, alışveriş ve diğer sektörlerden tüm işletmeler TF Kart anlaşmalı işletme ağına başvurabilir.</p>
       </div>
-      <div class="tfk-steps">
-        <div class="tfk-step">
-          <span class="tfk-step__num">1</span>
-          <h3>Başvuru Formunu Doldurun</h3>
-          <p>Kimlik ve iletişim bilgilerinizi başvuru formuna eksiksiz girin.</p>
-        </div>
-        <div class="tfk-step">
-          <span class="tfk-step__num">2</span>
-          <h3>Federasyon Onayı</h3>
-          <p>Başvurunuz federasyon yönetimimiz tarafından incelenir ve onaylanır.</p>
-        </div>
-        <div class="tfk-step">
-          <span class="tfk-step__num">3</span>
-          <h3>Kartınız Hazırlanır</h3>
-          <p>Onaylanan başvurular için TF Kart'ınız size özel numaralandırılarak hazırlanır.</p>
-        </div>
-        <div class="tfk-step">
-          <span class="tfk-step__num">4</span>
-          <h3>Kartınızı Teslim Alın</h3>
-          <p>Kartınız adresinize ulaştığında avantajlardan hemen yararlanmaya başlayabilirsiniz.</p>
-        </div>
+      <div class="prose">
+        <p>Başvurunuz federasyon yönetimimiz tarafından değerlendirilir; onaylanan işletmeler TF Kart anlaşmalı işletmeler listesinde yer alır ve federasyon ağı içinde tanıtılır. Kart sahibi hemşehrilerimize sunacağınız indirim veya avantaj, başvuru formunda belirttiğiniz oranlar doğrultusunda uygulanır. Süreç hakkında detaylı bilgiyi <a href="tf-kart.html">TF Kart</a> sayfamızda bulabilirsiniz.</p>
       </div>
     </div>
   </section>
@@ -412,167 +359,109 @@
   <section class="section section--soft">
     <div class="container">
       <div class="section-head">
-        <span class="section-head__eyebrow">Avantajlar</span>
-        <h2>TF Kart ile Neler Kazanırsınız?</h2>
-        <p>TF Kart sahibi hemşehrilerimiz aşağıdaki alanlarda özel avantajlardan yararlanır.</p>
+        <span class="section-head__eyebrow">Başvuru Formu</span>
+        <h2>İşletme Bilgileriniz</h2>
+        <p>Aşağıdaki bilgileri eksiksiz doldurarak TF Kart anlaşmalı işletme başvurunuzu iletebilirsiniz.</p>
       </div>
-      <div class="grid grid--4 grid--m1">
-        <a class="activity-card" href="etkinlikler.html">
-          <div class="activity-card__media" style="background-image:url('https://images.unsplash.com/photo-1511632765486-a01980e01a18?q=80&amp;w=700&amp;auto=format&amp;fit=crop');"></div>
-          <div class="activity-card__body">
-            <h3>Ayrıcalıklı Etkinlik Erişimi</h3>
-            <p>Federasyon etkinliklerine öncelikli ve indirimli katılım imkânı.</p>
-            <span class="activity-card__link">Etkinlikleri Görüntüleyin<svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
-          </div>
-        </a>
-        <a class="activity-card" href="haberler.html">
-          <div class="activity-card__media" style="background-image:url('https://images.unsplash.com/photo-1517048676732-d65bc937f952?q=80&amp;w=700&amp;auto=format&amp;fit=crop');"></div>
-          <div class="activity-card__body">
-            <h3>Öncelikli Duyuru ve Bilgilendirme</h3>
-            <p>Haber ve duyurulardan, yeni fırsatlardan ilk siz haberdar olun.</p>
-            <span class="activity-card__link">Haberleri Görüntüleyin<svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
-          </div>
-        </a>
-        <a class="activity-card" href="faaliyetler.html">
-          <div class="activity-card__media" style="background-image:url('https://images.unsplash.com/photo-1529156069898-49953e39b3ac?q=80&amp;w=700&amp;auto=format&amp;fit=crop');"></div>
-          <div class="activity-card__body">
-            <h3>Kültürel ve Sosyal Avantajlar</h3>
-            <p>Kültür, sanat ve hemşehri buluşmalarında özel fırsatlardan yararlanın.</p>
-            <span class="activity-card__link">Faaliyetleri İnceleyin<svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
-          </div>
-        </a>
-        <a class="activity-card" href="is-birlikleri.html">
-          <div class="activity-card__media" style="background-image:url('https://images.unsplash.com/photo-1556740758-90de374c12ad?q=80&amp;w=700&amp;auto=format&amp;fit=crop');"></div>
-          <div class="activity-card__body">
-            <h3>Anlaşmalı Noktalarda İndirim</h3>
-            <p>Federasyonumuzun iş birliği yaptığı işletmelerde özel indirimlerden faydalanın.</p>
-            <span class="activity-card__link">İş Birliklerini Görüntüleyin<svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
-          </div>
-        </a>
-        <a class="activity-card" href="tf-kart.html#anlasmali-kategoriler">
-          <div class="activity-card__media" style="background-image:url('https://images.unsplash.com/photo-1600880292203-757bb62b4baf?q=80&amp;w=700&amp;auto=format&amp;fit=crop');"></div>
-          <div class="activity-card__body">
-            <h3>Sağlık ve Yaşam Noktalarında İndirim</h3>
-            <p>Anlaşmalı sağlık kuruluşları ve yaşam merkezlerinde özel fiyatlardan yararlanın.</p>
-            <span class="activity-card__link">Kategorileri Görüntüleyin<svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
-          </div>
-        </a>
-        <a class="activity-card" href="tf-kart.html#anlasmali-kategoriler">
-          <div class="activity-card__media" style="background-image:url('https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?q=80&amp;w=700&amp;auto=format&amp;fit=crop');"></div>
-          <div class="activity-card__body">
-            <h3>Eğitim ve Kurs Ücretlerinde Avantaj</h3>
-            <p>Dil kursu ve kişisel gelişim programlarında indirimli katılım imkânı.</p>
-            <span class="activity-card__link">Kategorileri Görüntüleyin<svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
-          </div>
-        </a>
-      </div>
-    </div>
-  </section>
 
-  <section class="section" id="anlasmali-kategoriler">
-    <div class="container">
-      <div class="section-head">
-        <span class="section-head__eyebrow">Anlaşmalı Noktalar</span>
-        <h2>TF Kart'ın Geçerli Olduğu Kategoriler</h2>
-        <p>TF Kart, federasyonumuzun iş birliği yaptığı işletme kategorilerinde geçerlidir; anlaşmalı işletme listemiz düzenli olarak güncellenir.</p>
-      </div>
-      <div class="intro__panel">
-        <div class="intro__panel-list">
-          <div class="intro__panel-item">
-            <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h13v5a5 5 0 0 1-5 5H9a5 5 0 0 1-5-5V8Z"/><path d="M17 9h1.5a2.5 2.5 0 0 1 0 5H17"/><path d="M8 3v2M12 3v2"/></svg>
-            <div>
-              <strong>Kafe ve Restoranlar</strong>
-              <span>Anlaşmalı kafe ve restoranlarda %10'a varan indirim.</span>
-            </div>
+      <form class="form" novalidate>
+        <h3 class="form-group-title">İşletme Bilgileri</h3>
+        <div class="form-grid">
+          <div class="form-field">
+            <label for="isletme-adi">İşletme Adı<span class="form-field__req">*</span></label>
+            <input class="form-input" type="text" id="isletme-adi" name="isletme-adi" required>
           </div>
-          <div class="intro__panel-item">
-            <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-4.35-9.5-9A5.5 5.5 0 0 1 12 6a5.5 5.5 0 0 1 9.5 6C19 16.65 12 21 12 21Z"/><path d="M4 12h3l2 4 3-8 2 4h4"/></svg>
-            <div>
-              <strong>Sağlık ve Yaşam</strong>
-              <span>Anlaşmalı sağlık kuruluşları ve yaşam merkezlerinde özel fiyatlar.</span>
-            </div>
+          <div class="form-field">
+            <label for="sektor">Faaliyet Sektörü<span class="form-field__req">*</span></label>
+            <select class="form-input" id="sektor" name="sektor" required>
+              <option value="">Seçiniz</option>
+              <option>Kafe ve Restoran</option>
+              <option>Sağlık ve Yaşam</option>
+              <option>Eğitim ve Kurs</option>
+              <option>Alışveriş</option>
+              <option>Konaklama</option>
+              <option>Diğer</option>
+            </select>
           </div>
-          <div class="intro__panel-item">
-            <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v15H6.5A2.5 2.5 0 0 0 4 20.5Z"/><path d="M4 20.5V5.5"/></svg>
-            <div>
-              <strong>Eğitim ve Kurslar</strong>
-              <span>Dil kursu ve kişisel gelişim programlarında indirimli katılım.</span>
-            </div>
+          <div class="form-field">
+            <label for="vergi-no">Vergi Numarası<span class="form-field__req">*</span></label>
+            <input class="form-input" type="text" id="vergi-no" name="vergi-no" inputmode="numeric" required>
           </div>
-          <div class="intro__panel-item">
-            <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8h12l1 13H5L6 8Z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg>
-            <div>
-              <strong>Alışveriş Noktaları</strong>
-              <span>Anlaşmalı mağazalarda TF Kart sahiplerine özel kampanyalar.</span>
-            </div>
+          <div class="form-field">
+            <label for="sehir">Şehir<span class="form-field__req">*</span></label>
+            <input class="form-input" type="text" id="sehir" name="sehir" required>
+          </div>
+          <div class="form-field form-field--full">
+            <label for="adres">İşletme Adresi<span class="form-field__req">*</span></label>
+            <input class="form-input" type="text" id="adres" name="adres" required>
           </div>
         </div>
-      </div>
-      <div class="section-foot section-foot--start">
-        <a class="btn btn-ghost" href="is-birlikleri.html">Tüm İş Birliklerimizi İnceleyin ›</a>
-      </div>
-    </div>
-  </section>
 
-  <section class="section section--soft">
-    <div class="container">
-      <div class="section-head">
-        <span class="section-head__eyebrow">Merak Edilenler</span>
-        <h2>TF Kart Hakkında Sık Sorulan Sorular</h2>
-      </div>
-      <div class="accordion">
-        <details class="accordion__item">
-          <summary class="accordion__summary">
-            <span>Kimler TF Kart'a başvurabilir?</span>
-            <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
-          </summary>
-          <div class="accordion__body"><p>Federasyonumuza üye derneklerin mensupları ve federasyon faaliyetlerine düzenli katkı sunan hemşehrilerimiz TF Kart'a başvurabilir.</p></div>
-        </details>
-        <details class="accordion__item">
-          <summary class="accordion__summary">
-            <span>TF Kart başvurusu ücretli mi?</span>
-            <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
-          </summary>
-          <div class="accordion__body"><p>Hayır. Başvuru ve kart teslimi, federasyon üyelerimiz ve hemşehrilerimiz için tamamen ücretsizdir.</p></div>
-        </details>
-        <details class="accordion__item">
-          <summary class="accordion__summary">
-            <span>Kartım ne zaman elime ulaşır?</span>
-            <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
-          </summary>
-          <div class="accordion__body"><p>Başvurunuz onaylandıktan sonra kartınız belirttiğiniz adrese gönderilir; süreç ortalama iki ila üç hafta sürer.</p></div>
-        </details>
-        <details class="accordion__item">
-          <summary class="accordion__summary">
-            <span>Kartımı kaybedersem ne yapmalıyım?</span>
-            <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
-          </summary>
-          <div class="accordion__body"><p><a href="iletisim.html">İletişim sayfamızdan</a> bize ulaşarak kartınızın iptalini ve yenisinin çıkarılmasını talep edebilirsiniz.</p></div>
-        </details>
-        <details class="accordion__item">
-          <summary class="accordion__summary">
-            <span>Kartın geçerlilik süresi ne kadardır?</span>
-            <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
-          </summary>
-          <div class="accordion__body"><p>TF Kart, veriliş tarihinden itibaren 12 ay geçerlidir. Süre sonunda başvurunuzu yenileyerek kartınızı güncelleyebilirsiniz.</p></div>
-        </details>
-      </div>
+        <h3 class="form-group-title">Yetkili Bilgileri</h3>
+        <div class="form-grid">
+          <div class="form-field">
+            <label for="yetkili-adsoyad">Yetkili Adı Soyadı<span class="form-field__req">*</span></label>
+            <input class="form-input" type="text" id="yetkili-adsoyad" name="yetkili-adsoyad" required>
+          </div>
+          <div class="form-field">
+            <label for="yetkili-telefon">Telefon Numarası<span class="form-field__req">*</span></label>
+            <input class="form-input" type="tel" id="yetkili-telefon" name="yetkili-telefon" placeholder="05XX XXX XX XX" required>
+          </div>
+          <div class="form-field form-field--full">
+            <label for="yetkili-eposta">E-posta Adresi<span class="form-field__req">*</span></label>
+            <input class="form-input" type="email" id="yetkili-eposta" name="yetkili-eposta" required>
+          </div>
+        </div>
+
+        <h3 class="form-group-title">Sunulacak Avantaj</h3>
+        <div class="form-grid">
+          <div class="form-field">
+            <label for="indirim-orani">Sunulacak İndirim / Avantaj<span class="form-field__req">*</span></label>
+            <input class="form-input" type="text" id="indirim-orani" name="indirim-orani" placeholder="Örn. %10 indirim" required>
+          </div>
+          <div class="form-field">
+            <label for="gecerlilik">Kampanya Geçerlilik Süresi</label>
+            <input class="form-input" type="text" id="gecerlilik" name="gecerlilik" placeholder="Örn. Yıl boyunca">
+          </div>
+          <div class="form-field form-field--full">
+            <label for="aciklama">Ek Açıklama</label>
+            <textarea class="form-input" id="aciklama" name="aciklama" placeholder="İndirim/avantajın uygulama koşulları hakkında eklemek istedikleriniz"></textarea>
+          </div>
+        </div>
+
+        <div class="form-check">
+          <input type="checkbox" id="onay-sozlesme" required>
+          <label for="onay-sozlesme"><a href="dokumanlar.html">TF Kart İşyeri İş Birliği Sözleşmesi'ni</a> okudum ve kabul ediyorum.</label>
+        </div>
+        <div class="form-check">
+          <input type="checkbox" id="onay-kvkk" required>
+          <label for="onay-kvkk"><a href="kvkk.html">KVKK Aydınlatma Metni'ni</a> okudum ve kabul ediyorum.</label>
+        </div>
+        <div class="form-check">
+          <input type="checkbox" id="onay-eizin">
+          <label for="onay-eizin"><a href="kvkk.html">Elektronik İletişim İzni'ni</a> okudum ve kabul ediyorum.</label>
+        </div>
+
+        <div class="section-foot section-foot--start">
+          <a class="btn btn-primary" href="dernek-tesekkur.html">
+            Başvuruyu Gönderin
+            <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+        </div>
+      </form>
     </div>
   </section>
 
   <section class="section">
     <div class="container">
       <div class="section-head section-head--center">
-        <span class="section-head__eyebrow">Hemen Başvurun</span>
-        <h2>TF Kart'a Sahip Olun</h2>
-        <p>Başvurunuzu birkaç adımda tamamlayarak federasyon ağının avantajlarından yararlanmaya bugün başlayın.</p>
+        <span class="section-head__eyebrow">Sorularınız mı Var?</span>
+        <h2>İş Birliği Hakkında Daha Fazla Bilgi Alın</h2>
+        <p>İşyeri başvuru süreciyle ilgili merak ettikleriniz için TF Kart sayfamızı inceleyebilir ya da bizimle iletişime geçebilirsiniz.</p>
       </div>
       <div class="section-foot">
-        <a class="btn btn-primary" href="tf-kart-basvuru.html">
-          Başvuru Formunu Doldurun
-          <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-        </a>
-        <a class="btn btn-secondary" href="iletisim.html">Sorularınız mı Var?</a>
+        <a class="btn btn-secondary" href="tf-kart.html">TF Kart Sayfasına Dönün</a>
+        <a class="btn btn-secondary" href="iletisim.html">İletişime Geçin</a>
       </div>
     </div>
   </section>
@@ -608,6 +497,48 @@
     </a>
   </div>
 </footer>
+
+
+<div class="cookie-banner" data-cookie-banner hidden>
+  <div class="cookie-banner__inner">
+    <p class="cookie-banner__text">Sitemizde deneyiminizi iyileştirmek için çerezler kullanıyoruz. Tercihlerinizi dilediğiniz zaman yönetebilirsiniz. Ayrıntılı bilgi için <a href="cerez-politikasi.html">Çerez Politikası</a>'nı inceleyebilirsiniz.</p>
+    <div class="cookie-banner__actions">
+      <button type="button" class="btn btn-ghost btn-sm" data-cookie-manage>Tercihleri Yönet</button>
+      <button type="button" class="btn btn-secondary btn-sm" data-cookie-reject>Reddet</button>
+      <button type="button" class="btn btn-primary btn-sm" data-cookie-accept>Kabul Et</button>
+    </div>
+  </div>
+</div>
+
+<div class="cookie-panel" data-cookie-panel hidden role="dialog" aria-modal="true" aria-label="Çerez tercihlerini yönet">
+  <div class="cookie-panel__inner">
+    <div class="cookie-panel__head">
+      <h2>Çerez Tercihlerini Yönetin</h2>
+      <button type="button" class="cookie-panel__close" data-cookie-panel-close aria-label="Kapat">
+        <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg>
+      </button>
+    </div>
+    <p class="cookie-panel__lede">Sitemizde kullanılan çerez kategorilerini aşağıdan inceleyebilir, zorunlu olmayan kategorileri açıp kapatabilirsiniz. Ayrıntılı bilgi için <a href="cerez-politikasi.html">Çerez Politikası</a> sayfamızı ziyaret edebilirsiniz.</p>
+    <ul class="cookie-panel__list">
+      <li class="cookie-cat">
+        <div class="cookie-cat__head"><strong>Zorunlu Çerezler</strong><span class="cookie-cat__badge">Her Zaman Açık</span></div>
+        <p>Sitenin temel işlevlerinin (oturum, güvenlik, gezinme) çalışması için gereklidir; devre dışı bırakılamaz.</p>
+      </li>
+      <li class="cookie-cat">
+        <div class="cookie-cat__head"><strong>İşlevsellik Çerezleri</strong><label class="cookie-toggle"><input type="checkbox" data-cookie-cat="islevsellik" checked><span class="cookie-toggle__track" aria-hidden="true"></span></label></div>
+        <p>Menü ve dil gibi tercihlerinizi hatırlayarak site deneyiminizi kişiselleştirir.</p>
+      </li>
+      <li class="cookie-cat">
+        <div class="cookie-cat__head"><strong>Performans Çerezleri</strong><label class="cookie-toggle"><input type="checkbox" data-cookie-cat="performans" checked><span class="cookie-toggle__track" aria-hidden="true"></span></label></div>
+        <p>Site kullanımını anonim biçimde ölçerek hizmet kalitemizi geliştirmemize yardımcı olur.</p>
+      </li>
+    </ul>
+    <div class="cookie-panel__foot">
+      <a class="btn btn-ghost btn-sm" href="cerez-politikasi.html">Çerez Politikasını İnceleyin</a>
+      <button type="button" class="btn btn-primary btn-sm" data-cookie-save>Tercihlerimi Kaydet</button>
+    </div>
+  </div>
+</div>
 
 <script src="assets/js/main.js"></script>
 </body>
