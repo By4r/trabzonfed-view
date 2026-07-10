@@ -660,6 +660,10 @@ input, textarea, select { font: inherit; }
 }
 .intro__text .section-head { margin-bottom: var(--tf-space-4); }
 .stat-row { display: flex; gap: var(--tf-space-6); flex-wrap: wrap; margin-top: var(--tf-space-4); }
+/* Rakam bloğunu section içinde ortalar (revize #1 hakkimizda, #5 trabzon-tarihi).
+   Global .stat-row sola dayalı kalır — index intro'da bilinçli sol hizalama. */
+.stat-row--center { justify-content: center; }
+.stat-row--center .stat-tile { text-align: center; }
 .stat-tile__num {
   font-family: var(--tf-ff-heading);
   font-size: 2.5rem;
