@@ -1553,6 +1553,9 @@ textarea.form-input { min-height: 140px; resize: vertical; }
 /* ==== sayfa: hakkimizda.html (FE-1) ==== */
 .prose p { max-width: 70ch; }
 .prose p + p { margin-top: var(--tf-space-3); }
+/* Okunabilirlik cap'ini kaldırır — metin container genişliğine yayılır
+   (revize #3 degerlerimiz "Uygulamada"). */
+.prose--wide p { max-width: none; }
 .about-media {
   border-radius: var(--tf-radius);
   overflow: hidden;
