@@ -2193,3 +2193,64 @@ button.dernek-card.company-card:focus-visible { outline: 2px solid var(--tf-mavi
   .tfk-split-hero__actions .btn { justify-content: center; }
 }
 
+/* ==== sayfa: etkinlikler.html — Etkinlik Takvimi (#14) ==== */
+.calendar-columns { display: grid; grid-template-columns: 1.35fr 1fr; gap: var(--tf-gutter); align-items: start; }
+.cal-panel { border-radius: var(--tf-radius); padding: var(--tf-space-4); }
+.cal-panel--calendar { background: var(--tf-lacivert-bg); }
+.cal-panel--calendar :focus-visible { outline-color: var(--tf-on-dark); }
+.cal-panel--timeline { background: var(--tf-bg); border: 1px solid var(--tf-border); }
+.cal-panel__nav { display: flex; align-items: center; justify-content: space-between; gap: var(--tf-space-2); margin-bottom: var(--tf-space-3); }
+.cal-panel__nav-center { display: flex; align-items: center; gap: var(--tf-space-2); }
+.cal-panel__title { font-family: var(--tf-ff-heading); font-size: var(--tf-fs-h3); font-weight: var(--tf-fw-heading); color: var(--tf-on-dark); margin: 0; min-width: 11ch; text-align: center; }
+.cal-nav-btn { width: 34px; height: 34px; border-radius: 50%; flex-shrink: 0; border: 1px solid rgba(255,255,255,.25); background: transparent; color: var(--tf-on-dark); display: flex; align-items: center; justify-content: center; cursor: pointer; transition: background var(--tf-dur) var(--tf-ease), border-color var(--tf-dur) var(--tf-ease); }
+.cal-nav-btn:hover { background: rgba(255,255,255,.1); border-color: var(--tf-mavi); }
+.cal-today-btn.btn-ghost { color: var(--tf-on-dark); }
+.cal-today-btn.btn-ghost:hover { color: var(--tf-accent-on-dark); }
+.cal-weekdays { display: grid; grid-template-columns: repeat(7,1fr); margin-bottom: var(--tf-space-1); }
+.cal-weekdays span { text-align: center; font-size: .72rem; font-weight: 600; letter-spacing: .05em; color: var(--tf-on-dark-soft); padding-bottom: var(--tf-space-1); }
+.cal-grid { display: grid; grid-template-columns: repeat(7,1fr); gap: 4px; }
+.cal-cell { aspect-ratio: 1; border-radius: var(--tf-radius-sm); background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.08); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; cursor: pointer; padding: .25rem; font-family: var(--tf-ff-body); appearance: none; -webkit-appearance: none; transition: background var(--tf-dur) var(--tf-ease), border-color var(--tf-dur) var(--tf-ease); }
+.cal-cell:hover { background: rgba(255,255,255,.09); border-color: rgba(255,255,255,.2); }
+.cal-cell.is-muted { opacity: .35; }
+.cal-cell.is-selected { background: rgba(255,255,255,.14); border-color: var(--tf-mavi); }
+.cal-cell__num { font-size: .85rem; font-weight: 600; color: var(--tf-on-dark); width: 24px; height: 24px; display: flex; align-items: center; justify-content: center; border-radius: 50%; }
+.cal-cell.is-today .cal-cell__num { background: var(--tf-accent-on-dark); color: var(--tf-lacivert-bg); font-weight: 700; }
+.cal-cell__dots { display: flex; gap: 3px; min-height: 6px; }
+.cal-dot { width: 6px; height: 6px; border-radius: 50%; display: inline-block; flex-shrink: 0; }
+.cal-dot--toplanti { background: var(--tf-mavi); }
+.cal-dot--kultur { background: var(--tf-bordo); }
+.cal-dot--genelkurul { background: var(--tf-on-dark); border: 1px solid var(--tf-lacivert); border-radius: 2px; }
+.cal-dot--egitim { background: transparent; border: 1.5px solid var(--tf-mavi-dark); }
+.cal-dot--dayanisma { background: transparent; border: 1.5px solid var(--tf-bordo-dark); }
+.calendar-legend { display: flex; flex-wrap: wrap; gap: var(--tf-space-2) var(--tf-space-4); margin-top: var(--tf-space-3); padding-top: var(--tf-space-3); border-top: 1px solid var(--tf-border); }
+.calendar-legend span { display: inline-flex; align-items: center; gap: .4rem; font-size: var(--tf-fs-meta); color: var(--tf-text-soft); }
+.calendar-legend .cal-dot { width: 10px; height: 10px; }
+.cal-panel__head { display: flex; align-items: baseline; justify-content: space-between; gap: var(--tf-space-2); margin-bottom: var(--tf-space-3); }
+.cal-panel__head h3 { font-family: var(--tf-ff-heading); font-size: var(--tf-fs-h3-card); font-weight: var(--tf-fw-h3-card); color: var(--tf-lacivert); margin: 0; }
+.cal-panel__all { font-size: var(--tf-fs-meta); font-weight: 600; color: var(--tf-mavi); white-space: nowrap; }
+.cal-panel__all:hover { color: var(--tf-mavi-dark); text-decoration: underline; text-underline-offset: 2px; }
+.cal-timeline__reset { margin: 0 0 var(--tf-space-2); }
+.cal-timeline__reset button { background: none; border: none; padding: 0; color: var(--tf-mavi); font-size: var(--tf-fs-meta); cursor: pointer; text-decoration: underline; text-underline-offset: 2px; }
+.cal-timeline__reset button:hover { color: var(--tf-mavi-dark); }
+.cal-timeline { list-style: none; margin: 0; padding: 0; }
+.cal-timeline__item { position: relative; padding: 0 0 var(--tf-space-3) var(--tf-space-4); border-left: 2px solid var(--tf-border); }
+.cal-timeline__item:last-child { border-color: transparent; padding-bottom: 0; }
+.cal-timeline__marker { position: absolute; left: -7px; top: 2px; width: 12px; height: 12px; border-radius: 50%; box-sizing: border-box; background: var(--tf-mavi); border: 2px solid var(--tf-bg); }
+.cal-timeline__marker--toplanti { background: var(--tf-mavi); }
+.cal-timeline__marker--kultur { background: var(--tf-bordo); }
+.cal-timeline__marker--genelkurul { background: var(--tf-lacivert); border-radius: 2px; }
+.cal-timeline__marker--egitim { background: var(--tf-bg); border-color: var(--tf-mavi-dark); }
+.cal-timeline__marker--dayanisma { background: var(--tf-bg); border-color: var(--tf-bordo-dark); }
+.cal-timeline__date { display: block; font-size: var(--tf-fs-meta); color: var(--tf-text-soft); margin-bottom: .15rem; }
+.cal-timeline__title { display: block; font-family: var(--tf-ff-heading); font-size: .95rem; font-weight: 600; color: var(--tf-lacivert); margin-bottom: .2rem; }
+.cal-timeline__title:hover { color: var(--tf-mavi); text-decoration: underline; text-underline-offset: 2px; }
+.cal-timeline__location { display: block; font-size: .72rem; letter-spacing: .05em; text-transform: uppercase; color: var(--tf-text-soft); }
+.cal-timeline__empty { color: var(--tf-text-soft); font-size: .9rem; padding: var(--tf-space-2) 0; }
+@media (max-width: 900px) { .calendar-columns { grid-template-columns: 1fr; } }
+@media (max-width: 600px) {
+  .cal-panel { padding: var(--tf-space-3); }
+  .cal-panel__title { font-size: 1.1rem; min-width: 0; }
+  .cal-cell__num { width: 20px; height: 20px; font-size: .78rem; }
+  .calendar-legend { gap: var(--tf-space-1) var(--tf-space-3); }
+}
+

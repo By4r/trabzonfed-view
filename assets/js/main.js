@@ -400,3 +400,166 @@
   });
 })();
 
+/* ---- Etkinlik Takvimi (etkinlikler.html [data-calendar]) — #14 ----
+   Etkinlik verisi STATİK DEMO placeholder'dır — gerçek program DEĞİLDİR;
+   gerçek veri geldiğinde yalnız EVENTS dizisi güncellenir. */
+(function () {
+  var calRoot = document.querySelector("[data-calendar]");
+  if (!calRoot) return;
+
+  var MONTH_NAMES = ["Ocak","Şubat","Mart","Nisan","Mayıs","Haziran","Temmuz","Ağustos","Eylül","Ekim","Kasım","Aralık"];
+
+  /* Prototipte "bugün" sabit demo tarihidir (2026-07-10), sistem saatine bağlı değildir. */
+  var DEMO_TODAY = "2026-07-10";
+
+  var EVENTS = [
+    { start: "2026-07-03", end: "2026-07-03", title: "Yönetim Kurulu Aylık Toplantısı", location: "Federasyon Genel Merkezi, İstanbul", cat: "toplanti" },
+    { start: "2026-07-07", end: "2026-07-09", title: "Trabzon Kültür Günleri", location: "İstanbul Kongre Merkezi", cat: "kultur" },
+    { start: "2026-07-10", end: "2026-07-10", title: "Karadeniz Mutfağı ve Halk Oyunları Kursu", location: "Federasyon Eğitim Salonu, İstanbul", cat: "egitim" },
+    { start: "2026-07-14", end: "2026-07-14", title: "Gençlik Kolları Proje Toplantısı", location: "Federasyon Genel Merkezi, İstanbul", cat: "toplanti" },
+    { start: "2026-07-18", end: "2026-07-18", title: "Hemşehri Dayanışma Kahvaltısı", location: "Kadıköy Kültür Evi, İstanbul", cat: "dayanisma" },
+    { start: "2026-07-21", end: "2026-07-21", title: "İletişim ve Halkla İlişkiler Semineri", location: "Federasyon Eğitim Salonu, İstanbul", cat: "egitim" },
+    { start: "2026-07-25", end: "2026-07-25", title: "Federasyon Olağan Genel Kurulu", location: "Harbiye Kongre Merkezi, İstanbul", cat: "genelkurul" },
+    { start: "2026-07-29", end: "2026-07-30", title: "Yaylalar Doğa Yürüyüşü ve Pikniği", location: "Çaykara, Trabzon", cat: "kultur" },
+    { start: "2026-07-31", end: "2026-07-31", title: "Yaz Sonu Dayanışma Gecesi", location: "Ankara Sheraton Oteli", cat: "dayanisma" }
+  ];
+
+  var current = new Date(2026, 6, 1);
+  var selectedDate = null;
+
+  var titleEl = calRoot.querySelector("[data-cal-title]");
+  var gridEl = calRoot.querySelector("[data-cal-grid]");
+  var timelineTitleEl = calRoot.querySelector("[data-cal-timeline-title]");
+  var timelineEl = calRoot.querySelector("[data-cal-timeline]");
+  var resetEl = calRoot.querySelector("[data-cal-reset]");
+  var clearBtn = calRoot.querySelector("[data-cal-clear]");
+  var prevBtn = calRoot.querySelector("[data-cal-prev]");
+  var nextBtn = calRoot.querySelector("[data-cal-next]");
+  var todayBtn = calRoot.querySelector("[data-cal-today]");
+
+  function pad(n) { return n < 10 ? "0" + n : "" + n; }
+  function isoOf(date) { return date.getFullYear() + "-" + pad(date.getMonth() + 1) + "-" + pad(date.getDate()); }
+  function formatLong(iso) {
+    var parts = iso.split("-");
+    var d = parseInt(parts[2], 10), m = parseInt(parts[1], 10) - 1, y = parts[0];
+    return d + " " + MONTH_NAMES[m] + " " + y;
+  }
+  function formatRange(ev) {
+    return ev.start === ev.end ? formatLong(ev.start) : formatLong(ev.start) + " – " + formatLong(ev.end);
+  }
+  function eventsForDay(iso) {
+    return EVENTS.filter(function (ev) { return iso >= ev.start && iso <= ev.end; });
+  }
+
+  function buildMonthCells(year, month) {
+    var firstDay = new Date(year, month, 1);
+    var startOffset = (firstDay.getDay() + 6) % 7; /* Pazartesi = 0 */
+    var gridStart = new Date(year, month, 1 - startOffset);
+    var cells = [];
+    var count = 35;
+    for (var i = 0; i < count; i++) {
+      cells.push(new Date(gridStart.getFullYear(), gridStart.getMonth(), gridStart.getDate() + i));
+    }
+    if (cells[count - 1].getMonth() === month) {
+      for (var j = count; j < 42; j++) {
+        cells.push(new Date(gridStart.getFullYear(), gridStart.getMonth(), gridStart.getDate() + j));
+      }
+    }
+    return cells.map(function (date) {
+      return { date: date, iso: isoOf(date), muted: date.getMonth() !== month };
+    });
+  }
+
+  function renderCalendar() {
+    var year = current.getFullYear(), month = current.getMonth();
+    if (titleEl) titleEl.textContent = MONTH_NAMES[month] + " " + year;
+    var cells = buildMonthCells(year, month);
+    gridEl.innerHTML = "";
+    cells.forEach(function (cell) {
+      var dayEvents = eventsForDay(cell.iso);
+      var cellEl = document.createElement("button");
+      cellEl.type = "button";
+      cellEl.className = "cal-cell" +
+        (cell.muted ? " is-muted" : "") +
+        (cell.iso === DEMO_TODAY ? " is-today" : "") +
+        (cell.iso === selectedDate ? " is-selected" : "");
+      cellEl.setAttribute("data-date", cell.iso);
+      cellEl.setAttribute("aria-label", formatLong(cell.iso) + (dayEvents.length ? " — " + dayEvents.length + " etkinlik" : " — etkinlik yok"));
+      var num = document.createElement("span");
+      num.className = "cal-cell__num";
+      num.textContent = cell.date.getDate();
+      cellEl.appendChild(num);
+      var dots = document.createElement("span");
+      dots.className = "cal-cell__dots";
+      dayEvents.forEach(function (ev) {
+        var dot = document.createElement("i");
+        dot.className = "cal-dot cal-dot--" + ev.cat;
+        dots.appendChild(dot);
+      });
+      cellEl.appendChild(dots);
+      cellEl.addEventListener("click", function () {
+        selectedDate = selectedDate === cell.iso ? null : cell.iso;
+        renderCalendar();
+        renderTimeline();
+      });
+      gridEl.appendChild(cellEl);
+    });
+  }
+
+  function renderTimeline() {
+    var items;
+    if (selectedDate) {
+      if (timelineTitleEl) timelineTitleEl.textContent = formatLong(selectedDate);
+      items = eventsForDay(selectedDate);
+      if (resetEl) resetEl.hidden = false;
+    } else {
+      if (timelineTitleEl) timelineTitleEl.textContent = "Yaklaşan Etkinlikler";
+      items = EVENTS.filter(function (ev) { return ev.end >= DEMO_TODAY; })
+        .sort(function (a, b) { return a.start < b.start ? -1 : 1; })
+        .slice(0, 6);
+      if (resetEl) resetEl.hidden = true;
+    }
+    timelineEl.innerHTML = "";
+    if (!items.length) {
+      var empty = document.createElement("li");
+      empty.className = "cal-timeline__empty";
+      empty.textContent = "Bu tarihte planlanmış bir etkinlik bulunmuyor.";
+      timelineEl.appendChild(empty);
+      return;
+    }
+    items.forEach(function (ev) {
+      var li = document.createElement("li");
+      li.className = "cal-timeline__item";
+      li.innerHTML =
+        '<span class="cal-timeline__marker cal-timeline__marker--' + ev.cat + '" aria-hidden="true"></span>' +
+        '<span class="cal-timeline__date">' + formatRange(ev) + '</span>' +
+        '<a class="cal-timeline__title" href="etkinlik-detay.html">' + ev.title + '</a>' +
+        '<span class="cal-timeline__location">' + ev.location.toUpperCase() + '</span>';
+      timelineEl.appendChild(li);
+    });
+  }
+
+  if (prevBtn) prevBtn.addEventListener("click", function () {
+    current = new Date(current.getFullYear(), current.getMonth() - 1, 1);
+    selectedDate = null;
+    renderCalendar(); renderTimeline();
+  });
+  if (nextBtn) nextBtn.addEventListener("click", function () {
+    current = new Date(current.getFullYear(), current.getMonth() + 1, 1);
+    selectedDate = null;
+    renderCalendar(); renderTimeline();
+  });
+  if (todayBtn) todayBtn.addEventListener("click", function () {
+    current = new Date(2026, 6, 1);
+    selectedDate = null;
+    renderCalendar(); renderTimeline();
+  });
+  if (clearBtn) clearBtn.addEventListener("click", function () {
+    selectedDate = null;
+    renderCalendar(); renderTimeline();
+  });
+
+  renderCalendar();
+  renderTimeline();
+})();
+
