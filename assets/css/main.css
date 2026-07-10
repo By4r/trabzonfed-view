@@ -2289,3 +2289,6 @@ button.dernek-card.company-card:focus-visible { outline: 2px solid var(--tf-mavi
   .cookie-banner__actions .btn { flex: 1; }
 }
 
+/* ==== dernek-bagis/dernek-aidat — form-hint çapraz link (#18) ==== */
+.form-hint a { color: var(--tf-mavi); text-decoration: underline; text-underline-offset: 2px; }
+.form-hint a:hover { color: var(--tf-mavi-dark); }
