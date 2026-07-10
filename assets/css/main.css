@@ -1558,7 +1558,9 @@ textarea.form-input { min-height: 140px; resize: vertical; }
 .prose--wide p { max-width: none; }
 /* Ortalı section-head altında intro prose'u dengeli okunur sütun yapar — blok
    ortalanır (simetrik boşluk), metin sola hizalı kalır (revize #9 gençlik/kadın kolları). */
-.prose--center { max-width: 60ch; margin-inline: auto; text-align: center; }
+/* Ortalı section-head altında intro: gövde SOLA hizalı (okunabilirlik), sol kenar
+   alttaki kart grid'iyle hizalı — ortalanmış gövde metni UI anti-pattern'i (revize #9). */
+.prose--center { max-width: 74ch; }
 .about-media {
   border-radius: var(--tf-radius);
   overflow: hidden;
